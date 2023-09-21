@@ -27,7 +27,7 @@ namespace TechShop.API.Data
 
         public DbSet<TinhTrangHang> TinhTrangHang { get; set; }
 
-        public DbSet<GioHang> GioHang { get; set;}
+        public DbSet<GioHang> GioHang { get; set; }
 
         public DbSet<TrangThaiDH> TrangThaiDH { get; set; }
 
