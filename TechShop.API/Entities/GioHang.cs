@@ -6,9 +6,9 @@ namespace TechShop.API.Entities
     [PrimaryKey (nameof(MaKH), nameof(MaSP))]
     public class GioHang
     {
-        public string? MaKH { get; set; }
+        public Guid? MaKH { get; set; }
 
-        [ForeignKey("MaKH")]
+        [ForeignKey("Id")]
         public KhachHang KhachHang { get; set; }
 
         public string? MaSP { get; set; }

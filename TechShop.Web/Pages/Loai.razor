@@ -1,0 +1,88 @@
+﻿@page "/loai"
+@using Microsoft.AspNetCore.Components.Authorization;
+@inherits LoaiBase
+
+<link rel="shortcut icon" type="image/png" href="./assets/img/favicon.png">
+<!-- google font -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<!-- fontawesome -->
+<link rel="stylesheet" href="./assets/css/all.min.css">
+<!-- bootstrap -->
+<link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+<!-- owl carousel -->
+<link rel="stylesheet" href="./assets/css/owl.carousel.css">
+<!-- magnific popup -->
+<link rel="stylesheet" href="./assets/css/magnific-popup.css">
+<!-- animate css -->
+<link rel="stylesheet" href="./assets/css/animate.css">
+<!-- mean menu css -->
+<link rel="stylesheet" href="./assets/css/meanmenu.min.css">
+<!-- main style -->
+<link rel="stylesheet" href="./assets/css/main.css">
+<!-- responsive -->
+<link rel="stylesheet" href="./assets/css/responsive.css">
+
+<link rel="stylesheet" href="./assets/css/style.css">
+
+
+
+@if (Loais == null)
+{
+    <DisplaySpinner />
+}
+
+else
+{
+
+    <!-- home page slider -->
+    <div class="homepage-slider">
+        <!-- single home slider -->
+        <div class="single-homepage-slider homepage-bg-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
+                        <div class="hero-text">
+                            <div class="hero-text-tablecell">
+                                <p class="subtitle">Fresh & Organic</p>
+                                <h1>Delicious Seasonal Fruits</h1>
+                                <div class="hero-btns">
+                                    <a href="shop.html" class="boxed-btn">Fruit Collection</a>
+                                    <a href="contact.html" class="bordered-btn">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end home page slider -->
+    <div class="product-section mt-100 mb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="section-title">
+                        <h3><span class="orange-text">Khám phá</span> Danh mục</h3>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                @foreach (var item in Loais)
+                {
+                    <div class="col text-center">
+                        <div class=" single-product-item">
+                            <div class="product-image">
+                                <a href="shop.html"><img src="./assets/img/products/product-img-1.jpg" alt=""></a>
+                            </div>
+                            <a href="/Loai/@item.MaLoai" class="cart-btn"> @item.TenLoai</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+}

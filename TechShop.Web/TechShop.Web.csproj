@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,8 +7,129 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\assets\bootstrap\css\bootstrap-grid.css" />
+    <None Include="wwwroot\assets\bootstrap\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\assets\bootstrap\css\bootstrap-grid.min.css" />
+    <None Include="wwwroot\assets\bootstrap\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\assets\bootstrap\css\bootstrap-reboot.css" />
+    <None Include="wwwroot\assets\bootstrap\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\assets\bootstrap\css\bootstrap-reboot.min.css" />
+    <None Include="wwwroot\assets\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\assets\bootstrap\css\bootstrap.css" />
+    <None Include="wwwroot\assets\bootstrap\css\bootstrap.css.map" />
+    <None Include="wwwroot\assets\bootstrap\css\bootstrap.min.css" />
+    <None Include="wwwroot\assets\bootstrap\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\assets\bootstrap\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\assets\bootstrap\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\assets\bootstrap\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\assets\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\assets\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\assets\bootstrap\js\bootstrap.js.map" />
+    <None Include="wwwroot\assets\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\assets\bootstrap\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\assets\css\all.min.css" />
+    <None Include="wwwroot\assets\css\animate.css" />
+    <None Include="wwwroot\assets\css\magnific-popup.css" />
+    <None Include="wwwroot\assets\css\main.css" />
+    <None Include="wwwroot\assets\css\meanmenu.min.css" />
+    <None Include="wwwroot\assets\css\owl.carousel.css" />
+    <None Include="wwwroot\assets\css\responsive.css" />
+    <None Include="wwwroot\assets\css\scss\base\_mixins.scss" />
+    <None Include="wwwroot\assets\css\scss\base\_typography.scss" />
+    <None Include="wwwroot\assets\css\scss\base\_variables.scss" />
+    <None Include="wwwroot\assets\css\scss\common\_common.scss" />
+    <None Include="wwwroot\assets\css\scss\common\_footer.scss" />
+    <None Include="wwwroot\assets\css\scss\common\_header.scss" />
+    <None Include="wwwroot\assets\css\scss\common\_hover.scss" />
+    <None Include="wwwroot\assets\css\scss\main.scss" />
+    <None Include="wwwroot\assets\css\scss\pages\_404.css" />
+    <None Include="wwwroot\assets\css\scss\pages\_404.scss" />
+    <None Include="wwwroot\assets\css\scss\pages\_about.scss" />
+    <None Include="wwwroot\assets\css\scss\pages\_contact.scss" />
+    <None Include="wwwroot\assets\css\scss\pages\_shop.scss" />
+    <None Include="wwwroot\assets\css\scss\sections\_about.scss" />
+    <None Include="wwwroot\assets\css\scss\sections\_cart-banner.scss" />
+    <None Include="wwwroot\assets\css\scss\sections\_hero.scss" />
+    <None Include="wwwroot\assets\css\scss\sections\_list.scss" />
+    <None Include="wwwroot\assets\css\scss\sections\_news.scss" />
+    <None Include="wwwroot\assets\css\scss\sections\_shop-banner.scss" />
+    <None Include="wwwroot\assets\css\scss\sections\_testimonials.scss" />
+    <None Include="wwwroot\assets\img\1.jpg" />
+    <None Include="wwwroot\assets\img\a.jpg" />
+    <None Include="wwwroot\assets\img\abt.jpg" />
+    <None Include="wwwroot\assets\img\avaters\avatar1.png" />
+    <None Include="wwwroot\assets\img\avaters\avatar2.png" />
+    <None Include="wwwroot\assets\img\avaters\avatar3.png" />
+    <None Include="wwwroot\assets\img\breadcrumb-bg.jpg" />
+    <None Include="wwwroot\assets\img\company-logos\1.png" />
+    <None Include="wwwroot\assets\img\company-logos\2.png" />
+    <None Include="wwwroot\assets\img\company-logos\3.png" />
+    <None Include="wwwroot\assets\img\company-logos\4.png" />
+    <None Include="wwwroot\assets\img\company-logos\5.png" />
+    <None Include="wwwroot\assets\img\dd.jpg" />
+    <None Include="wwwroot\assets\img\favicon.png" />
+    <None Include="wwwroot\assets\img\feature-bg.jpg" />
+    <None Include="wwwroot\assets\img\hero-bg-2.jpg" />
+    <None Include="wwwroot\assets\img\hero-bg-3.jpg" />
+    <None Include="wwwroot\assets\img\hero-bg.jpg" />
+    <None Include="wwwroot\assets\img\homepage-bg-pattern.png" />
+    <None Include="wwwroot\assets\img\latest-news\news-bg-1.jpg" />
+    <None Include="wwwroot\assets\img\latest-news\news-bg-2.jpg" />
+    <None Include="wwwroot\assets\img\latest-news\news-bg-3.jpg" />
+    <None Include="wwwroot\assets\img\latest-news\news-bg-4.jpg" />
+    <None Include="wwwroot\assets\img\latest-news\news-bg-5.jpg" />
+    <None Include="wwwroot\assets\img\latest-news\news-bg-6.jpg" />
+    <None Include="wwwroot\assets\img\logo.png" />
+    <None Include="wwwroot\assets\img\products\Laptop.jpg" />
+    <None Include="wwwroot\assets\img\products\Laptop.png" />
+    <None Include="wwwroot\assets\img\products\product-img-1.jpg" />
+    <None Include="wwwroot\assets\img\products\product-img-2.jpg" />
+    <None Include="wwwroot\assets\img\products\product-img-3.jpg" />
+    <None Include="wwwroot\assets\img\products\product-img-4.jpg" />
+    <None Include="wwwroot\assets\img\products\product-img-5.jpg" />
+    <None Include="wwwroot\assets\img\products\product-img-6.jpg" />
+    <None Include="wwwroot\assets\img\team\team-1.jpg" />
+    <None Include="wwwroot\assets\img\team\team-2.jpg" />
+    <None Include="wwwroot\assets\img\team\team-3.jpg" />
+    <None Include="wwwroot\assets\js\form-validate.js" />
+    <None Include="wwwroot\assets\js\jquery-1.11.3.min.js" />
+    <None Include="wwwroot\assets\js\jquery.countdown.js" />
+    <None Include="wwwroot\assets\js\jquery.isotope-3.0.6.min.js" />
+    <None Include="wwwroot\assets\js\jquery.magnific-popup.min.js" />
+    <None Include="wwwroot\assets\js\jquery.meanmenu.min.js" />
+    <None Include="wwwroot\assets\js\main.js" />
+    <None Include="wwwroot\assets\js\owl.carousel.min.js" />
+    <None Include="wwwroot\assets\js\sticker.js" />
+    <None Include="wwwroot\assets\js\waypoints.js" />
+    <None Include="wwwroot\assets\webfonts\fa-brands-400.eot" />
+    <None Include="wwwroot\assets\webfonts\fa-brands-400.eot_" />
+    <None Include="wwwroot\assets\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\assets\webfonts\fa-brands-400.ttf" />
+    <None Include="wwwroot\assets\webfonts\fa-brands-400.woff" />
+    <None Include="wwwroot\assets\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\assets\webfonts\fa-regular-400.eot" />
+    <None Include="wwwroot\assets\webfonts\fa-regular-400.eot_" />
+    <None Include="wwwroot\assets\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\assets\webfonts\fa-regular-400.ttf" />
+    <None Include="wwwroot\assets\webfonts\fa-regular-400.woff" />
+    <None Include="wwwroot\assets\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\assets\webfonts\fa-solid-900.eot" />
+    <None Include="wwwroot\assets\webfonts\fa-solid-900.eot_" />
+    <None Include="wwwroot\assets\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\assets\webfonts\fa-solid-900.ttf" />
+    <None Include="wwwroot\assets\webfonts\fa-solid-900.woff" />
+    <None Include="wwwroot\assets\webfonts\fa-solid-900.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="4.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.11" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TechShop.Models\TechShop.Models.csproj" />
   </ItemGroup>
 
 </Project>

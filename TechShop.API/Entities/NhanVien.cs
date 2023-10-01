@@ -18,12 +18,12 @@ namespace TechShop.API.Entities
 
         public string HashPasswdNV { get; set; }
 
-        public int? MaQuyen { get; set; }
+        public Guid? MaQuyen { get; set; }
 
-        [ForeignKey("MaQuyen")] 
+        [ForeignKey("Id")] 
         public Quyen Quyen { get; set; }
 
-        public virtual ICollection<HoaDon> HoaDons { get; set; }
+        public virtual ICollection<BangTin> BangTins { get; set; }
 
     }
 }

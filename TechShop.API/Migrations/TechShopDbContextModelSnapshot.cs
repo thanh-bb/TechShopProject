@@ -22,15 +22,127 @@ namespace TechShop.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
             modelBuilder.Entity("TechShop.API.Entities.BangTin", b =>
                 {
                     b.Property<string>("MaBangTin")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("MaKH")
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("MaKH")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MaNV")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("MaSP")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("MaTT_BT")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("NgayDang")
@@ -42,11 +154,15 @@ namespace TechShop.API.Migrations
 
                     b.HasKey("MaBangTin");
 
-                    b.HasIndex("MaKH");
+                    b.HasIndex("Id");
+
+                    b.HasIndex("MaNV");
 
                     b.HasIndex("MaSP")
                         .IsUnique()
                         .HasFilter("[MaSP] IS NOT NULL");
+
+                    b.HasIndex("MaTT_BT");
 
                     b.ToTable("BangTin");
                 });
@@ -71,8 +187,8 @@ namespace TechShop.API.Migrations
 
             modelBuilder.Entity("TechShop.API.Entities.GioHang", b =>
                 {
-                    b.Property<string>("MaKH")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid?>("MaKH")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("MaSP")
                         .HasColumnType("nvarchar(450)");
@@ -80,10 +196,15 @@ namespace TechShop.API.Migrations
                     b.Property<long>("GiaBan")
                         .HasColumnType("bigint");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("SoLuong")
                         .HasColumnType("int");
 
                     b.HasKey("MaKH", "MaSP");
+
+                    b.HasIndex("Id");
 
                     b.HasIndex("MaSP");
 
@@ -118,11 +239,11 @@ namespace TechShop.API.Migrations
                     b.Property<string>("MaHD")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("MaKH")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("MaNV")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid?>("MaKH")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("MaTT")
                         .HasColumnType("nvarchar(450)");
@@ -135,9 +256,7 @@ namespace TechShop.API.Migrations
 
                     b.HasKey("MaHD");
 
-                    b.HasIndex("MaKH");
-
-                    b.HasIndex("MaNV");
+                    b.HasIndex("Id");
 
                     b.HasIndex("MaTT");
 
@@ -146,34 +265,114 @@ namespace TechShop.API.Migrations
 
             modelBuilder.Entity("TechShop.API.Entities.KhachHang", b =>
                 {
-                    b.Property<string>("MaKH")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DienThoai")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("GioiTinh")
                         .HasColumnType("bit");
 
-                    b.Property<string>("HashPassed")
+                    b.Property<string>("HashPasswd")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<DateTime>("NgaySinh")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TenKH")
-                        .IsRequired()
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MaKH");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("KhachHang");
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenKH")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("7665276e-011d-4c99-a89d-baca4b04967e"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8ad9c4f8-dbde-48b2-b381-e1376ea963d7",
+                            DienThoai = "0985879105",
+                            Email = "abc@gmail.com",
+                            EmailConfirmed = false,
+                            GioiTinh = false,
+                            HashPasswd = "123456",
+                            LockoutEnabled = false,
+                            NgaySinh = new DateTime(2023, 9, 30, 14, 58, 31, 982, DateTimeKind.Local).AddTicks(8792),
+                            NormalizedEmail = "ADMIN1@GMAIL.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "Admin@123$",
+                            PhoneNumber = "032132131",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "92b9937c-e7d9-4ea5-8430-c34fca579147",
+                            TenKH = "Trần Văn Man",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.LoaiSP", b =>
@@ -188,6 +387,13 @@ namespace TechShop.API.Migrations
                     b.HasKey("MaLoai");
 
                     b.ToTable("LoaiSP");
+
+                    b.HasData(
+                        new
+                        {
+                            MaLoai = "11",
+                            TenLoai = "Laptop"
+                        });
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.NhanVien", b =>
@@ -211,8 +417,11 @@ namespace TechShop.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MaQuyen")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("MaQuyen")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("TenNV")
                         .IsRequired()
@@ -220,26 +429,48 @@ namespace TechShop.API.Migrations
 
                     b.HasKey("MaNV");
 
-                    b.HasIndex("MaQuyen");
+                    b.HasIndex("Id");
 
                     b.ToTable("NhanVien");
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.Quyen", b =>
                 {
-                    b.Property<int>("MaQuyen")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaQuyen"));
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("TenQuyen")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MaQuyen");
+                    b.HasKey("Id");
 
-                    b.ToTable("Quyen");
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6d8a58df-4c34-4202-85f7-8218e032c35f"),
+                            TenQuyen = "admin"
+                        });
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.SanPham", b =>
@@ -290,6 +521,20 @@ namespace TechShop.API.Migrations
                     b.ToTable("TinhTrangHang");
                 });
 
+            modelBuilder.Entity("TechShop.API.Entities.TrangThaiBT", b =>
+                {
+                    b.Property<string>("MaTT_BT")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("TenTT_BT")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MaTT_BT");
+
+                    b.ToTable("TrangThaiBT");
+                });
+
             modelBuilder.Entity("TechShop.API.Entities.TrangThaiDH", b =>
                 {
                     b.Property<string>("MaTT")
@@ -304,19 +549,84 @@ namespace TechShop.API.Migrations
                     b.ToTable("TrangThaiDH");
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.HasOne("TechShop.API.Entities.Quyen", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.HasOne("TechShop.API.Entities.KhachHang", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.HasOne("TechShop.API.Entities.KhachHang", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.HasOne("TechShop.API.Entities.Quyen", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechShop.API.Entities.KhachHang", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.HasOne("TechShop.API.Entities.KhachHang", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("TechShop.API.Entities.BangTin", b =>
                 {
                     b.HasOne("TechShop.API.Entities.KhachHang", "KhachHang")
                         .WithMany("BangTins")
-                        .HasForeignKey("MaKH");
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechShop.API.Entities.NhanVien", "NhanVien")
+                        .WithMany("BangTins")
+                        .HasForeignKey("MaNV");
 
                     b.HasOne("TechShop.API.Entities.SanPham", "SanPham")
                         .WithOne("BangTin")
                         .HasForeignKey("TechShop.API.Entities.BangTin", "MaSP");
 
+                    b.HasOne("TechShop.API.Entities.TrangThaiBT", "TrangThaiBT")
+                        .WithMany("BangTins")
+                        .HasForeignKey("MaTT_BT");
+
                     b.Navigation("KhachHang");
 
+                    b.Navigation("NhanVien");
+
                     b.Navigation("SanPham");
+
+                    b.Navigation("TrangThaiBT");
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.ChiTietHoaDon", b =>
@@ -342,7 +652,7 @@ namespace TechShop.API.Migrations
                 {
                     b.HasOne("TechShop.API.Entities.KhachHang", "KhachHang")
                         .WithMany()
-                        .HasForeignKey("MaKH")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -370,19 +680,15 @@ namespace TechShop.API.Migrations
                 {
                     b.HasOne("TechShop.API.Entities.KhachHang", "KhachHang")
                         .WithMany("HoaDons")
-                        .HasForeignKey("MaKH");
-
-                    b.HasOne("TechShop.API.Entities.NhanVien", "NhanVien")
-                        .WithMany("HoaDons")
-                        .HasForeignKey("MaNV");
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TechShop.API.Entities.TrangThaiDH", "TrangThaiDH")
                         .WithMany("HoaDons")
                         .HasForeignKey("MaTT");
 
                     b.Navigation("KhachHang");
-
-                    b.Navigation("NhanVien");
 
                     b.Navigation("TrangThaiDH");
                 });
@@ -391,7 +697,9 @@ namespace TechShop.API.Migrations
                 {
                     b.HasOne("TechShop.API.Entities.Quyen", "Quyen")
                         .WithMany("NhanViens")
-                        .HasForeignKey("MaQuyen");
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Quyen");
                 });
@@ -425,7 +733,7 @@ namespace TechShop.API.Migrations
 
             modelBuilder.Entity("TechShop.API.Entities.NhanVien", b =>
                 {
-                    b.Navigation("HoaDons");
+                    b.Navigation("BangTins");
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.Quyen", b =>
@@ -444,6 +752,11 @@ namespace TechShop.API.Migrations
             modelBuilder.Entity("TechShop.API.Entities.TinhTrangHang", b =>
                 {
                     b.Navigation("SanPhams");
+                });
+
+            modelBuilder.Entity("TechShop.API.Entities.TrangThaiBT", b =>
+                {
+                    b.Navigation("BangTins");
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.TrangThaiDH", b =>

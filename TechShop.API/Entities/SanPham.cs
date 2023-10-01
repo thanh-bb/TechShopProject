@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Numerics;
-
+using Microsoft.EntityFrameworkCore;
+using System.Data.Entity;
 namespace TechShop.API.Entities
 {
     public class SanPham

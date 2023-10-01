@@ -1,0 +1,36 @@
+﻿
+.single-product-item {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+
+.product-image {
+    padding: 30px;
+}
+
+    .product-image img {
+        width: 80%;
+        border-radius: 5px;
+        margin-bottom: 0px;
+    }
+
+.single-homepage-slider:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #051922;
+    content: "";
+    z-index: -1;
+    opacity: 0.2;
+}
+
+.single-artcile-bg {
+    height: 300px;
+}
+
+.latest-news a.boxed-btn {
+    margin-top: 80px;
+    margin-bottom: 30px;
+}

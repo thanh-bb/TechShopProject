@@ -8,9 +8,9 @@ namespace TechShop.API.Entities
         [Key]
         public string MaHD { get; set; }
 
-        public string? MaKH { get; set; }
+        public Guid? MaKH { get; set; }
 
-        [ForeignKey("MaKH")]
+        [ForeignKey("Id")]
         public KhachHang KhachHang { get; set; }
 
         public DateTime NgayDat { get; set; }
@@ -22,10 +22,7 @@ namespace TechShop.API.Entities
 
         public long TongTien { get; set; }
 
-        public string? MaNV { get; set; }
-
-        [ForeignKey("MaNV")]
-        public NhanVien NhanVien { get; set; }
+       
 
     }
 }

@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechShop.Web", "TechShop.Web\TechShop.Web.csproj", "{61FF1F1B-3F13-4077-8B5C-83F1ABD53CC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechShop.API", "TechShop.API\TechShop.API.csproj", "{B9F1A07B-00C9-480D-B4EA-5DEE910D38FC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8AEBE1B8-D535-42E9-9871-E99EDAAB20EE} = {8AEBE1B8-D535-42E9-9871-E99EDAAB20EE}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechShop.API", "TechShop.API\TechShop.API.csproj", "{B9F1A07B-00C9-480D-B4EA-5DEE910D38FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechShop.Models", "TechShop.Models\TechShop.Models.csproj", "{8AEBE1B8-D535-42E9-9871-E99EDAAB20EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechShop.Web", "TechShop.Web\TechShop.Web.csproj", "{E4DE6AFB-45DB-4FFB-9551-2E9346563BFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +18,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{61FF1F1B-3F13-4077-8B5C-83F1ABD53CC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61FF1F1B-3F13-4077-8B5C-83F1ABD53CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61FF1F1B-3F13-4077-8B5C-83F1ABD53CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61FF1F1B-3F13-4077-8B5C-83F1ABD53CC0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B9F1A07B-00C9-480D-B4EA-5DEE910D38FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B9F1A07B-00C9-480D-B4EA-5DEE910D38FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9F1A07B-00C9-480D-B4EA-5DEE910D38FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9F1A07B-00C9-480D-B4EA-5DEE910D38FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AEBE1B8-D535-42E9-9871-E99EDAAB20EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AEBE1B8-D535-42E9-9871-E99EDAAB20EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AEBE1B8-D535-42E9-9871-E99EDAAB20EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AEBE1B8-D535-42E9-9871-E99EDAAB20EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4DE6AFB-45DB-4FFB-9551-2E9346563BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DE6AFB-45DB-4FFB-9551-2E9346563BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DE6AFB-45DB-4FFB-9551-2E9346563BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DE6AFB-45DB-4FFB-9551-2E9346563BFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,16 @@
+﻿
+@page "/logout"
+
+@using TechShop.Web.Services.Contracts
+
+@inject NavigationManager NavigationManager;
+@inject IAuthService AuthService;
+
+@code {
+    protected async override Task OnInitializedAsync()
+    {
+        await AuthService.Logout();
+        NavigationManager.NavigateTo("/");
+    }
+
+}
