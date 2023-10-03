@@ -5,7 +5,8 @@ namespace TechShop.API.Repositories.Contracts
     public interface IProductRepository
     {
         Task<IEnumerable<SanPham>> GetItems();
-        List<SanPham> GetAll();
+
+       List<SanPham> GetAll();
 
         SanPham GetById(string id);
         SanPham Add(SanPham sp);

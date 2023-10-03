@@ -17,6 +17,20 @@ namespace TechShop.API.Repositories
             return await _context.SanPham.ToListAsync();
         }
 
+        public  List<SanPham> GetAll()
+        {
+            var sp = _context.SanPham.Select(s => new SanPham
+            {
+                MaSP = s.MaSP,
+                TenSP = s.TenSP,
+                GiaSP = s.GiaSP,
+                SoLuong = s.SoLuong,
+                MoTa = s.MoTa,
+            });
+            return sp.ToList();
+        }
+
+   
         public SanPham Add(SanPham sp)
         {
             var spnew = new ProductDto
@@ -38,11 +52,7 @@ namespace TechShop.API.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<List<SanPham>> GetAll()
-        {
-            var sp = await _context.SanPham.ToListAsync();
-            return sp;
-        }
+      
 
         public SanPham GetById(string id)
         {
@@ -55,9 +65,6 @@ namespace TechShop.API.Repositories
             throw new NotImplementedException();
         }
 
-        List<SanPham> IProductRepository.GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

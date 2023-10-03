@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TechShop.API.Entities;
+using TechShop.API.Repositories;
 using TechShop.API.Repositories.Contracts;
 
 namespace TechShop.API.Controllers
@@ -17,11 +18,17 @@ namespace TechShop.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public IActionResult GetAll()
         {
-            var post = await _productRepository.GetItems();
-            return Ok(post);
-
+           
+            try
+            {
+                return Ok(_productRepository.GetAll());
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
         /* [HttpGet]
