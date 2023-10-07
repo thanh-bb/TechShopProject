@@ -18,11 +18,12 @@ namespace TechShop.Models.Dtos
         public int SoLuong { get; set; }
 
         public string MoTa { get; set; }
+        public string LoaiSP { get; set; }
 
 
 		public string MaLoai { get; set; }
 
-
+        public string TenLoai { get; set; }
 
 
 

@@ -12,57 +12,42 @@ namespace TechShop.API.Repositories
         {
             _context = context;
         }
-        //public async Task<IEnumerable<SanPham>> GetItems()
-        //{
-        //    return await _context.SanPham.ToListAsync();
-        //}
-
+      
         public async Task<IEnumerable<SanPham>> GetAll()
         {
             var productList = await _context.SanPham.ToListAsync();
             return productList;
         }
 
+		public async Task<IEnumerable<LoaiSP>> GetCategories()
+		{
+			var categories = await _context.LoaiSP.ToListAsync();
 
-        public SanPham Add(SanPham sp)
-        {
-            var spnew = new ProductDto
-            {
-                TenSP = sp.TenSP
-            };
-            _context.Add(spnew);
-            _context.SaveChanges();
-            return new SanPham
-            {
-                MaSP = spnew.MaSP,
-                TenSP = spnew.TenSP
+			return categories;
+		}
 
-            };
-        }
-
-        public void Delete(SanPham sp)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-        public SanPham GetById(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public void Update(SanPham sp)
-        {
-            throw new NotImplementedException();
-        }
+		public async Task<LoaiSP> GetCategory(string id)
+		{
+			var category = await _context.LoaiSP.SingleOrDefaultAsync(c => c.MaLoai == id);
+			return category;
+		}
 
 		public async Task<SanPham> GetItem(string id)
 		{
-            var product_item = await _context.SanPham.FindAsync(id);
-			return product_item;
+			// var product_item = await _context.SanPham.FindAsync(id);
+			//return product_item;
+			var product = await _context.SanPham
+							   .Include(p => p.LoaiSP)
+							   .SingleOrDefaultAsync(p => p.MaSP == id);
+			return product;
 		}
-		
+
+		public async Task<IEnumerable<SanPham>> GetItemsByCategory(string id)
+		{
+			var products = await _context.SanPham
+								  .Include(p => p.LoaiSP)
+								  .Where(p => p.MaLoai == id).ToListAsync();
+			return products;
+		}
 	}
 }

@@ -8,10 +8,17 @@ namespace TechShop.API.Repositories.Contracts
 
        Task<IEnumerable<SanPham>> GetAll();
 		Task<SanPham> GetItem(string id);
-		SanPham GetById(string id);
-        SanPham Add(SanPham sp);
-        void Update(SanPham sp);
+		//////////////////
+		///
 
-        void Delete(SanPham sp);
-    }
+
+		
+		Task<IEnumerable<LoaiSP>> GetCategories();
+	
+		Task<LoaiSP> GetCategory(string id);
+
+		Task<IEnumerable<SanPham>> GetItemsByCategory(string id);
+
+
+	}
 }

@@ -38,3 +38,6 @@
     background-color: #00DBDE;
     background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
 }
+.homepage-slider {
+    height: 600px;
+}

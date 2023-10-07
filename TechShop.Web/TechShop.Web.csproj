@@ -32,7 +32,6 @@
     <None Include="wwwroot\assets\css\magnific-popup.css" />
     <None Include="wwwroot\assets\css\main.css" />
     <None Include="wwwroot\assets\css\meanmenu.min.css" />
-    <None Include="wwwroot\assets\css\owl.carousel.css" />
     <None Include="wwwroot\assets\css\responsive.css" />
     <None Include="wwwroot\assets\css\scss\base\_mixins.scss" />
     <None Include="wwwroot\assets\css\scss\base\_typography.scss" />
@@ -98,7 +97,6 @@
     <None Include="wwwroot\assets\js\jquery.magnific-popup.min.js" />
     <None Include="wwwroot\assets\js\jquery.meanmenu.min.js" />
     <None Include="wwwroot\assets\js\main.js" />
-    <None Include="wwwroot\assets\js\owl.carousel.min.js" />
     <None Include="wwwroot\assets\js\sticker.js" />
     <None Include="wwwroot\assets\js\waypoints.js" />
     <None Include="wwwroot\assets\webfonts\fa-brands-400.eot" />

@@ -1,4 +1,4 @@
-﻿@page "/Loai/{MaLoai}"
+﻿@* @page "/Loai/{MaLoai}" *@
 
 @using TechShop.Web.Services.Contracts
 @using Microsoft.AspNetCore.Components.Authorization;
@@ -11,21 +11,21 @@
 
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 text-center">
-                <div class="breadcrumb-text">
-                    <p>Organic Information</p>
-                    <h1>News Article</h1>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="breadcrumb-text">
+					<p>Organic Information</p>
+					<h1>News Article</h1>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- end breadcrumb section -->
 @if (LoaiDetails == null)
 {
-    <DisplaySpinner />
+	<DisplaySpinner />
 }
 else
 {
@@ -43,16 +43,7 @@ else
 		</div>
 	</div>
 	<!-- end breadcrumb section -->
-
-	@foreach ( var item in Products)
-	{
-		@if (item.MaLoai == MaLoai)
-		{
-			<p>
-				@item
-			</p>
-		}
-	}
+	
 
 	<!-- products -->
 	<div class="product-section mt-150 mb-150">
@@ -62,7 +53,7 @@ else
 				<div class="col-md-12">
 					<div class="product-filters">
 						<ul>
-							<li class="active" data-filter="*">@LoaiDetails.TenLoai</li>							
+							<li class="active" data-filter="*">@LoaiDetails.TenLoai</li>
 						</ul>
 					</div>
 				</div>
@@ -164,17 +155,17 @@ else
 
 
 @code {
-    [Parameter]
-    public string MaLoai { get; set; }
-    [Parameter]
-    public string Tenloai { get; set; }
+	[Parameter]
+	public string MaLoai { get; set; }
+	[Parameter]
+	public string Tenloai { get; set; }
 
-    private LoaiDto LoaiDetails { get; set; }
+	private LoaiDto LoaiDetails { get; set; }
 
 
-    protected async override  Task OnInitializedAsync()
-    {
+	protected async override Task OnInitializedAsync()
+	{
 
-        LoaiDetails = await CategoryService.GetLoaiDetail(MaLoai);
-    }
+		LoaiDetails = await CategoryService.GetLoaiDetail(MaLoai);
+	}
 }

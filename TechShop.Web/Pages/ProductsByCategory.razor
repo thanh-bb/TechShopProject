@@ -1,0 +1,68 @@
+﻿﻿
+@page "/ProductsByCategory/{CategoryId}"
+
+@using ShopOnline.Web.Pages;
+@using TechShop.Web.Services.Contracts;
+
+@inherits ProductsByCategoryBase
+
+@if (Products == null)
+{
+    <DisplaySpinner />
+}
+
+else
+{
+
+ 
+  
+        <!-- breadcrumb-section -->
+        <div class="breadcrumb-section breadcrumb-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 text-center">
+                        <div class="breadcrumb-text">
+                            <p>Fresh and Organic</p>
+                            <h1>Shop</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end breadcrumb section -->
+        <!-- products -->
+        <div class="product-section mt-150 mb-150">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-filters">
+                            <ul>
+                                <li class="active" data-filter="*">@CategoryName</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row product-lists">
+
+                    @foreach (var item in Products)
+                    {
+                        <div class="col-lg-4 col-md-6 text-center strawberry">
+                            <div class="single-product-item">
+                                <div class="product-image">
+                                    <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
+                                </div>
+                                <h3>@item.TenSP</h3>
+                                <p class="product-price"><span>Per Kg</span> @item.MaLoai </p>
+                                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+        }
+    

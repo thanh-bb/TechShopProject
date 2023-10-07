@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ShopOnline.Api.Extensions;
 using TechShop.API.Entities;
+using TechShop.API.Repositories;
 using TechShop.API.Repositories.Contracts;
 using TechShop.Models.Dtos;
 
@@ -25,19 +27,7 @@ namespace TechShop.API.Controllers
 			return Ok(post);
 		}
 
-		/* [HttpGet]
-         public IActionResult GetAll()
-         {
-             try
-             {
-                 return Ok(_loaiRepository.GetAll());
-             }
-             catch
-             {
-                 return StatusCode(StatusCodes.Status500InternalServerError);
-             }
-         }
-        */
+
 
 		[HttpGet("{id}")]
 		public async Task<ActionResult<ProductDto>> GetItems(string id)
@@ -46,22 +36,29 @@ namespace TechShop.API.Controllers
 			return Ok(product);
 
 		}
-
-
-
-		[HttpPost]
-		public IActionResult Add(SanPham sp)
+		[HttpGet]
+		[Route(nameof(GetProductCategories))]
+		public async Task<ActionResult<IEnumerable<LoaiDto>>> GetProductCategories()
 		{
-			try
-			{
+			var productCategories = await _productRepository.GetCategories();
 
-				return Ok(_productRepository.Add(sp));
+			var productCategoryDtos = productCategories.ConvertToDto();
 
-			}
-			catch
-			{
-				return StatusCode(StatusCodes.Status500InternalServerError);
-			}
+			return Ok(productCategoryDtos);
+
+		}
+
+
+		[HttpGet]
+		[Route("{MaLoai}/GetItemsByCategory")]
+		public async Task<ActionResult<IEnumerable<ProductDto>>> GetItemsByCategory(string categoryId)
+		{
+
+			var products = await _productRepository.GetItemsByCategory(categoryId);
+
+			var productDtos = products.ConvertToDto();
+
+			return Ok(productDtos);
 
 		}
 

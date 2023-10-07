@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using ShopOnline.Web.Services;
 using TechShop.Web;
 using TechShop.Web.Services;
 using TechShop.Web.Services.Contracts;
@@ -15,6 +16,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https:/
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IManageProductsLocalStorageService, ManageProductsLocalStorageService>();
 
 //local storage
 builder.Services.AddBlazoredLocalStorage();
