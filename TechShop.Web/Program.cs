@@ -14,7 +14,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44368/") });
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
-//builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 //local storage
 builder.Services.AddBlazoredLocalStorage();

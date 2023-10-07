@@ -20,10 +20,12 @@ namespace TechShop.Models.Dtos
         public string MoTa { get; set; }
 
 
+		public string MaLoai { get; set; }
 
 
-        
 
 
-    }
+
+
+	}
 }

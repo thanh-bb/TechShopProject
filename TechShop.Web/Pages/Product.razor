@@ -1,159 +1,161 @@
-﻿@page "/Loai/{MaLoai}"
+﻿@page "/product"
 
-@using TechShop.Web.Services.Contracts
 @using Microsoft.AspNetCore.Components.Authorization;
-@using TechShop.Models.Dtos;
 
-@inject ICategoryService CategoryService
-@inherits LoaiBase
+@inherits ProductBase
 
 
-<!-- breadcrumb-section -->
-<div class="breadcrumb-section breadcrumb-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 text-center">
-                <div class="breadcrumb-text">
-                    <p>Organic Information</p>
-                    <h1>News Article</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end breadcrumb section -->
-@if (LoaiDetails == null)
+<link rel="shortcut icon" type="image/png" href="./assets/img/favicon.png">
+<!-- google font -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<!-- fontawesome -->
+<link rel="stylesheet" href="./assets/css/all.min.css">
+<!-- bootstrap -->
+<link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+<!-- owl carousel -->
+<link rel="stylesheet" href="./assets/css/owl.carousel.css">
+<!-- magnific popup -->
+<link rel="stylesheet" href="./assets/css/magnific-popup.css">
+<!-- animate css -->
+<link rel="stylesheet" href="./assets/css/animate.css">
+<!-- mean menu css -->
+<link rel="stylesheet" href="./assets/css/meanmenu.min.css">
+<!-- main style -->
+<link rel="stylesheet" href="./assets/css/main.css">
+<!-- responsive -->
+<link rel="stylesheet" href="./assets/css/responsive.css">
+
+<link rel="stylesheet" href="./assets/css/style.css">
+
+
+
+@if (Products == null)
 {
-    <DisplaySpinner />
+	<DisplaySpinner />
 }
+
 else
 {
-  
-    <!-- latest news -->
-    <div class="latest-news mt-150 mb-150">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-news">
-                        <a href="single-news.html"><div class="latest-news-bg news-bg-1"></div></a>
-                        <div class="news-text-box">
-                            <h3><a href="single-news.html">@LoaiDetails.TenLoai</a></h3>
-                            <p class="blog-meta">
-                                <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                            </p>
-                            <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-news">
-                        <a href="single-news.html"><div class="latest-news-bg news-bg-2"></div></a>
-                        <div class="news-text-box">
-                            <h3><a href="single-news.html">A man's worth has its season, like tomato.</a></h3>
-                            <p class="blog-meta">
-                                <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                            </p>
-                            <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-news">
-                        <a href="single-news.html"><div class="latest-news-bg news-bg-3"></div></a>
-                        <div class="news-text-box">
-                            <h3><a href="single-news.html">Good thoughts bear good fresh juicy fruit.</a></h3>
-                            <p class="blog-meta">
-                                <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                            </p>
-                            <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-news">
-                        <a href="single-news.html"><div class="latest-news-bg news-bg-4"></div></a>
-                        <div class="news-text-box">
-                            <h3><a href="single-news.html">Fall in love with the fresh orange</a></h3>
-                            <p class="blog-meta">
-                                <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                            </p>
-                            <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-news">
-                        <a href="single-news.html"><div class="latest-news-bg news-bg-5"></div></a>
-                        <div class="news-text-box">
-                            <h3><a href="single-news.html">Why the berries always look delecious</a></h3>
-                            <p class="blog-meta">
-                                <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                            </p>
-                            <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-news">
-                        <a href="single-news.html"><div class="latest-news-bg news-bg-6"></div></a>
-                        <div class="news-text-box">
-                            <h3><a href="single-news.html">Love for fruits are genuine of John Doe</a></h3>
-                            <p class="blog-meta">
-                                <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2018</span>
-                            </p>
-                            <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <div class="pagination-wrap">
-                                <ul>
-                                    <li><a href="#">Prev</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a class="active" href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">Next</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end latest news -->
-}
+	<!-- home page slider -->
+	<div class="homepage-slider">
+		<!-- single home slider -->
+		<div class="single-homepage-slider homepage-bg-1">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
+						<div class="hero-text">
+							<div class="hero-text-tablecell">
+								<p class="subtitle">Fresh & Organic</p>
+								<h1>Delicious Seasonal Fruits</h1>
+								<div class="hero-btns">
+									<a href="shop.html" class="boxed-btn">Fruit Collection</a>
+									<a href="contact.html" class="bordered-btn">Contact Us</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end home page slider -->
 
+	<div class="product-section mt-100 mb-100">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">
+						<h3><span class="orange-text">Khám phá</span> Danh mục</h3>
 
-@code {
-    [Parameter]
-    public string MaLoai { get; set; }
-    [Parameter]
-    public string Tenloai { get; set; }
+					</div>
+				</div>
+			</div>
+			<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+				@foreach (var item in Products)
+				{
+					<div class="col text-center">
+						<div class=" single-product-item">
+							<div class="product-image">
+								<a href="shop.html"><img src="./assets/img/products/product-img-1.jpg" alt=""></a>
+							</div>
+							<p>
+								
+								@item.MaSP,
+								@item.TenSP,
+								@item.GiaSP
+							</p>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
 
-    private LoaiDto LoaiDetails { get; set; }
+	<!-- latest news -->
+	<div class="latest-news ">
+		<div class="container">
 
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">
+						<h3><span class="orange-text">Bảng Tin</span> Sản phẩm</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+					</div>
+				</div>
+			</div>
 
-    protected async override  Task OnInitializedAsync()
-    {
-
-        LoaiDetails = await CategoryService.GetLoaiDetail(MaLoai);
-    }
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="single-latest-news">
+						<a href="single-news.html"><div class="latest-news-bg news-bg-1"></div></a>
+						<div class="news-text-box">
+							<h3><a href="single-news.html">You will vainly look for fruit on it in autumn.</a></h3>
+							<p class="blog-meta">
+								<span class="author"><i class="fas fa-user"></i> Admin</span>
+								<span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+							</p>
+							<p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+							<a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single-latest-news">
+						<a href="single-news.html"><div class="latest-news-bg news-bg-2"></div></a>
+						<div class="news-text-box">
+							<h3><a href="single-news.html">A man's worth has its season, like tomato.</a></h3>
+							<p class="blog-meta">
+								<span class="author"><i class="fas fa-user"></i> Admin</span>
+								<span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+							</p>
+							<p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+							<a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
+					<div class="single-latest-news">
+						<a href="single-news.html"><div class="latest-news-bg news-bg-3"></div></a>
+						<div class="news-text-box">
+							<h3><a href="single-news.html">Good thoughts bear good fresh juicy fruit.</a></h3>
+							<p class="blog-meta">
+								<span class="author"><i class="fas fa-user"></i> Admin</span>
+								<span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+							</p>
+							<p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+							<a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<a href="news.html" class="boxed-btn">More News</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end latest news -->
 }

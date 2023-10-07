@@ -1,4 +1,4 @@
-﻿body {
+﻿﻿body {
     padding: 0;
     margin: 0;
 }
@@ -10,5 +10,3 @@ html, body, #map {
     max-height: 200px;
     max-width: 350px;
 }
-
-

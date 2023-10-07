@@ -84,11 +84,21 @@ namespace TechShop.API.Data
                 TenQuyen = "admin"
 
             });
+			modelBuilder.Entity<SanPham>().HasData(new SanPham
+			{
+				MaSP="SP02",
+                TenSP="Laptop Dell",
+                GiaSP= 10000000,
+                SoLuong=1,
+                MaLoai="01",
+                MoTa= "Hong co gi de mo ta"
+
+			});
 
 
-        }
+		}
 
 
 
-    }
+	}
 }

@@ -14,7 +14,7 @@ namespace TechShop.Web.Services
         }
         public async Task<List<ProductDto>> GetAll()
         {
-            var kq = await _httpClient.GetFromJsonAsync<List<ProductDto>>(requestUri: "/api/SanPham");
+            var kq = await _httpClient.GetFromJsonAsync<List<ProductDto>>(requestUri: "/api/Product");
             return kq;
         }
 
@@ -22,9 +22,9 @@ namespace TechShop.Web.Services
 
         public async Task<ProductDto> GetProductDetail(string id)
         {
-            var kq = await _httpClient.GetFromJsonAsync<ProductDto>(requestUri: "/api/SanPham/{id}");
-            return kq;
-        }
+			var result = await _httpClient.GetFromJsonAsync<ProductDto>($"/api/Product/{id}");
+			return result;
+		}
 
      
     }

@@ -4,11 +4,11 @@ namespace TechShop.API.Repositories.Contracts
 {
     public interface IProductRepository
     {
-        Task<IEnumerable<SanPham>> GetItems();
+       // Task<IEnumerable<SanPham>> GetItems();
 
-       List<SanPham> GetAll();
-
-        SanPham GetById(string id);
+       Task<IEnumerable<SanPham>> GetAll();
+		Task<SanPham> GetItem(string id);
+		SanPham GetById(string id);
         SanPham Add(SanPham sp);
         void Update(SanPham sp);
 

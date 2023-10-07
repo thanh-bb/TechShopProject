@@ -1,4 +1,4 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
 using TechShop.API.Data;
 using TechShop.API.Entities;
 using TechShop.API.Repositories.Contracts;
@@ -12,25 +12,18 @@ namespace TechShop.API.Repositories
         {
             _context = context;
         }
-        public async Task<IEnumerable<SanPham>> GetItems()
+        //public async Task<IEnumerable<SanPham>> GetItems()
+        //{
+        //    return await _context.SanPham.ToListAsync();
+        //}
+
+        public async Task<IEnumerable<SanPham>> GetAll()
         {
-            return await _context.SanPham.ToListAsync();
+            var productList = await _context.SanPham.ToListAsync();
+            return productList;
         }
 
-        public  List<SanPham> GetAll()
-        {
-            var sp = _context.SanPham.Select(s => new SanPham
-            {
-                MaSP = s.MaSP,
-                TenSP = s.TenSP,
-                GiaSP = s.GiaSP,
-                SoLuong = s.SoLuong,
-                MoTa = s.MoTa,
-            });
-            return sp.ToList();
-        }
 
-   
         public SanPham Add(SanPham sp)
         {
             var spnew = new ProductDto
@@ -52,19 +45,24 @@ namespace TechShop.API.Repositories
             throw new NotImplementedException();
         }
 
-      
+
 
         public SanPham GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-      
+
         public void Update(SanPham sp)
         {
             throw new NotImplementedException();
         }
 
-        
-    }
+		public async Task<SanPham> GetItem(string id)
+		{
+            var product_item = await _context.SanPham.FindAsync(id);
+			return product_item;
+		}
+		
+	}
 }
