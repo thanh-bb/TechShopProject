@@ -7,14 +7,18 @@ namespace ShopOnline.Web.Pages
 	public class ProductsByCategoryBase : ComponentBase
 	{
 		[Parameter]
+		
+
 		public string CategoryId { get; set; }
 		[Inject]
 		public IProductService ProductService { get; set; }
 
+		
 		[Inject]
 		public IManageProductsLocalStorageService ManageProductsLocalStorageService { get; set; }
 
 		public IEnumerable<ProductDto> Products { get; set; }
+		public IEnumerable<ProductDto> CategoryItem { get; set; }
 		public string CategoryName { get; set; }
 		public string ErrorMessage { get; set; }
 
@@ -22,7 +26,9 @@ namespace ShopOnline.Web.Pages
 		{
 			try
 			{
+				CategoryItem = await ProductService.GetItemsByCategory(CategoryId);
 				Products = await GetProductCollectionByCategoryId(CategoryId);
+				
 
 				if (Products != null && Products.Count() > 0)
 				{
@@ -30,7 +36,8 @@ namespace ShopOnline.Web.Pages
 
 					if (productDto != null)
 					{
-						CategoryName = productDto.TenLoai;
+						var loai = CategoryItem.Where(s => s.MaLoai == CategoryId).Select(s=>s.TenLoai).FirstOrDefault();
+						CategoryName = loai;
 					}
 
 				}
@@ -55,6 +62,8 @@ namespace ShopOnline.Web.Pages
 			}
 
 		}
+
+	
 
 	}
 }

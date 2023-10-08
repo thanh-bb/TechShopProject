@@ -34,12 +34,12 @@ namespace TechShop.API.Repositories
 
 		public async Task<SanPham> GetItem(string id)
 		{
-			// var product_item = await _context.SanPham.FindAsync(id);
-			//return product_item;
-			var product = await _context.SanPham
-							   .Include(p => p.LoaiSP)
-							   .SingleOrDefaultAsync(p => p.MaSP == id);
-			return product;
+			var product_item = await _context.SanPham.FindAsync(id);
+			return product_item;
+			//var product = await _context.SanPham
+			//				   .Include(p => p.LoaiSP)
+			//				   .SingleOrDefaultAsync(p => p.MaSP == id);
+			//return product;
 		}
 
 		public async Task<IEnumerable<SanPham>> GetItemsByCategory(string id)

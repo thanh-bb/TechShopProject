@@ -37,6 +37,14 @@ namespace TechShop.API.Controllers
 
 		}
 		[HttpGet]
+		[Route("/GetCategory/{id}")]
+		public async Task<ActionResult<LoaiDto>> GetCategory(string id)
+		{
+			var category = await _productRepository.GetCategory(id);
+			return Ok(category);
+		}
+
+		[HttpGet]
 		[Route(nameof(GetProductCategories))]
 		public async Task<ActionResult<IEnumerable<LoaiDto>>> GetProductCategories()
 		{
@@ -50,7 +58,7 @@ namespace TechShop.API.Controllers
 
 
 		[HttpGet]
-		[Route("{MaLoai}/GetItemsByCategory")]
+		[Route("{categoryId}/GetItemsByCategory")]
 		public async Task<ActionResult<IEnumerable<ProductDto>>> GetItemsByCategory(string categoryId)
 		{
 

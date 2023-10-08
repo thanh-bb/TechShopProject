@@ -21,7 +21,7 @@ namespace TechShop.Models.Dtos
         public string LoaiSP { get; set; }
 
 
-		public string MaLoai { get; set; }
+		public string? MaLoai { get; set; }
 
         public string TenLoai { get; set; }
 
