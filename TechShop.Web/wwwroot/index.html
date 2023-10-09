@@ -27,6 +27,38 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_framework/blazor.server.js"></script>
+
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"></script>
+    <script>
+        function initialize() {
+            var latlng = new google.maps.LatLng(40.716948, -74.003563);
+            var options = {
+                zoom: 14, center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById
+                ("map"), options);
+        }
+    </script>-->
+
+    <link rel="stylesheet" href="./DiaLy/css/leaflet.css">  <!--liên kết css của leaflet-->
+    <script src="./DiaLy/js/leaflet.js"></script>
+    <script>
+        function initialize() {
+            var mapObject = L.map("map", { center: [10.030249, 105.772097], zoom: 17 });
+            //hoặc: var mapObject = L.map('map').setView([10.030249, 105.772097], 17);
+
+            //Bản đồ nền dạng Raster
+            L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }
+            ).addTo(mapObject);
+        }
+
+    </script>
 </body>
 
 </html>

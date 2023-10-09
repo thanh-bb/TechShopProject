@@ -1,14 +1,9 @@
-﻿
-
-var mapObject = L.map('map', { center: [10.030249, 105.772097], zoom: 18 });
-//hoặc: var mapObject = L.map('map').setView([10.030249, 105.772097], 17);
-
-//Bản đồ nền dạng Raster
-L.tileLayer(
-    "http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}",
-    {
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }
-).addTo(mapObject);
-
+﻿function initialize() {
+    var latlng = new google.maps.LatLng(40.716948, -74.003563);
+    var options = {
+        zoom: 14, center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map"), options);
+} 
 
