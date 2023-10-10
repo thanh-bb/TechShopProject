@@ -10,6 +10,10 @@
     <link href="css/app.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <link href="TechShop.Web.styles.css" rel="stylesheet" />
+
+    <!--link của map-->
+    <link rel="stylesheet" href="./DiaLy/css/leaflet.css">
+    <link rel="stylesheet" href="./DiaLy/css/map_style.css">
 </head>
 
 <body>
@@ -42,20 +46,94 @@
         }
     </script>-->
 
-    <link rel="stylesheet" href="./DiaLy/css/leaflet.css">  <!--liên kết css của leaflet-->
+  
+
     <script src="./DiaLy/js/leaflet.js"></script>
     <script>
         function initialize() {
             var mapObject = L.map("map", { center: [10.030249, 105.772097], zoom: 17 });
-            //hoặc: var mapObject = L.map('map').setView([10.030249, 105.772097], 17);
 
-            //Bản đồ nền dạng Raster
             L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }
             ).addTo(mapObject);
+
+            var point = L.circleMarker(
+                [10.030249, 105.772097 - 0.001],
+                { radius: 50, color: "red", fillColor: "red" }
+            ).addTo(mapObject);
+
+            var point = L.circleMarker(
+                [10.030249, 105.772097 - 0.001],
+                { radius: 50, color: "red", fillColor: "red" }
+            ).addTo(mapObject);
+
+            var polyline = L.polyline(
+                [[10.03027, 105.772119], [10.031157, 105.771035]],
+                { color: "blue", weight: 5 }
+            ).addTo(mapObject);
+
+            var polygon = L.polygon(
+                [[[10.031591, 105.769168], [10.030957, 105.768686],
+                [10.030619, 105.769104], [10.031284, 105.769608],
+                [10.031591, 105.769168]]],
+                { color: "yellow", fillColor: "yellow", weight: 10 }
+            ).addTo(mapObject);
+
+            point.bindPopup("Cổng A iu dấu");
+            polyline.bindPopup("Đây là đường thẳng từ <b>Cổng A</b> vào.");
+            polygon.bindPopup("Trường <b> CNTT&TT</b><br> Trường DHCT");
+
+            var legend = L.control({ position: "bottomleft" });
+            legend.onAdd = function () {
+                var div = L.DomUtil.create("div", "legend");
+                div.innerHTML =
+                    '<p><b>Them các đối tượng</b></p><hr>' +
+                    'Các đối tượng được thêm : <br>' +
+                    '<p><ul' +
+                    '<li> Điểm (marker)</li>' +
+                    '<li> Đường (line)</li>' +
+                    '<li> Vùng (polygon)</li>' +
+                    '</ul></p>' +
+                    'Mỗi đối tượng có một<b> popup</b>.' +
+                    'Click vào đối tượng để thấy popup!<hr>' +
+                    'Created with the Leaflet library<br>' +
+                    '<img src= "css/images/leaflet.svg">';
+
+                return div;
+            };
+            var geojsonFeature = {
+                "type": "Feature",
+                "properties": {
+                    "name": "Coors Field",
+                    "amenity": "Baseball Stadium",
+                    "popupContent": "This is where the Rockies play!"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [105.772097, 10.030249]
+                }
+            }
+            L.geoJSON(geojsonFeature).addTo(mapObject);
+
+            legend.addTo(mapObject);
+
+            //lay toa do khi click chuot
+            var popup = L.popup();
+            mapObject.on("click", onMapClick);
+            function onMapClick(e) {
+                popup
+                    .setLatLng(e.latlng)
+                    .setContent(
+                        "Bạn đã click ở ( Kinh độ (lng), Vĩ độ (lat)): <br>" +
+                        Math.round(e.latlng.lng * 1000000 + Number.EPSILON) / 1000000 + "," +
+                        Math.round(e.latlng.lat * 1000000 + Number.EPSILON) / 1000000
+
+                    ).openOn(mapObject);
+            }
+
         }
 
     </script>

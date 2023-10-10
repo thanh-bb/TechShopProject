@@ -1,9 +1,23 @@
 ﻿@page "/MapTest"
 @inject IJSRuntime JSRuntime
 
-<h1>Display Google Map</h1>
-<div id="map" style="height:500px;width:100%;">
-</div>
+<body>
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">                        
+                        <h1>Map</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="map_container">
+        <div id="map"></div>	<!--thêm thẻ div để chứa bản đồ-->
+       
+  </div>
+</body>
 
 @code {
 

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\DiaLy\css\map_style.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\assets\bootstrap\css\bootstrap-grid.css" />
     <None Include="wwwroot\assets\bootstrap\css\bootstrap-grid.css.map" />
     <None Include="wwwroot\assets\bootstrap\css\bootstrap-grid.min.css" />
