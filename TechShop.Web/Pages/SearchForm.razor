@@ -1,10 +1,8 @@
-﻿﻿
-@page "/ProductsByCategory/{CategoryId}"
+﻿@page "/search"
 
-@using ShopOnline.Web.Pages;
-@using TechShop.Web.Services.Contracts;
+@inherits SearchFormBase
 
-@inherits ProductsByCategoryBase
+
 
 @if (Products == null)
 {
@@ -28,6 +26,47 @@ else
         </div>
     </div>
     <!-- end breadcrumb section -->
+
+    <!--Search-->
+    <div class="container mt-5">
+        <EditForm Model="@productListSearch">
+            <div class="row">
+           
+                    <div class="col">
+                        <label>Name</label>
+                        <InputText class="form-control" @bind-Value="productListSearch.TenSP"></InputText>
+                    </div>
+
+                    <div class="col">
+                        <label>LoaiSP</label>
+                        <InputSelect class="form-control" @bind-Value="productListSearch.LoaiSP">
+                            @foreach (var item in Loais)
+                            {
+                                <option value="@item.MaLoai">@item.TenLoai</option>
+                            }
+                        </InputSelect>
+                    </div>
+
+                    <div class="col">
+                        <label>Tình trạng</label>
+                        <InputSelect class="form-control" @bind-Value="productListSearch.TinhTrang">
+                            @foreach (var item in TinhTrangs)
+                            {
+                                <option value="@item.MaTinhTrang">@item.TenTinhTrang</option>
+                            }
+                        </InputSelect>
+                    </div>
+
+                    <div class="col ">
+                        <button type="submit" class="btn btn-success ">Search</button>
+                    </div>
+              
+            </div>
+        </EditForm>
+    </div>
+    <!---->
+
+
     <!-- products -->
     <div class="product-section  mb-150">
         <div class="container">
@@ -36,7 +75,7 @@ else
                 <div class="col-md-12">
                     <div class="product-filters">
                         <ul>
-                            <li class="active" data-filter="*">@CategoryName</li>
+                            <li class="active" data-filter="*">Tất cả sản phẩm</li>
                         </ul>
                     </div>
                 </div>

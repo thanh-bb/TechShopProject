@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace TechShop.API.Migrations
 {
     /// <inheritdoc />
@@ -401,17 +403,36 @@ namespace TechShop.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName", "TenQuyen" },
-                values: new object[] { new Guid("acc57f0f-8258-41c2-bcf4-a66880c47dd1"), null, null, null, "admin" });
+                values: new object[] { new Guid("b218114d-7595-41d1-8c00-9a822196da55"), null, null, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DienThoai", "Email", "EmailConfirmed", "GioiTinh", "HashPasswd", "LockoutEnabled", "LockoutEnd", "NgaySinh", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenKH", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("8dc52455-73d5-48b1-a211-c5bc7d1f48e3"), 0, "5c15cc50-8b38-4d87-a501-3e73849498dc", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 9, 29, 23, 32, 6, 799, DateTimeKind.Local).AddTicks(8561), "ADMIN1@GMAIL.COM", "ADMIN", "Admin@123$", "032132131", false, "97dc47ec-4ea5-4219-a2a7-50edc2d1f443", "Trần Văn Man", false, "admin" });
+                values: new object[] { new Guid("7c238433-6e09-4538-8893-f91c39c37e16"), 0, "7624a488-5ff2-4d13-8de1-1901130149e5", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 10, 10, 15, 39, 55, 442, DateTimeKind.Local).AddTicks(1725), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "795a3235-5f34-4450-b27d-93d64551e207", "Trần Văn Man", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "LoaiSP",
                 columns: new[] { "MaLoai", "TenLoai" },
-                values: new object[] { "11", "Laptop" });
+                values: new object[,]
+                {
+                    { "01", "Laptop" },
+                    { "02", "Điện thoại" },
+                    { "03", "Bàn phím" },
+                    { "04", "Chuột" },
+                    { "05", "Tai nghe" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "SanPham",
+                columns: new[] { "MaSP", "GiaSP", "MaLoai", "MaTinhTrang", "MoTa", "SoLuong", "TenSP" },
+                values: new object[,]
+                {
+                    { "SP01", 10000000L, "01", null, "Hong co gi de mo ta", 1, "Laptop Dell" },
+                    { "SP02", 10000000L, "02", null, "Hong co gi de mo ta", 1, "Samsung A51" },
+                    { "SP03", 10000000L, "03", null, "Hong co gi de mo ta", 1, "Bàn phím fuhlen" },
+                    { "SP04", 10000000L, "04", null, "Hong co gi de mo ta", 1, "Chuột Logitech" },
+                    { "SP05", 10000000L, "05", null, "Hong co gi de mo ta", 1, "Tai nghe Sony" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

@@ -147,8 +147,6 @@ namespace TechShop.API.Data
 				PasswordHash = "123456"
 			});
 
-
-
 			modelBuilder.Entity<Quyen>().HasData(new Quyen
 			{
 				Id = Guid.NewGuid(),

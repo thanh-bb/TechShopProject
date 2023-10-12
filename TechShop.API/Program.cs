@@ -25,7 +25,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("TechShopConnecti
 
 builder.Services.AddScoped<ILoaiRepository, LoaiRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-
+builder.Services.AddScoped<ITinhTrangRepository,TinhTrangRepository>(); 
 
 // add token
 

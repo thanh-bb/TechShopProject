@@ -353,22 +353,22 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2916c9e9-6a98-4f62-8c88-1eb59f44ddde"),
+                            Id = new Guid("7c238433-6e09-4538-8893-f91c39c37e16"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "eb9ecf52-7ac3-4e04-adcb-81a96cd5d200",
+                            ConcurrencyStamp = "7624a488-5ff2-4d13-8de1-1901130149e5",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             GioiTinh = false,
                             HashPasswd = "123456",
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 10, 7, 16, 47, 28, 741, DateTimeKind.Local).AddTicks(2542),
+                            NgaySinh = new DateTime(2023, 10, 10, 15, 39, 55, 442, DateTimeKind.Local).AddTicks(1725),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "Admin@123$",
+                            PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "254e2c5d-51a0-4dbb-98aa-0bd691369fd4",
+                            SecurityStamp = "795a3235-5f34-4450-b27d-93d64551e207",
                             TenKH = "Trần Văn Man",
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -391,8 +391,28 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            MaLoai = "11",
+                            MaLoai = "01",
                             TenLoai = "Laptop"
+                        },
+                        new
+                        {
+                            MaLoai = "02",
+                            TenLoai = "Điện thoại"
+                        },
+                        new
+                        {
+                            MaLoai = "03",
+                            TenLoai = "Bàn phím"
+                        },
+                        new
+                        {
+                            MaLoai = "04",
+                            TenLoai = "Chuột"
+                        },
+                        new
+                        {
+                            MaLoai = "05",
+                            TenLoai = "Tai nghe"
                         });
                 });
 
@@ -468,7 +488,7 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f8fc7233-6f45-4f97-993d-485295fd6545"),
+                            Id = new Guid("b218114d-7595-41d1-8c00-9a822196da55"),
                             TenQuyen = "admin"
                         });
                 });
@@ -509,12 +529,48 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            MaSP = "SP02",
+                            MaSP = "SP01",
                             GiaSP = 10000000L,
                             MaLoai = "01",
                             MoTa = "Hong co gi de mo ta",
                             SoLuong = 1,
                             TenSP = "Laptop Dell"
+                        },
+                        new
+                        {
+                            MaSP = "SP02",
+                            GiaSP = 10000000L,
+                            MaLoai = "02",
+                            MoTa = "Hong co gi de mo ta",
+                            SoLuong = 1,
+                            TenSP = "Samsung A51"
+                        },
+                        new
+                        {
+                            MaSP = "SP03",
+                            GiaSP = 10000000L,
+                            MaLoai = "03",
+                            MoTa = "Hong co gi de mo ta",
+                            SoLuong = 1,
+                            TenSP = "Bàn phím fuhlen"
+                        },
+                        new
+                        {
+                            MaSP = "SP04",
+                            GiaSP = 10000000L,
+                            MaLoai = "04",
+                            MoTa = "Hong co gi de mo ta",
+                            SoLuong = 1,
+                            TenSP = "Chuột Logitech"
+                        },
+                        new
+                        {
+                            MaSP = "SP05",
+                            GiaSP = 10000000L,
+                            MaLoai = "05",
+                            MoTa = "Hong co gi de mo ta",
+                            SoLuong = 1,
+                            TenSP = "Tai nghe Sony"
                         });
                 });
 

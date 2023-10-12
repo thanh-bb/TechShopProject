@@ -5,12 +5,12 @@ html, body, #map {
     height: 100%;
     width: 100%;
 }
-.map_container {
+/*.map_container {
     height: 100%;
     width: 100%;
     min-height:500px;
     min-width: 100%;
-}
+}*/
 html[b-tc2vju2ps6], body[b-tc2vju2ps6], #map[b-tc2vju2ps6] {
     height: 100%;
     width: 100%;

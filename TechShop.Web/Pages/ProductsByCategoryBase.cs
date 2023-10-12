@@ -7,8 +7,6 @@ namespace ShopOnline.Web.Pages
 	public class ProductsByCategoryBase : ComponentBase
 	{
 		[Parameter]
-		
-
 		public string CategoryId { get; set; }
 		[Inject]
 		public IProductService ProductService { get; set; }
