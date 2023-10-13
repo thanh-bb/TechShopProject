@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Net.Http.Json;
 using TechShop.Models.Dtos;
+using TechShop.Web.Pages;
 using TechShop.Web.Services.Contracts;
 
 namespace TechShop.Web.Services
@@ -82,8 +83,14 @@ namespace TechShop.Web.Services
 			return result;
 		}
 
-
-	}
+        public async Task<List<ProductDto>> GetProductList(ProductListSearch productListSearch)
+        {
+      
+            string url = $"/api/Product/ProductListSearch?TenSP={productListSearch.TenSP}&LoaiSP={productListSearch.LoaiSP}&MaTinhTrang={productListSearch.MaTinhTrang}";
+            var kq = await _httpClient.GetFromJsonAsync<List<ProductDto>>(url);
+            return kq;
+        }
+    }
 
 }
 

@@ -28,8 +28,18 @@ namespace TechShop.API.Controllers
 		}
 
 
+		//api/product?name=
+		[HttpGet]
+        [Route(nameof(ProductListSearch))]
+        public async Task<IActionResult> GetList([FromQuery] ProductListSearch productListSearch)
+        {
 
-		[HttpGet("{id}")]
+            var post = await _productRepository.GetList(productListSearch);
+            return Ok(post);
+        }
+
+
+        [HttpGet("{id}")]
 		public async Task<ActionResult<ProductDto>> GetItems(string id)
 		{
 			var product = await _productRepository.GetItem(id);

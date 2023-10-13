@@ -1,24 +1,25 @@
 ﻿using TechShop.API.Entities;
+using TechShop.Models.Dtos;
 
 namespace TechShop.API.Repositories.Contracts
 {
     public interface IProductRepository
     {
-       // Task<IEnumerable<SanPham>> GetItems();
 
-       Task<IEnumerable<SanPham>> GetAll();
-		Task<SanPham> GetItem(string id);
-		//////////////////
-		///
+        Task<IEnumerable<SanPham>> GetList(ProductListSearch productListSearch);
+
+        Task<IEnumerable<SanPham>> GetAll();
+
+        Task<SanPham> GetItem(string id);
+
+        Task<IEnumerable<LoaiSP>> GetCategories();
 
 
-		
-		Task<IEnumerable<LoaiSP>> GetCategories();
-	
-		Task<LoaiSP> GetCategory(string id);
+        Task<LoaiSP> GetCategory(string id);
 
-		Task<IEnumerable<SanPham>> GetItemsByCategory(string id);
 
-	
-	}
+        Task<IEnumerable<SanPham>> GetItemsByCategory(string id);
+
+
+    }
 }
