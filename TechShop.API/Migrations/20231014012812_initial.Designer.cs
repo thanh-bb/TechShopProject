@@ -12,8 +12,8 @@ using TechShop.API.Data;
 namespace TechShop.API.Migrations
 {
     [DbContext(typeof(TechShopDbContext))]
-    [Migration("20231010083955_Initial")]
-    partial class Initial
+    [Migration("20231014012812_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -130,8 +130,11 @@ namespace TechShop.API.Migrations
 
             modelBuilder.Entity("TechShop.API.Entities.BangTin", b =>
                 {
-                    b.Property<string>("MaBangTin")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("MaBangTin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaBangTin"));
 
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -356,22 +359,22 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7c238433-6e09-4538-8893-f91c39c37e16"),
+                            Id = new Guid("6eefb045-3e97-4aeb-9594-54971a179dcc"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7624a488-5ff2-4d13-8de1-1901130149e5",
+                            ConcurrencyStamp = "14bf5ba7-b444-4f50-8130-17e79c306bf2",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             GioiTinh = false,
                             HashPasswd = "123456",
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 10, 10, 15, 39, 55, 442, DateTimeKind.Local).AddTicks(1725),
+                            NgaySinh = new DateTime(2023, 10, 14, 8, 28, 11, 899, DateTimeKind.Local).AddTicks(2002),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "795a3235-5f34-4450-b27d-93d64551e207",
+                            SecurityStamp = "3ae42001-a98f-48c3-b761-7ec8c4e80893",
                             TenKH = "Trần Văn Man",
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -491,7 +494,7 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b218114d-7595-41d1-8c00-9a822196da55"),
+                            Id = new Guid("962db0ec-e755-4d70-a62f-6bd499e0206c"),
                             TenQuyen = "admin"
                         });
                 });

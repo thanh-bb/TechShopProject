@@ -53,10 +53,11 @@ namespace TechShop.API.Controllers
                     Error = "Username and Password are invalid."
                 });
             }
+            
             var claims = new[]
             {
                 new Claim(ClaimTypes.Name, login.UserName),
-              // new Claim("Id", user.Id.ToString())
+                new Claim("UserId", user.Id.ToString() )
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSecurityKey"]));

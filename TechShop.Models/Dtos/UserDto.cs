@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace TechShop.Models.Dtos
 {
-    public class LoginRequest
+    public class UserDto
     {
-        [Required]
-        public string UserName {  get; set; }
-
-        [Required]
-        public string PasswordHash { get; set; }
-
         public Guid Id { get; set; }
+        public string TenKH { get; set; }
+        public DateTime NgaySinh { get; set; }
+        public Boolean GioiTinh { get; set; }
+        public string Email { get; set; }
+        public string DienThoai { get; set; }
+
     }
 }

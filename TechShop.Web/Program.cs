@@ -18,6 +18,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IManageProductsLocalStorageService, ManageProductsLocalStorageService>();
 builder.Services.AddScoped<ITinhTrangService, TinhTrangService>();  
+builder.Services.AddScoped<IUserService, UserService>();
 
 //local storage
 builder.Services.AddBlazoredLocalStorage();

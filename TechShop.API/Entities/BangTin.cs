@@ -7,7 +7,7 @@ namespace TechShop.API.Entities
 	{
 
 		[Key]
-		public string MaBangTin { get; set; }
+		public int MaBangTin { get; set; }
 
 		public string NoiDung { get; set; }
 
