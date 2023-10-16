@@ -99,8 +99,8 @@
             
         });
         
-        // isotop inner
-        $(".product-lists").isotope();
+        ///*// isotop inner*/
+        //$(".product-lists").isotope();
 
         // magnific popup
         $('.popup-youtube').magnificPopup({

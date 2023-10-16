@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TechShop.API.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -237,39 +237,11 @@ namespace TechShop.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SanPham",
-                columns: table => new
-                {
-                    MaSP = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    TenSP = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GiaSP = table.Column<long>(type: "bigint", nullable: false),
-                    SoLuong = table.Column<int>(type: "int", nullable: false),
-                    MoTa = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MaLoai = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    MaTinhTrang = table.Column<string>(type: "nvarchar(450)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SanPham", x => x.MaSP);
-                    table.ForeignKey(
-                        name: "FK_SanPham_LoaiSP_MaLoai",
-                        column: x => x.MaLoai,
-                        principalTable: "LoaiSP",
-                        principalColumn: "MaLoai");
-                    table.ForeignKey(
-                        name: "FK_SanPham_TinhTrangHang_MaTinhTrang",
-                        column: x => x.MaTinhTrang,
-                        principalTable: "TinhTrangHang",
-                        principalColumn: "MaTinhTrang");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "HoaDon",
                 columns: table => new
                 {
                     MaHD = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    MaKH = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     NgayDat = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MaTT = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     TongTien = table.Column<long>(type: "bigint", nullable: false)
@@ -281,8 +253,7 @@ namespace TechShop.API.Migrations
                         name: "FK_HoaDon_AspNetUsers_Id",
                         column: x => x.Id,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_HoaDon_TrangThaiDH_MaTT",
                         column: x => x.MaTT,
@@ -298,9 +269,7 @@ namespace TechShop.API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NoiDung = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NgayDang = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MaKH = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    MaSP = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     MaNV = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     MaTT_BT = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
@@ -311,18 +280,12 @@ namespace TechShop.API.Migrations
                         name: "FK_BangTin_AspNetUsers_Id",
                         column: x => x.Id,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_BangTin_NhanVien_MaNV",
                         column: x => x.MaNV,
                         principalTable: "NhanVien",
                         principalColumn: "MaNV");
-                    table.ForeignKey(
-                        name: "FK_BangTin_SanPham_MaSP",
-                        column: x => x.MaSP,
-                        principalTable: "SanPham",
-                        principalColumn: "MaSP");
                     table.ForeignKey(
                         name: "FK_BangTin_TrangThaiBT_MaTT_BT",
                         column: x => x.MaTT_BT,
@@ -331,18 +294,78 @@ namespace TechShop.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SanPham",
+                columns: table => new
+                {
+                    MaSP = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenSP = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GiaSP = table.Column<long>(type: "bigint", nullable: false),
+                    SoLuong = table.Column<int>(type: "int", nullable: false),
+                    MoTa = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MaLoai = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    MaTinhTrang = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    MaBangTin = table.Column<int>(type: "int", nullable: true),
+                    NgDang = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    NgayDang = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SanPham", x => x.MaSP);
+                    table.ForeignKey(
+                        name: "FK_SanPham_BangTin_MaBangTin",
+                        column: x => x.MaBangTin,
+                        principalTable: "BangTin",
+                        principalColumn: "MaBangTin");
+                    table.ForeignKey(
+                        name: "FK_SanPham_LoaiSP_MaLoai",
+                        column: x => x.MaLoai,
+                        principalTable: "LoaiSP",
+                        principalColumn: "MaLoai");
+                    table.ForeignKey(
+                        name: "FK_SanPham_TinhTrangHang_MaTinhTrang",
+                        column: x => x.MaTinhTrang,
+                        principalTable: "TinhTrangHang",
+                        principalColumn: "MaTinhTrang");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ChiTietHoaDon",
+                columns: table => new
+                {
+                    MaHD = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MaSP = table.Column<int>(type: "int", nullable: false),
+                    GiaBan = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChiTietHoaDon", x => new { x.MaHD, x.MaSP });
+                    table.ForeignKey(
+                        name: "FK_ChiTietHoaDon_HoaDon_MaHD",
+                        column: x => x.MaHD,
+                        principalTable: "HoaDon",
+                        principalColumn: "MaHD",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ChiTietHoaDon_SanPham_MaSP",
+                        column: x => x.MaSP,
+                        principalTable: "SanPham",
+                        principalColumn: "MaSP",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GioHang",
                 columns: table => new
                 {
-                    MaKH = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    MaSP = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MaSP = table.Column<int>(type: "int", nullable: false),
                     SoLuong = table.Column<int>(type: "int", nullable: false),
                     GiaBan = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GioHang", x => new { x.MaKH, x.MaSP });
+                    table.PrimaryKey("PK_GioHang", x => new { x.Id, x.MaSP });
                     table.ForeignKey(
                         name: "FK_GioHang_AspNetUsers_Id",
                         column: x => x.Id,
@@ -364,7 +387,7 @@ namespace TechShop.API.Migrations
                     MaHinh = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     URL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TenAnh = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MaSP = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    MaSP = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -376,40 +399,15 @@ namespace TechShop.API.Migrations
                         principalColumn: "MaSP");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ChiTietHoaDon",
-                columns: table => new
-                {
-                    MaHD = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    MaSP = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    GiaBan = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ChiTietHoaDon", x => new { x.MaHD, x.MaSP });
-                    table.ForeignKey(
-                        name: "FK_ChiTietHoaDon_HoaDon_MaHD",
-                        column: x => x.MaHD,
-                        principalTable: "HoaDon",
-                        principalColumn: "MaHD",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ChiTietHoaDon_SanPham_MaSP",
-                        column: x => x.MaSP,
-                        principalTable: "SanPham",
-                        principalColumn: "MaSP",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName", "TenQuyen" },
-                values: new object[] { new Guid("962db0ec-e755-4d70-a62f-6bd499e0206c"), null, null, null, "admin" });
+                values: new object[] { new Guid("b88ba161-c5f6-4f90-871f-e34d59e89674"), null, null, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DienThoai", "Email", "EmailConfirmed", "GioiTinh", "HashPasswd", "LockoutEnabled", "LockoutEnd", "NgaySinh", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenKH", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("6eefb045-3e97-4aeb-9594-54971a179dcc"), 0, "14bf5ba7-b444-4f50-8130-17e79c306bf2", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 10, 14, 8, 28, 11, 899, DateTimeKind.Local).AddTicks(2002), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "3ae42001-a98f-48c3-b761-7ec8c4e80893", "Trần Văn Man", false, "admin" });
+                values: new object[] { new Guid("cd7d1818-99df-4010-a137-d64b73377a32"), 0, "8c2272ae-722e-40bc-9cae-1075084ab7f0", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 10, 16, 23, 31, 52, 724, DateTimeKind.Local).AddTicks(7105), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "2e4ac4a5-07a0-4a0b-9fb7-ead5c6c7dd98", "Trần Văn Man", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "LoaiSP",
@@ -424,15 +422,24 @@ namespace TechShop.API.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "SanPham",
-                columns: new[] { "MaSP", "GiaSP", "MaLoai", "MaTinhTrang", "MoTa", "SoLuong", "TenSP" },
+                table: "TinhTrangHang",
+                columns: new[] { "MaTinhTrang", "TenTinhTrang" },
                 values: new object[,]
                 {
-                    { "SP01", 10000000L, "01", null, "Hong co gi de mo ta", 1, "Laptop Dell" },
-                    { "SP02", 10000000L, "02", null, "Hong co gi de mo ta", 1, "Samsung A51" },
-                    { "SP03", 10000000L, "03", null, "Hong co gi de mo ta", 1, "Bàn phím fuhlen" },
-                    { "SP04", 10000000L, "04", null, "Hong co gi de mo ta", 1, "Chuột Logitech" },
-                    { "SP05", 10000000L, "05", null, "Hong co gi de mo ta", 1, "Tai nghe Sony" }
+                    { "TT01", "New 100%" },
+                    { "TT02", "LikeNew 99%" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "SanPham",
+                columns: new[] { "MaSP", "GiaSP", "MaBangTin", "MaLoai", "MaTinhTrang", "MoTa", "NgDang", "NgayDang", "SoLuong", "TenSP" },
+                values: new object[,]
+                {
+                    { 1, 10000000L, null, "01", null, "Hong co gi de mo ta", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Laptop Dell" },
+                    { 2, 10000000L, null, "02", null, "Hong co gi de mo ta", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Samsung A51" },
+                    { 3, 10000000L, null, "03", null, "Hong co gi de mo ta", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Bàn phím fuhlen" },
+                    { 4, 10000000L, null, "04", null, "Hong co gi de mo ta", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Chuột Logitech" },
+                    { 5, 10000000L, null, "05", null, "Hong co gi de mo ta", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Tai nghe Sony" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -485,13 +492,6 @@ namespace TechShop.API.Migrations
                 column: "MaNV");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BangTin_MaSP",
-                table: "BangTin",
-                column: "MaSP",
-                unique: true,
-                filter: "[MaSP] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BangTin_MaTT_BT",
                 table: "BangTin",
                 column: "MaTT_BT");
@@ -500,11 +500,6 @@ namespace TechShop.API.Migrations
                 name: "IX_ChiTietHoaDon_MaSP",
                 table: "ChiTietHoaDon",
                 column: "MaSP");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GioHang_Id",
-                table: "GioHang",
-                column: "Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_GioHang_MaSP",
@@ -530,6 +525,13 @@ namespace TechShop.API.Migrations
                 name: "IX_NhanVien_Id",
                 table: "NhanVien",
                 column: "Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SanPham_MaBangTin",
+                table: "SanPham",
+                column: "MaBangTin",
+                unique: true,
+                filter: "[MaBangTin] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SanPham_MaLoai",
@@ -561,9 +563,6 @@ namespace TechShop.API.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BangTin");
-
-            migrationBuilder.DropTable(
                 name: "ChiTietHoaDon");
 
             migrationBuilder.DropTable(
@@ -573,31 +572,34 @@ namespace TechShop.API.Migrations
                 name: "HinhAnh");
 
             migrationBuilder.DropTable(
-                name: "NhanVien");
-
-            migrationBuilder.DropTable(
-                name: "TrangThaiBT");
-
-            migrationBuilder.DropTable(
                 name: "HoaDon");
 
             migrationBuilder.DropTable(
                 name: "SanPham");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "TrangThaiDH");
+
+            migrationBuilder.DropTable(
+                name: "BangTin");
 
             migrationBuilder.DropTable(
                 name: "LoaiSP");
 
             migrationBuilder.DropTable(
                 name: "TinhTrangHang");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "NhanVien");
+
+            migrationBuilder.DropTable(
+                name: "TrangThaiBT");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
         }
     }
 }

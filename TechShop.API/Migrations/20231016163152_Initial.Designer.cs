@@ -12,8 +12,8 @@ using TechShop.API.Data;
 namespace TechShop.API.Migrations
 {
     [DbContext(typeof(TechShopDbContext))]
-    [Migration("20231014012812_initial")]
-    partial class initial
+    [Migration("20231016163152_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -136,16 +136,10 @@ namespace TechShop.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaBangTin"));
 
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("MaKH")
+                    b.Property<Guid?>("Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("MaNV")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("MaSP")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("MaTT_BT")
@@ -164,10 +158,6 @@ namespace TechShop.API.Migrations
 
                     b.HasIndex("MaNV");
 
-                    b.HasIndex("MaSP")
-                        .IsUnique()
-                        .HasFilter("[MaSP] IS NOT NULL");
-
                     b.HasIndex("MaTT_BT");
 
                     b.ToTable("BangTin");
@@ -178,8 +168,8 @@ namespace TechShop.API.Migrations
                     b.Property<string>("MaHD")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("MaSP")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("MaSP")
+                        .HasColumnType("int");
 
                     b.Property<long>("GiaBan")
                         .HasColumnType("bigint");
@@ -193,24 +183,19 @@ namespace TechShop.API.Migrations
 
             modelBuilder.Entity("TechShop.API.Entities.GioHang", b =>
                 {
-                    b.Property<Guid?>("MaKH")
+                    b.Property<Guid?>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("MaSP")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("MaSP")
+                        .HasColumnType("int");
 
                     b.Property<long>("GiaBan")
                         .HasColumnType("bigint");
 
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("SoLuong")
                         .HasColumnType("int");
 
-                    b.HasKey("MaKH", "MaSP");
-
-                    b.HasIndex("Id");
+                    b.HasKey("Id", "MaSP");
 
                     b.HasIndex("MaSP");
 
@@ -222,8 +207,8 @@ namespace TechShop.API.Migrations
                     b.Property<string>("MaHinh")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("MaSP")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("MaSP")
+                        .HasColumnType("int");
 
                     b.Property<string>("TenAnh")
                         .IsRequired()
@@ -245,10 +230,7 @@ namespace TechShop.API.Migrations
                     b.Property<string>("MaHD")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("MaKH")
+                    b.Property<Guid?>("Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("MaTT")
@@ -359,22 +341,22 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6eefb045-3e97-4aeb-9594-54971a179dcc"),
+                            Id = new Guid("cd7d1818-99df-4010-a137-d64b73377a32"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "14bf5ba7-b444-4f50-8130-17e79c306bf2",
+                            ConcurrencyStamp = "8c2272ae-722e-40bc-9cae-1075084ab7f0",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             GioiTinh = false,
                             HashPasswd = "123456",
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 10, 14, 8, 28, 11, 899, DateTimeKind.Local).AddTicks(2002),
+                            NgaySinh = new DateTime(2023, 10, 16, 23, 31, 52, 724, DateTimeKind.Local).AddTicks(7105),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3ae42001-a98f-48c3-b761-7ec8c4e80893",
+                            SecurityStamp = "2e4ac4a5-07a0-4a0b-9fb7-ead5c6c7dd98",
                             TenKH = "Trần Văn Man",
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -494,18 +476,24 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("962db0ec-e755-4d70-a62f-6bd499e0206c"),
+                            Id = new Guid("b88ba161-c5f6-4f90-871f-e34d59e89674"),
                             TenQuyen = "admin"
                         });
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.SanPham", b =>
                 {
-                    b.Property<string>("MaSP")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("MaSP")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaSP"));
 
                     b.Property<long>("GiaSP")
                         .HasColumnType("bigint");
+
+                    b.Property<int?>("MaBangTin")
+                        .HasColumnType("int");
 
                     b.Property<string>("MaLoai")
                         .HasColumnType("nvarchar(450)");
@@ -514,8 +502,13 @@ namespace TechShop.API.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("MoTa")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("NgDang")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("NgayDang")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("SoLuong")
                         .HasColumnType("int");
@@ -526,6 +519,10 @@ namespace TechShop.API.Migrations
 
                     b.HasKey("MaSP");
 
+                    b.HasIndex("MaBangTin")
+                        .IsUnique()
+                        .HasFilter("[MaBangTin] IS NOT NULL");
+
                     b.HasIndex("MaLoai");
 
                     b.HasIndex("MaTinhTrang");
@@ -535,46 +532,56 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            MaSP = "SP01",
+                            MaSP = 1,
                             GiaSP = 10000000L,
                             MaLoai = "01",
                             MoTa = "Hong co gi de mo ta",
+                            NgDang = new Guid("00000000-0000-0000-0000-000000000000"),
+                            NgayDang = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLuong = 1,
                             TenSP = "Laptop Dell"
                         },
                         new
                         {
-                            MaSP = "SP02",
+                            MaSP = 2,
                             GiaSP = 10000000L,
                             MaLoai = "02",
                             MoTa = "Hong co gi de mo ta",
+                            NgDang = new Guid("00000000-0000-0000-0000-000000000000"),
+                            NgayDang = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLuong = 1,
                             TenSP = "Samsung A51"
                         },
                         new
                         {
-                            MaSP = "SP03",
+                            MaSP = 3,
                             GiaSP = 10000000L,
                             MaLoai = "03",
                             MoTa = "Hong co gi de mo ta",
+                            NgDang = new Guid("00000000-0000-0000-0000-000000000000"),
+                            NgayDang = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLuong = 1,
                             TenSP = "Bàn phím fuhlen"
                         },
                         new
                         {
-                            MaSP = "SP04",
+                            MaSP = 4,
                             GiaSP = 10000000L,
                             MaLoai = "04",
                             MoTa = "Hong co gi de mo ta",
+                            NgDang = new Guid("00000000-0000-0000-0000-000000000000"),
+                            NgayDang = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLuong = 1,
                             TenSP = "Chuột Logitech"
                         },
                         new
                         {
-                            MaSP = "SP05",
+                            MaSP = 5,
                             GiaSP = 10000000L,
                             MaLoai = "05",
                             MoTa = "Hong co gi de mo ta",
+                            NgDang = new Guid("00000000-0000-0000-0000-000000000000"),
+                            NgayDang = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLuong = 1,
                             TenSP = "Tai nghe Sony"
                         });
@@ -592,6 +599,18 @@ namespace TechShop.API.Migrations
                     b.HasKey("MaTinhTrang");
 
                     b.ToTable("TinhTrangHang");
+
+                    b.HasData(
+                        new
+                        {
+                            MaTinhTrang = "TT01",
+                            TenTinhTrang = "New 100%"
+                        },
+                        new
+                        {
+                            MaTinhTrang = "TT02",
+                            TenTinhTrang = "LikeNew 99%"
+                        });
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.TrangThaiBT", b =>
@@ -677,17 +696,11 @@ namespace TechShop.API.Migrations
                 {
                     b.HasOne("TechShop.API.Entities.KhachHang", "KhachHang")
                         .WithMany("BangTins")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Id");
 
                     b.HasOne("TechShop.API.Entities.NhanVien", "NhanVien")
                         .WithMany("BangTins")
                         .HasForeignKey("MaNV");
-
-                    b.HasOne("TechShop.API.Entities.SanPham", "SanPham")
-                        .WithOne("BangTin")
-                        .HasForeignKey("TechShop.API.Entities.BangTin", "MaSP");
 
                     b.HasOne("TechShop.API.Entities.TrangThaiBT", "TrangThaiBT")
                         .WithMany("BangTins")
@@ -696,8 +709,6 @@ namespace TechShop.API.Migrations
                     b.Navigation("KhachHang");
 
                     b.Navigation("NhanVien");
-
-                    b.Navigation("SanPham");
 
                     b.Navigation("TrangThaiBT");
                 });
@@ -753,9 +764,7 @@ namespace TechShop.API.Migrations
                 {
                     b.HasOne("TechShop.API.Entities.KhachHang", "KhachHang")
                         .WithMany("HoaDons")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Id");
 
                     b.HasOne("TechShop.API.Entities.TrangThaiDH", "TrangThaiDH")
                         .WithMany("HoaDons")
@@ -779,6 +788,10 @@ namespace TechShop.API.Migrations
 
             modelBuilder.Entity("TechShop.API.Entities.SanPham", b =>
                 {
+                    b.HasOne("TechShop.API.Entities.BangTin", "BangTin")
+                        .WithOne("SanPham")
+                        .HasForeignKey("TechShop.API.Entities.SanPham", "MaBangTin");
+
                     b.HasOne("TechShop.API.Entities.LoaiSP", "LoaiSP")
                         .WithMany("SanPhams")
                         .HasForeignKey("MaLoai");
@@ -787,9 +800,17 @@ namespace TechShop.API.Migrations
                         .WithMany("SanPhams")
                         .HasForeignKey("MaTinhTrang");
 
+                    b.Navigation("BangTin");
+
                     b.Navigation("LoaiSP");
 
                     b.Navigation("TinhTrangHang");
+                });
+
+            modelBuilder.Entity("TechShop.API.Entities.BangTin", b =>
+                {
+                    b.Navigation("SanPham")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.KhachHang", b =>
@@ -816,9 +837,6 @@ namespace TechShop.API.Migrations
 
             modelBuilder.Entity("TechShop.API.Entities.SanPham", b =>
                 {
-                    b.Navigation("BangTin")
-                        .IsRequired();
-
                     b.Navigation("HinhAnhs");
                 });
 

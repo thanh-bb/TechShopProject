@@ -10,7 +10,7 @@ namespace TechShop.API.Repositories.Contracts
 
         Task<IEnumerable<SanPham>> GetAll();
 
-        Task<SanPham> GetItem(string id);
+        Task<SanPham> GetItem(int id);
 
         Task<IEnumerable<LoaiSP>> GetCategories();
 
@@ -20,6 +20,6 @@ namespace TechShop.API.Repositories.Contracts
 
         Task<IEnumerable<SanPham>> GetItemsByCategory(string id);
 
-
+        Task<SanPham> Create(SanPham sanpham);
     }
 }

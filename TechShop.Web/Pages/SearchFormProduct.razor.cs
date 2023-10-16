@@ -17,7 +17,7 @@ namespace TechShop.Web.Pages
         [Inject]
         private ICategoryService CategoryService { get; set; }
 
-
+      
         private List<ProductDto> Products;
 
         private List<ProductDto> ProductList;
@@ -34,6 +34,7 @@ namespace TechShop.Web.Pages
             Products = await ProductService.GetProductList(productListSearch);
             TinhTrangs = await TinhTrangService.GetTinhTrangs();
             Loais = await CategoryService.GetAll();
+          
         }
 
         public async Task SearchForm(EditContext context)

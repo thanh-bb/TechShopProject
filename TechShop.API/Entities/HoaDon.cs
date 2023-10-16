@@ -8,7 +8,7 @@ namespace TechShop.API.Entities
         [Key]
         public string MaHD { get; set; }
 
-        public Guid? MaKH { get; set; }
+        public Guid? Id { get; set; }
 
         [ForeignKey("Id")]
         public KhachHang KhachHang { get; set; }

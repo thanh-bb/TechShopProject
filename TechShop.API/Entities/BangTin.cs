@@ -13,17 +13,14 @@ namespace TechShop.API.Entities
 
 		public DateTime NgayDang { get; set; }
 
-		public Guid? MaKH { get; set; }
+		public Guid? Id { get; set; }
 
 		[ForeignKey("Id")]
 		public KhachHang KhachHang { get; set; }
 
-		public string? MaSP { get; set; }
+        public virtual SanPham SanPham { get; set; }
 
-		[ForeignKey("MaSP")]
-		public SanPham SanPham { get; set; }
-
-		public string? MaNV { get; set; }
+        public string? MaNV { get; set; }
 
 		[ForeignKey("MaNV")]
 		public NhanVien NhanVien { get; set; }

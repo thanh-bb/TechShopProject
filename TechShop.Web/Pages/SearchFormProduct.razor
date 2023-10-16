@@ -2,6 +2,9 @@
 
 @using ShopOnline.Web.Pages;
 @using TechShop.Web.Services.Contracts;
+@using TechShop.Models.Dtos;
+
+
 
 <link rel="stylesheet" href="./assets/css/main.css">
 
@@ -87,15 +90,16 @@ else
                     @foreach (var item in Products)
                     {
                         <div class="col-lg-4 col-md-6 text-center strawberry">
-                            <div class="single-product-item">
-                                <div class="product-image">
-                                    <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
-                                </div>
-                                <h3>@item.TenSP</h3>
-                                <p class="product-price"><span>Per Kg</span> @item.GiaSP </p>
-                                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
                             </div>
+                            <h3>@item.TenSP</h3>
+                            <p class="product-price"><span>Số lượng: @item.SoLuong</span>Giá:@item.GiaSP VND</p>
+                            <p>Người bán: @item.NgDang.</p>
+                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                         </div>
+                    </div>
                     }
 
                 </div>

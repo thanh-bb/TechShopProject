@@ -82,52 +82,57 @@ namespace TechShop.API.Data
 		
 			modelBuilder.Entity<SanPham>().HasData(new SanPham
 			{
-				MaSP="SP01",
+				MaSP= 1,
                 TenSP="Laptop Dell",
                 GiaSP= 10000000,
                 SoLuong=1,
                 MaLoai="01",
-                MoTa= "Hong co gi de mo ta"
+                MoTa= "Hong co gi de mo ta",
+				
 
 			});
 			modelBuilder.Entity<SanPham>().HasData(new SanPham
 			{
-				MaSP = "SP02",
+				MaSP = 2,
 				TenSP = "Samsung A51",
 				GiaSP = 10000000,
 				SoLuong = 1,
 				MaLoai = "02",
-				MoTa = "Hong co gi de mo ta"
+				MoTa = "Hong co gi de mo ta",
+				
 
 			});
 			modelBuilder.Entity<SanPham>().HasData(new SanPham
 			{
-				MaSP = "SP03",
+				MaSP = 3,
 				TenSP = "Bàn phím fuhlen",
 				GiaSP = 10000000,
 				SoLuong = 1,
 				MaLoai = "03",
-				MoTa = "Hong co gi de mo ta"
+				MoTa = "Hong co gi de mo ta",
+				
 
 			});
 			modelBuilder.Entity<SanPham>().HasData(new SanPham
 			{
-				MaSP = "SP04",
+				MaSP = 4,
 				TenSP = "Chuột Logitech",
 				GiaSP = 10000000,
 				SoLuong = 1,
 				MaLoai = "04",
-				MoTa = "Hong co gi de mo ta"
+				MoTa = "Hong co gi de mo ta",
+				
 
 			});
 			modelBuilder.Entity<SanPham>().HasData(new SanPham
 			{
-				MaSP = "SP05",
+				MaSP = 5,
 				TenSP = "Tai nghe Sony",
 				GiaSP = 10000000,
 				SoLuong = 1,
 				MaLoai = "05",
-				MoTa = "Hong co gi de mo ta"
+				MoTa = "Hong co gi de mo ta",
+				
 
 			});
 			modelBuilder.Entity<KhachHang>().HasData(new KhachHang
@@ -153,7 +158,18 @@ namespace TechShop.API.Data
 				TenQuyen = "admin"
 
 			});
+			modelBuilder.Entity<TinhTrangHang>().HasData(new TinhTrangHang
+			{
+				MaTinhTrang= "TT01",
+				TenTinhTrang = "New 100%"
 
+			});
+			modelBuilder.Entity<TinhTrangHang>().HasData(new TinhTrangHang
+			{
+				MaTinhTrang = "TT02",
+				TenTinhTrang = "LikeNew 99%"
+
+			});
 		}
 
 

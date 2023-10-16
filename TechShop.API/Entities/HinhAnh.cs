@@ -12,7 +12,7 @@ namespace TechShop.API.Entities
 
         public string TenAnh { get; set; }
 
-        public string? MaSP { get; set; }
+        public int? MaSP { get; set; }
 
         [ForeignKey("MaSP")]
         public SanPham SanPham { get; set; }

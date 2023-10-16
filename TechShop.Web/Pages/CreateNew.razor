@@ -1,0 +1,143 @@
+﻿@page "/createNew"
+
+@using Microsoft.AspNetCore.Components.Authorization;
+@using TechShop.Models.Dtos;
+@using TechShop.Web.Services.Contracts
+
+
+
+@inject NavigationManager NavigationManager
+@inject ICategoryService CategoryService
+@inject IProductService ProductService
+@inject IUserService UserService
+
+<link rel="shortcut icon" type="image/png" href="./assets/img/favicon.png">
+<!-- google font -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<!-- fontawesome -->
+<link rel="stylesheet" href="./assets/css/all.min.css">
+<!-- bootstrap -->
+<link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+<!-- owl carousel -->
+<link rel="stylesheet" href="./assets/css/owl.carousel.css">
+<!-- magnific popup -->
+<link rel="stylesheet" href="./assets/css/magnific-popup.css">
+<!-- animate css -->
+<link rel="stylesheet" href="./assets/css/animate.css">
+<!-- mean menu css -->
+<link rel="stylesheet" href="./assets/css/meanmenu.min.css">
+<!-- main style -->
+<link rel="stylesheet" href="./assets/css/main.css">
+<!-- responsive -->
+<link rel="stylesheet" href="./assets/css/responsive.css">
+
+<link rel="stylesheet" href="./assets/css/style.css">
+
+@if (Loais == null)
+{
+    <DisplaySpinner />
+}
+
+else
+{
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+
+                        <h1>Create</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <EditForm Model="@productCr" OnValidSubmit="SubmitProduct">
+            <DataAnnotationsValidator />
+
+            <div class="form-group">
+                <label for="name">Tên sản phẩm</label>
+                <InputText id="name" class="form-control" @bind-Value="productCr.TenSP"></InputText>
+                <ValidationMessage For="()=>productCr.TenSP"></ValidationMessage>
+
+                <small id="namelHelp" class="form-text text-muted">Nhập tên sản phẩm có dấu và đúng chính tả dùm em.</small>
+            </div>
+
+
+            <div class="form-group">
+                <label for="category">Loại sản phẩm</label>
+                <InputSelect id="category" class="form-control" @bind-Value="productCr.MaLoai">
+                    <option>Chọn loại sản phẩm</option>
+                    @foreach (var item in Loais)
+                    {
+                        <option value="@item.MaLoai">@item.TenLoai</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="()=>productCr.MaLoai"></ValidationMessage>
+            </div>
+
+            <div class="form-group" >
+                <label for="user">Người đăng</label>
+                <InputSelect id="user" class="form-control" @bind-Value="productCr.NgDang">                   
+                    @foreach (var item in Users)
+                    {
+                        <option value="@item.Id">@item.TenKH</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="()=>productCr.NgDang"></ValidationMessage>
+            </div>
+
+            <div class="form-group">
+                <label for="describe">Mô tả</label>
+                <InputText id="describe" class="form-control" @bind-Value="productCr.MoTa"></InputText>
+                <ValidationMessage For="()=>productCr.MoTa"></ValidationMessage>
+            </div>
+
+            <div class="form-group">
+                <label for="quanlity">Số lượng</label>
+                <InputNumber id="quanlity" class="form-control" @bind-Value="productCr.SoLuong"></InputNumber>             
+                <ValidationMessage For="()=>productCr.SoLuong"></ValidationMessage>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Giá sản phẩm</label>
+                <InputNumber id="price" class="form-control" @bind-Value="productCr.GiaSP"></InputNumber>
+                <ValidationMessage For="()=>productCr.GiaSP"></ValidationMessage>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </EditForm>
+    </div>
+
+
+}
+
+@code {
+    public List<UserDto> Users;
+    private List<LoaiDto> Loais;
+    protected override async Task OnInitializedAsync()
+    {
+        Users = await UserService.GetUsers();
+        Loais = await CategoryService.GetAll();
+    }
+    private ProductCreate productCr = new ProductCreate();
+
+    private async Task SubmitProduct(EditContext context)
+    {
+
+        var result = await ProductService.CreateProduct(productCr);
+        if (result)
+        {
+            NavigationManager.NavigateTo("/search");
+        }
+
+    }
+
+    
+
+  
+}

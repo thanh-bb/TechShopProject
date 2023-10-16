@@ -20,13 +20,15 @@ namespace ShopOnline.Api.Extensions
 			return (from product in products
 					select new ProductDto
 					{
-						MaSP = product.MaSP,
+						//MaSP = product.MaSP,
 						TenSP = product.TenSP,
 						MoTa = product.MoTa,
 						GiaSP = product.GiaSP,
 						SoLuong = product.SoLuong,
 						MaLoai = product.LoaiSP.MaLoai,
-						TenLoai= product.LoaiSP.TenLoai
+						TenLoai= product.LoaiSP.TenLoai,
+						NgDang=product.NgDang,
+					
 
 					}).ToList();
 
@@ -36,13 +38,14 @@ namespace ShopOnline.Api.Extensions
 		{
 			return new ProductDto
 			{
-				MaSP = product.MaSP,
+				//MaSP = product.MaSP,
 				TenSP = product.TenSP,
 				MoTa = product.MoTa,
 				GiaSP = product.GiaSP,
 				SoLuong = product.SoLuong,
 				MaLoai = product.LoaiSP.MaLoai,
-                TenLoai = product.LoaiSP.TenLoai
+                TenLoai = product.LoaiSP.TenLoai,
+                NgDang = product.NgDang,
             };
 
 		}

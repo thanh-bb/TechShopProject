@@ -14,7 +14,16 @@ namespace TechShop.Web.Services
 			_httpClient = httpClient;
 
 		}
-		public async Task<List<ProductDto>> GetAll()
+
+    
+
+        public async Task<bool> CreateProduct(ProductCreate product)
+        {
+            var result = await _httpClient.PostAsJsonAsync("/api/Product/CreateProduct", product);
+            return result.IsSuccessStatusCode;
+
+        }
+        public async Task<List<ProductDto>> GetAll()
 		{
 			var kq = await _httpClient.GetFromJsonAsync<List<ProductDto>>(requestUri: "/api/Product");
 			return kq;
@@ -77,7 +86,7 @@ namespace TechShop.Web.Services
 
 
 
-		public async Task<ProductDto> GetProductDetail(string id)
+		public async Task<ProductDto> GetProductDetail(int id)
 		{
 			var result = await _httpClient.GetFromJsonAsync<ProductDto>($"/api/Product/{id}");
 			return result;

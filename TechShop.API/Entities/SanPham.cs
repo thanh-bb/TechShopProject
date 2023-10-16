@@ -8,7 +8,7 @@ namespace TechShop.API.Entities
     public class SanPham
     {
         [Key]
-        public string MaSP { get; set; }
+        public int MaSP { get; set; }
 
         public string TenSP { get; set; }
 
@@ -16,7 +16,7 @@ namespace TechShop.API.Entities
 
         public int SoLuong { get; set; }
 
-        public string MoTa {  get; set; }
+        public string? MoTa {  get; set; }
 
         public string? MaLoai { get; set; }
 
@@ -28,8 +28,15 @@ namespace TechShop.API.Entities
         [ForeignKey("MaTinhTrang")]
         public TinhTrangHang TinhTrangHang{ get; set; }
 
-        public virtual ICollection<HinhAnh> HinhAnhs { get; set; }
+        public virtual ICollection<HinhAnh> HinhAnhs { get; set; }       
 
-        public virtual BangTin BangTin { get; set; }
+        public int? MaBangTin { get; set; }
+
+        [ForeignKey("MaBangTin")]
+        public BangTin BangTin { get; set; }
+
+        public Guid NgDang { get; set; }
+
+        public DateTime NgayDang { get; set; }
     }
 }

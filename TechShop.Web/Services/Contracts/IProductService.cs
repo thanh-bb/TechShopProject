@@ -9,11 +9,14 @@ namespace TechShop.Web.Services.Contracts
        
 		Task<List<ProductDto>> GetAll();
 
-        Task<ProductDto> GetProductDetail(string id);
+        Task<ProductDto> GetProductDetail(int id);
 
 		//Task<IEnumerable<ProductDto>> GetItems();
 		
 		Task<IEnumerable<LoaiDto>> GetProductCategories();
 		Task<IEnumerable<ProductDto>> GetItemsByCategory(string categoryId);
+	
+		Task<bool> CreateProduct (ProductCreate product);
+	
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 using TechShop.API.Data;
 using TechShop.API.Entities;
 using TechShop.API.Repositories.Contracts;
@@ -12,7 +13,14 @@ namespace TechShop.API.Repositories
         {
             _context = context;
         }
-      
+
+        public async Task<SanPham> Create(SanPham sanpham)
+        {          
+			await _context.SanPham.AddAsync(sanpham);
+            await _context.SaveChangesAsync();
+            return sanpham;
+        }
+
         public async Task<IEnumerable<SanPham>> GetAll()
         {
             var productList = await _context.SanPham.ToListAsync();
@@ -32,7 +40,7 @@ namespace TechShop.API.Repositories
 			return category;
 		}
 
-		public async Task<SanPham> GetItem(string id)
+		public async Task<SanPham> GetItem(int id)
 		{
 			var product_item = await _context.SanPham.FindAsync(id);
 			return product_item;
@@ -69,7 +77,7 @@ namespace TechShop.API.Repositories
 				query = query.Where(x => x.MaTinhTrang == productListSearch.MaTinhTrang);
 			}
 
-			return await query.ToListAsync();
+			return await query.OrderByDescending(x=>x.MaSP).ToListAsync();
         }
     }
 }
