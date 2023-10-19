@@ -29,6 +29,8 @@ namespace TechShop.Models.Dtos
 
         public Guid NgDang {  get; set; }
 
+        public string Image {  get; set; }
+
 
 	}
 }

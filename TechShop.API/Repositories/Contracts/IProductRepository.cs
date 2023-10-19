@@ -21,5 +21,10 @@ namespace TechShop.API.Repositories.Contracts
         Task<IEnumerable<SanPham>> GetItemsByCategory(string id);
 
         Task<SanPham> Create(SanPham sanpham);
+
+       
+
+
+
     }
 }

@@ -12,8 +12,8 @@ using TechShop.API.Data;
 namespace TechShop.API.Migrations
 {
     [DbContext(typeof(TechShopDbContext))]
-    [Migration("20231016163152_Initial")]
-    partial class Initial
+    [Migration("20231018152820_update1")]
+    partial class update1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -204,21 +204,35 @@ namespace TechShop.API.Migrations
 
             modelBuilder.Entity("TechShop.API.Entities.HinhAnh", b =>
                 {
-                    b.Property<string>("MaHinh")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("MaSP")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("TenAnh")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FileSize")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Id_SanPham")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("URL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
 
-                    b.HasKey("MaHinh");
+                    b.Property<int>("MaSP")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("MaSP");
 
@@ -341,22 +355,22 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cd7d1818-99df-4010-a137-d64b73377a32"),
+                            Id = new Guid("d028086b-07c7-426f-8552-3d694797e508"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8c2272ae-722e-40bc-9cae-1075084ab7f0",
+                            ConcurrencyStamp = "d777896e-41b9-4f5b-b363-8aa12fae48a9",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             GioiTinh = false,
                             HashPasswd = "123456",
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 10, 16, 23, 31, 52, 724, DateTimeKind.Local).AddTicks(7105),
+                            NgaySinh = new DateTime(2023, 10, 18, 22, 28, 20, 188, DateTimeKind.Local).AddTicks(9468),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2e4ac4a5-07a0-4a0b-9fb7-ead5c6c7dd98",
+                            SecurityStamp = "0f696d14-a4eb-415b-ae64-c81cce26dc3f",
                             TenKH = "Trần Văn Man",
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -476,7 +490,7 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b88ba161-c5f6-4f90-871f-e34d59e89674"),
+                            Id = new Guid("703125e5-ed44-4c8f-85e1-1e26e20ac699"),
                             TenQuyen = "admin"
                         });
                 });
@@ -755,7 +769,9 @@ namespace TechShop.API.Migrations
                 {
                     b.HasOne("TechShop.API.Entities.SanPham", "SanPham")
                         .WithMany("HinhAnhs")
-                        .HasForeignKey("MaSP");
+                        .HasForeignKey("MaSP")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("SanPham");
                 });

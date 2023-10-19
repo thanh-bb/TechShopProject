@@ -28,7 +28,7 @@ namespace TechShop.API.Entities
         [ForeignKey("MaTinhTrang")]
         public TinhTrangHang TinhTrangHang{ get; set; }
 
-        public virtual ICollection<HinhAnh> HinhAnhs { get; set; }       
+        //public virtual ICollection<HinhAnh> HinhAnhs { get; set; }       
 
         public int? MaBangTin { get; set; }
 
@@ -38,5 +38,9 @@ namespace TechShop.API.Entities
         public Guid NgDang { get; set; }
 
         public DateTime NgayDang { get; set; }
-    }
+
+        //public List<HinhAnh> HinhAnhs { get; set; }
+
+        public string? Image {  get; set; }
+	}
 }

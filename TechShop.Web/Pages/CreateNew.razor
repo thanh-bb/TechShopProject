@@ -3,13 +3,14 @@
 @using Microsoft.AspNetCore.Components.Authorization;
 @using TechShop.Models.Dtos;
 @using TechShop.Web.Services.Contracts
-
-
+@using Microsoft.AspNetCore.Hosting;
+@using Microsoft.AspNetCore.Http;
 
 @inject NavigationManager NavigationManager
 @inject ICategoryService CategoryService
 @inject IProductService ProductService
 @inject IUserService UserService
+@inject ITinhTrangService TinhTrangService
 
 <link rel="shortcut icon" type="image/png" href="./assets/img/favicon.png">
 <!-- google font -->
@@ -79,9 +80,9 @@ else
                 <ValidationMessage For="()=>productCr.MaLoai"></ValidationMessage>
             </div>
 
-            <div class="form-group" >
+            <div class="form-group">
                 <label for="user">Người đăng</label>
-                <InputSelect id="user" class="form-control" @bind-Value="productCr.NgDang">                   
+                <InputSelect id="user" class="form-control" @bind-Value="productCr.NgDang">
                     @foreach (var item in Users)
                     {
                         <option value="@item.Id">@item.TenKH</option>
@@ -98,7 +99,7 @@ else
 
             <div class="form-group">
                 <label for="quanlity">Số lượng</label>
-                <InputNumber id="quanlity" class="form-control" @bind-Value="productCr.SoLuong"></InputNumber>             
+                <InputNumber id="quanlity" class="form-control" @bind-Value="productCr.SoLuong"></InputNumber>
                 <ValidationMessage For="()=>productCr.SoLuong"></ValidationMessage>
             </div>
 
@@ -108,21 +109,45 @@ else
                 <ValidationMessage For="()=>productCr.GiaSP"></ValidationMessage>
             </div>
 
+            <div class="form-group">
+                <label for="status">Tình trạng hàng</label>
+                <InputSelect id="status" class="form-control" @bind-Value="productCr.MaTinhTrang">
+                    <option> Chọn tình trạng hàng</option>
+                    @foreach (var item in TinhTrang)
+                    {
+                        <option value="@item.MaTinhTrang">@item.TenTinhTrang</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="()=>productCr.MaTinhTrang"></ValidationMessage>
+            </div>
 
+            <div class="form-group">
+                <div class="form-control-file">
+                    <label for="image">Image</label>
+                    <InputFile id="image" OnChange="OnFileChange" @bind-Value="productCr.Image" class="form-control"></InputFile>
+                    <ValidationMessage For="()=>productCr.Image"></ValidationMessage>
+                </div>
+            </div>
+
+            
             <button type="submit" class="btn btn-primary">Submit</button>
         </EditForm>
+
     </div>
 
 
 }
 
 @code {
+
+    public List<TinhTrangDto> TinhTrang;
     public List<UserDto> Users;
     private List<LoaiDto> Loais;
     protected override async Task OnInitializedAsync()
     {
         Users = await UserService.GetUsers();
         Loais = await CategoryService.GetAll();
+        TinhTrang = await TinhTrangService.GetTinhTrangs();
     }
     private ProductCreate productCr = new ProductCreate();
 
@@ -136,8 +161,18 @@ else
         }
 
     }
+    private async Task OnFileChange (InputFileChangeEventArgs e)
+    {
+        var format="image/png";
+        var resizedImage = await e.File.RequestImageFileAsync(format, 300, 300);
+        var buffer = new byte[resizedImage.Size];
+        await resizedImage.OpenReadStream().ReadAsync(buffer);
+        var imageData = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+        productCr.Image = imageData;
 
-    
+       
+    }
 
-  
 }
+
+

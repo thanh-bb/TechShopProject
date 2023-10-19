@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechShop.API.Data;
 
@@ -11,9 +12,11 @@ using TechShop.API.Data;
 namespace TechShop.API.Migrations
 {
     [DbContext(typeof(TechShopDbContext))]
-    partial class TechShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231018152436_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,6 +229,9 @@ namespace TechShop.API.Migrations
                     b.Property<int>("MaSP")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<int>("SortOrder")
                         .HasColumnType("int");
 
@@ -352,22 +358,22 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("613998ed-da4b-49ae-b907-bac96c089272"),
+                            Id = new Guid("e20b870d-1844-4cff-b3a6-97409599359b"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1921e9fc-8c80-4ff1-b5ef-cd11a63476ce",
+                            ConcurrencyStamp = "4fe67a3f-c498-44e7-8c89-a653f2077b88",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             GioiTinh = false,
                             HashPasswd = "123456",
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 10, 19, 13, 50, 28, 433, DateTimeKind.Local).AddTicks(8908),
+                            NgaySinh = new DateTime(2023, 10, 18, 22, 24, 36, 58, DateTimeKind.Local).AddTicks(1967),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a30e13a0-a7d7-40c4-a9ec-10669207c91d",
+                            SecurityStamp = "4da10392-6e40-451c-bc43-b420c3073c5c",
                             TenKH = "Trần Văn Man",
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -487,7 +493,7 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3b68b178-6da1-4f4d-9d4e-106e14a8184b"),
+                            Id = new Guid("ff075b6b-e7d4-427e-9c31-399335053703"),
                             TenQuyen = "admin"
                         });
                 });
@@ -502,9 +508,6 @@ namespace TechShop.API.Migrations
 
                     b.Property<long>("GiaSP")
                         .HasColumnType("bigint");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MaBangTin")
                         .HasColumnType("int");
@@ -768,7 +771,7 @@ namespace TechShop.API.Migrations
             modelBuilder.Entity("TechShop.API.Entities.HinhAnh", b =>
                 {
                     b.HasOne("TechShop.API.Entities.SanPham", "SanPham")
-                        .WithMany()
+                        .WithMany("HinhAnhs")
                         .HasForeignKey("MaSP")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -849,6 +852,11 @@ namespace TechShop.API.Migrations
             modelBuilder.Entity("TechShop.API.Entities.Quyen", b =>
                 {
                     b.Navigation("NhanViens");
+                });
+
+            modelBuilder.Entity("TechShop.API.Entities.SanPham", b =>
+                {
+                    b.Navigation("HinhAnhs");
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.TinhTrangHang", b =>

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechShop.API.Data;
 
@@ -11,9 +12,11 @@ using TechShop.API.Data;
 namespace TechShop.API.Migrations
 {
     [DbContext(typeof(TechShopDbContext))]
-    partial class TechShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231019065028_image")]
+    partial class image
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

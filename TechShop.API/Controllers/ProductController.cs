@@ -82,25 +82,25 @@ namespace TechShop.API.Controllers
         }
 
 
+
+
         [HttpPost]
         [Route(nameof(CreateProduct))]
         public async Task<IActionResult> CreateProduct([FromBody] ProductCreate product)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
+          
             var task = await _productRepository.Create(new SanPham()
             {
                 TenSP = product.TenSP,
                 MaLoai = product.MaLoai,
                 MoTa = product.MoTa,
-                NgDang = product.NgDang ,
+                NgDang = product.NgDang,
                 GiaSP = product.GiaSP,
                 SoLuong = product.SoLuong,
-                NgayDang= DateTime.Now
-                
-
-
+                NgayDang = DateTime.Now,
+               Image = product.Image,
 
             });
             return CreatedAtAction(nameof(CreateProduct), new {id = task.MaSP }, task);

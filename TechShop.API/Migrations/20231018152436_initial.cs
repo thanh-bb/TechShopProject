@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TechShop.API.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -384,30 +384,37 @@ namespace TechShop.API.Migrations
                 name: "HinhAnh",
                 columns: table => new
                 {
-                    MaHinh = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    URL = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TenAnh = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MaSP = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDefault = table.Column<bool>(type: "bit", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SortOrder = table.Column<int>(type: "int", nullable: false),
+                    FileSize = table.Column<int>(type: "int", nullable: false),
+                    Id_SanPham = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MaSP = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HinhAnh", x => x.MaHinh);
+                    table.PrimaryKey("PK_HinhAnh", x => x.Id);
                     table.ForeignKey(
                         name: "FK_HinhAnh_SanPham_MaSP",
                         column: x => x.MaSP,
                         principalTable: "SanPham",
-                        principalColumn: "MaSP");
+                        principalColumn: "MaSP",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName", "TenQuyen" },
-                values: new object[] { new Guid("b88ba161-c5f6-4f90-871f-e34d59e89674"), null, null, null, "admin" });
+                values: new object[] { new Guid("ff075b6b-e7d4-427e-9c31-399335053703"), null, null, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DienThoai", "Email", "EmailConfirmed", "GioiTinh", "HashPasswd", "LockoutEnabled", "LockoutEnd", "NgaySinh", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenKH", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("cd7d1818-99df-4010-a137-d64b73377a32"), 0, "8c2272ae-722e-40bc-9cae-1075084ab7f0", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 10, 16, 23, 31, 52, 724, DateTimeKind.Local).AddTicks(7105), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "2e4ac4a5-07a0-4a0b-9fb7-ead5c6c7dd98", "Trần Văn Man", false, "admin" });
+                values: new object[] { new Guid("e20b870d-1844-4cff-b3a6-97409599359b"), 0, "4fe67a3f-c498-44e7-8c89-a653f2077b88", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 10, 18, 22, 24, 36, 58, DateTimeKind.Local).AddTicks(1967), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "4da10392-6e40-451c-bc43-b420c3073c5c", "Trần Văn Man", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "LoaiSP",

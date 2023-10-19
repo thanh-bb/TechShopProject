@@ -8,13 +8,17 @@ namespace ShopOnline.Web.Pages
 	{
 		[Parameter]
 		public string CategoryId { get; set; }
+
 		[Inject]
 		public IProductService ProductService { get; set; }
 
+		[Inject]
+		public ICategoryService CategoryService { get; set; }
 		
 		[Inject]
 		public IManageProductsLocalStorageService ManageProductsLocalStorageService { get; set; }
 
+		public List<LoaiDto> Loais { get; set; }
 		public IEnumerable<ProductDto> Products { get; set; }
 		public IEnumerable<ProductDto> CategoryItem { get; set; }
 		public string CategoryName { get; set; }
@@ -24,6 +28,7 @@ namespace ShopOnline.Web.Pages
 		{
 			try
 			{
+				Loais = await CategoryService.GetAll();
 				CategoryItem = await ProductService.GetItemsByCategory(CategoryId);
 				Products = await GetProductCollectionByCategoryId(CategoryId);
 				

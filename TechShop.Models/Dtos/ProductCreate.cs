@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -43,5 +44,15 @@ namespace TechShop.Models.Dtos
         [Required(ErrorMessage = "Trường này bắt buộc")]
         public Guid NgDang { get; set; }
 
-    }
+
+        [Required(ErrorMessage = "Trường này bắt buộc")]
+        public string? MaTinhTrang { get; set; }
+
+       
+        [Required(ErrorMessage = "Trường này bắt buộc")]
+        public string Image {  get; set; }
+
+      //  public IFormFile ThumbnailImage {  get; set; }
+
+	}
 }

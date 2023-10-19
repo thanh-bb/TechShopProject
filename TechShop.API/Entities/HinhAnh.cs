@@ -5,14 +5,19 @@ namespace TechShop.API.Entities
 {
     public class HinhAnh
     {
-        [Key]
-        public string MaHinh { get; set; }
+        public int Id { get; set; }
+       
+        public string ImagePath { get; set; }
 
-        public string URL { get; set; }
+        public bool IsDefault { get; set; }
 
-        public string TenAnh { get; set; }
+        public DateTime DateCreated { get; set; }
 
-        public int? MaSP { get; set; }
+        public int SortOrder { get; set; }
+
+        public int FileSize { get; set; }
+
+        public string? Id_SanPham { get; set; }
 
         [ForeignKey("MaSP")]
         public SanPham SanPham { get; set; }
