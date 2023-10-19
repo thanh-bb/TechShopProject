@@ -14,6 +14,8 @@ namespace TechShop.Models.Dtos
 
         public string TenLoai { get; set; }
 
+        public string ImageURL { get; set; }
+
         public static implicit operator string(LoaiDto v)
         {
             throw new NotImplementedException();

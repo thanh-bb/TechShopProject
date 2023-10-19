@@ -44,15 +44,15 @@ body, html {
 
 /*---------------------------------------------*/
 a {
-	font-family: Poppins-Regular;
+	font-family: "Open Sans", sans-serif;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
 	transition: all 0.4s;
 	-webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
 }
 
 a:focus {
@@ -196,12 +196,13 @@ iframe {
 }
 
 .login100-form-title {
-  display: block;
-  font-family: Poppins-Bold;
-  font-size: 39px;
-  color: #333333;
-  line-height: 1.2;
-  text-align: center;
+	display: block;
+	font-family: "Open Sans", sans-serif;
+	font-size: 39px;
+	color: #333333;
+	line-height: 1.2;
+	text-align: center;
+	font-weight: bold;
 }
 
 

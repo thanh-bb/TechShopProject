@@ -26,7 +26,7 @@
 
 
 <!-- header -->
-<div class="top-header-area" id="sticker" >
+<div class="top-header-area" id="sticker">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-sm-12 text-center">
@@ -42,37 +42,31 @@
                     <nav class="main-menu">
                         <ul>
                             <li class="current-list-item">
-                                <a href="/">Home</a>
-                            </li>
-                            <li><a href="/profile">Profile</a></li>
-                            <li>
-                                <a href="news.html">News</a>
-                                <ul class="sub-menu">
-                                    <li><a href="news.html">News</a></li>
-                                    <li><a href="single-news.html">Single News</a></li>
-                                </ul>
+                                <a href="/">Trang chủ</a>
                             </li>
                             <li>
-                                <a href="/search">Search</a>
-                                
+                                <a href="/search">Bảng tin</a>
+
                             </li>
+                            <li>
+                                <a href="/profile">Tài khoản</a>
+                            </li>
+
+
                             <li><a href="/MapTest">About</a></li>
-                            <li>
-                                <a href="/createNew">Create</a>
-                              
-                            </li>
+
                             <li>
                                 <div class="header-icons">
                                     <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
                                     <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                                     <AuthorizeView>
                                         <Authorized>
-                                            Hello, @context.User.Identity.Name
-                                            <a href="/logout">Logout</a>
+                                            <a href="/profile">Hello, @context.User.Identity.Name</a>
+                                            <a href="/logout">Đăng xuất</a>
                                         </Authorized>
 
                                         <NotAuthorized>
-                                            <a href="/login" class="ml-md-auto">Login</a>
+                                            <a href="/login">Đăng nhập</a>
                                         </NotAuthorized>
                                     </AuthorizeView>
                                 </div>

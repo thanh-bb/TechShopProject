@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechShop.API.Data;
 
@@ -11,9 +12,11 @@ using TechShop.API.Data;
 namespace TechShop.API.Migrations
 {
     [DbContext(typeof(TechShopDbContext))]
-    partial class TechShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231019142525_imageurl")]
+    partial class imageurl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -352,22 +355,22 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("242b4300-eb22-4975-8871-ac031162c2d8"),
+                            Id = new Guid("d053caac-f076-4fdf-9c9d-fef2fa0f0c90"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bedaa6b1-e594-488c-89ca-fe27311a0cb4",
+                            ConcurrencyStamp = "1894f3f9-23aa-41c1-aecd-bdd47e624da0",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             GioiTinh = false,
                             HashPasswd = "123456",
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 10, 19, 21, 41, 52, 20, DateTimeKind.Local).AddTicks(4219),
+                            NgaySinh = new DateTime(2023, 10, 19, 21, 25, 24, 975, DateTimeKind.Local).AddTicks(62),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c817e2b7-7283-43d7-80c8-d60cc06efa51",
+                            SecurityStamp = "f266c424-e98a-4c18-ae3a-8e5dae773700",
                             TenKH = "Trần Văn Man",
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -394,31 +397,28 @@ namespace TechShop.API.Migrations
                         new
                         {
                             MaLoai = "01",
-                            ImageURL = "./assets/img/categories/Laptop.png",
+                            ImageURL = "~/assets/img/categories/Laptop.png",
                             TenLoai = "Laptop"
                         },
                         new
                         {
                             MaLoai = "02",
-                            ImageURL = "./assets/img/categories/Phone.png",
                             TenLoai = "Điện thoại"
                         },
                         new
                         {
                             MaLoai = "03",
-                            ImageURL = "./assets/img/categories/Keyboard.png",
+                            ImageURL = "~/assets/img/categories/Laptop.png",
                             TenLoai = "Bàn phím"
                         },
                         new
                         {
                             MaLoai = "04",
-                            ImageURL = "./assets/img/categories/Chuot.png",
                             TenLoai = "Chuột"
                         },
                         new
                         {
                             MaLoai = "05",
-                            ImageURL = "./assets/img/categories/HeadPhone.png",
                             TenLoai = "Tai nghe"
                         });
                 });
@@ -495,7 +495,7 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2e87de46-d507-4844-ac14-8a1f0a1cbce1"),
+                            Id = new Guid("dab580ad-99f1-42a5-b5ff-40e4bba17c55"),
                             TenQuyen = "admin"
                         });
                 });

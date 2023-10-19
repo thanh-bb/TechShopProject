@@ -11,5 +11,7 @@ namespace TechShop.API.Entities
 
         public virtual ICollection<SanPham> SanPhams { get; set; }
 
+        public string? ImageURL { get; set; }
+
     }
 }

@@ -29,6 +29,7 @@ namespace ShopOnline.Api.Extensions
 						TenLoai= product.LoaiSP.TenLoai,
 						NgDang=product.NgDang,
 						Image = product.Image,
+						MaTinhTrang = product.MaTinhTrang
 					
 
 					}).ToList();
@@ -48,6 +49,7 @@ namespace ShopOnline.Api.Extensions
                 TenLoai = product.LoaiSP.TenLoai,
                 NgDang = product.NgDang,
                 Image = product.Image,
+                MaTinhTrang = product.MaTinhTrang
             };
 
 		}

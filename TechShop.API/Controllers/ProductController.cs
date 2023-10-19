@@ -101,6 +101,7 @@ namespace TechShop.API.Controllers
                 SoLuong = product.SoLuong,
                 NgayDang = DateTime.Now,
                Image = product.Image,
+               MaTinhTrang = product.MaTinhTrang
 
             });
             return CreatedAtAction(nameof(CreateProduct), new {id = task.MaSP }, task);

@@ -36,19 +36,7 @@ a {
 a:hover {
   color:   #FFC107;
   text-decoration: none;
-}
-
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  margin: 0 0 1.25rem 0;
-  color: #051922;
-}
+}h1, .h1,h2, .h2,h3, .h3,h4, .h4,h5, .h5,h6, .h6 {    font-family: "Open Sans", sans-serif;    font-weight: 700;    margin: 0 0 1.25rem 0;    color: #051922;}
 
 h1:last-child, .h1:last-child,
 h2:last-child, .h2:last-child,

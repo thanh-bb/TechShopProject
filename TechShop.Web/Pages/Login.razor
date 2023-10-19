@@ -23,7 +23,7 @@
 
             <form class="login100-form validate-form">
                 <span class="login100-form-title p-b-49">
-                    Login
+                    Đăng Nhập 
                 </span>
                 @if (ShowErrors)
                 {
@@ -33,7 +33,7 @@
                 }
                 <EditForm Model="LoginModel" OnValidSubmit="HandleLogin">
                     <DataAnnotationsValidator></DataAnnotationsValidator>
-                    <ValidationSummary></ValidationSummary>
+                  @*   <ValidationSummary></ValidationSummary> *@
 
                     <div class="formm-group wrap-input100 validate-input m-b-23">
                         <label for="username" class="label-input100">Username</label>

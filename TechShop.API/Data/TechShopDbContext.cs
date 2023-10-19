@@ -51,34 +51,39 @@ namespace TechShop.API.Data
             modelBuilder.Entity<LoaiSP>().HasData(new LoaiSP
             {
                 MaLoai = "01",
-                TenLoai = "Laptop"
+                TenLoai = "Laptop",
+				ImageURL = "./assets/img/categories/Laptop.png"
 
             });
 			modelBuilder.Entity<LoaiSP>().HasData(new LoaiSP
 			{
 				MaLoai = "02",
-				TenLoai = "Điện thoại"
+				TenLoai = "Điện thoại",
+                ImageURL = "./assets/img/categories/Phone.png"
 
-			});
+            });
 			modelBuilder.Entity<LoaiSP>().HasData(new LoaiSP
 			{
 				MaLoai = "03",
-				TenLoai = "Bàn phím"
+				TenLoai = "Bàn phím",
+                ImageURL = "./assets/img/categories/Keyboard.png"
 
-			});
+            });
 			modelBuilder.Entity<LoaiSP>().HasData(new LoaiSP
 			{
 				MaLoai = "04",
-				TenLoai = "Chuột"
+				TenLoai = "Chuột",
+                ImageURL = "./assets/img/categories/Chuot.png"
 
-			});
+            });
 
 			modelBuilder.Entity<LoaiSP>().HasData(new LoaiSP
 			{
 				MaLoai = "05",
-				TenLoai = "Tai nghe"
+				TenLoai = "Tai nghe",
+                ImageURL = "./assets/img/categories/HeadPhone.png"
 
-			});
+            });
 		
 			modelBuilder.Entity<SanPham>().HasData(new SanPham
 			{

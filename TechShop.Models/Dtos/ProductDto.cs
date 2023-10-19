@@ -12,7 +12,7 @@ namespace TechShop.Models.Dtos
     {
         public int MaSP { get; set; }
 
-        public string TenSP { get; set; }
+        public string? TenSP { get; set; }
 
         public long GiaSP { get; set; }
 
@@ -30,6 +30,8 @@ namespace TechShop.Models.Dtos
         public Guid NgDang {  get; set; }
 
         public string Image {  get; set; }
+
+        public string MaTinhTrang { get; set; }
 
 
 	}

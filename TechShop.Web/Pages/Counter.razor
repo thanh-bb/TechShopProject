@@ -1,18 +1,114 @@
-﻿@page "/counter"
+﻿@* @page "/test"
+<div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+    <div class="wrapper wrapper--w790">
+        <div class="card card-5">
+            <div class="card-heading">
+                <h2 class="title">Create</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <EditForm Model="@productCr" OnValidSubmit="SubmitProduct">
+                        <DataAnnotationsValidator />
+                        <div class="form-row">
+                            <div class="name">Loại sản phẩm</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <InputSelect id="category" class="form-control" @bind-Value="productCr.MaLoai">
+                                        <option>Chọn loại sản phẩm</option>
+                                        @foreach (var item in Loais)
+                                        {
+                                            <option value="@item.MaLoai">@item.TenLoai</option>
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="()=>productCr.MaLoai"></ValidationMessage>
+                                </div>
+                            </div>
+                        </div>
 
-<PageTitle>Counter</PageTitle>
+                        <div class="form-row">
+                            <div class="name">Tên sản phẩm</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <InputText id="name" class="form-control" @bind-Value="productCr.TenSP"></InputText>
+                                    <ValidationMessage For="()=>productCr.TenSP"></ValidationMessage>
+                                </div>
+                            </div>
+                        </div>
 
-<h1>Counter</h1>
+                        <div class="form-row">
+                            <div class="name">Người đăng</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <InputSelect id="user" class="form-control" @bind-Value="productCr.NgDang">
+                                        @foreach (var item in Users)
+                                        {
+                                            <option value="@item.Id">@item.TenKH</option>
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="()=>productCr.NgDang"></ValidationMessage>
+                                </div>
+                            </div>
+                        </div>
 
-<p role="status">Current count: @currentCount</p>
+                        <div class="form-row">
+                            <div class="name">Mô tả</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <InputText id="describe" class="form-control" @bind-Value="productCr.MoTa"></InputText>
+                                    <ValidationMessage For="()=>productCr.MoTa"></ValidationMessage>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Số lượng</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <InputNumber id="quanlity" class="form-control" @bind-Value="productCr.SoLuong"></InputNumber>
+                                    <ValidationMessage For="()=>productCr.SoLuong"></ValidationMessage>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Giá tiền</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <InputNumber id="price" class="form-control" @bind-Value="productCr.GiaSP"></InputNumber>
+                                    <ValidationMessage For="()=>productCr.GiaSP"></ValidationMessage>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Tình trạng hàng</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <InputSelect id="status" class="form-control" @bind-Value="productCr.MaTinhTrang">
+                                        <option> Chọn tình trạng hàng</option>
+                                        @foreach (var item in TinhTrang)
+                                        {
+                                            <option value="@item.MaTinhTrang">@item.TenTinhTrang</option>
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="()=>productCr.MaTinhTrang"></ValidationMessage>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Ảnh</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <div class="form-control-file">
+                                        <label for="image">Image</label>
+                                        <InputFile id="image" OnChange="OnFileChange" @bind-Value="productCr.Image" class="form-control"></InputFile>
+                                        <ValidationMessage For="()=>productCr.Image"></ValidationMessage>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-}
+                        <button type="submit" class="btn btn--radius-2 btn--red">Submit</button>
+                    </EditForm>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> *@

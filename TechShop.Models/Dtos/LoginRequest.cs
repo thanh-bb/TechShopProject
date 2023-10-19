@@ -9,11 +9,11 @@ namespace TechShop.Models.Dtos
 {
     public class LoginRequest
     {
-        [Required]
-        public string UserName {  get; set; }
+		[Required(ErrorMessage = "Hãy nhập username của bạn")]
+		public string UserName {  get; set; }
 
-        [Required]
-        public string PasswordHash { get; set; }
+		[Required(ErrorMessage = "Hãy nhập mật khẩu của bạn")]
+		public string PasswordHash { get; set; }
 
         public Guid Id { get; set; }
     }
