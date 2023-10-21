@@ -1,0 +1,63 @@
+﻿@page "/ProductDetails/{Id:int}"
+@using TechShop.Models.Dtos;
+
+
+<link rel="stylesheet" href="./assets/css/main.css">
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>See more Details</p>
+                    <h1>Single Product</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+@if (Products == null)
+{
+    <DisplaySpinner />
+}
+else
+{
+    <div class="container">
+        <h3 class="mb-5">Product Details</h3>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <img class="img-fluid" src="@Products.Image">
+            </div>
+            <div class="col-md-6">
+                <h3>@Products.TenSP</h3>
+                <p class="mb-4">@Products.MoTa</p>
+                <p class="mb-4">
+                    <b>
+                        @Products.GiaSP.ToString("C")&nbsp;(@Products.SoLuong items in stock)
+                    </b>
+                </p>
+                <div>
+                    @foreach(var item in Carts)
+                    {
+                        var a = item.ID_Cart;
+                        <button class="btn btn-success"
+                        @onclick="() => (AddToCart_Click(new CartItemToAddDto{
+                                CartId =  a,
+                                ProductId = Products.MaSP,
+                                Qty = 1,}))">
+                            <b>Add to Cart</b>
+                        </button>
+                    }
+
+                       
+                    
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+

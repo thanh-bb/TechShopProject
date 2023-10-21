@@ -16,5 +16,7 @@ namespace TechShop.Models.Dtos
         public string Email { get; set; }
         public string DienThoai { get; set; }
 
+        public LoaiDto Loai {  get; set; }
+
     }
 }

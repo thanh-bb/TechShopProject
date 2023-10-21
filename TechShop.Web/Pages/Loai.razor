@@ -44,9 +44,9 @@ else
                     <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
                         <div class="hero-text">
                             <div class="hero-text-tablecell">
-								<p class="subtitle">
-									Economical & convenient
-								</p>
+                                <p class="subtitle">
+                                    Economical & convenient
+                                </p>
                                 <h2 style="color:white">Second Hand Tech Shop</h2>
                                 <div class="hero-btns">
                                     <a href="/search" class="boxed-btn">Fruit Collection</a>
@@ -61,12 +61,12 @@ else
     </div>
     <!-- end home page slider -->
 
-	<div  class="product-section mt-100 mb-100">
+    <div class="product-section mt-100 mb-100">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="section-title">
-						<h3 ><span class="orange-text">Khám phá</span> Danh mục</h3>
+                        <h3><span class="orange-text">Khám phá</span> Danh mục</h3>
 
                     </div>
                 </div>
@@ -79,77 +79,38 @@ else
                             <div class="product-image">
                                 <a href="shop.html"><img src="@item.ImageURL" alt=""></a>
                             </div>
-							<a href="/ProductsByCategory/@item.MaLoai" class="cart-btn"> @item.TenLoai</a>
-							
+                            <a href="/ProductsByCategory/@item.MaLoai" class="cart-btn"> @item.TenLoai</a>
+
                         </div>
                     </div>
                 }
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+            <div class="section-title">
+                <h3><span class="orange-text">Khám phá</span> Bảng tin</h3>
 
-	<!-- latest news -->
-	<div class="latest-news ">
-		<div class="container">
+            </div>
+        </div>
+    </div>
+    // Hiển thị sản phẩm theo phân loại
+    <div class="container">
+        @foreach (var prodGroup in GetGroupedProductsByCategory())
+        {
+            <div style="text-align:center"> <h3>@GetCategoryName(prodGroup).ToUpper()</h3></div>
 
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="section-title">
-						<h3><span class="orange-text">Bảng Tin</span> Sản phẩm</h3>
-					</div>
-				</div>
-			</div>
+            <div class="row mt-3">
+                <DisplayProducts Products="@prodGroup.Take(3)"></DisplayProducts>
+            </div>
+            <hr class="mb-3" />
+        }
+    </div>
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <a href="/search" class="boxed-btn">More News</a>
+        </div>
+    </div>
 
-			<div class="row">
-				<div class="col-lg-4 col-md-6">
-					<div class="single-latest-news">
-						<a href="single-news.html"><div class="latest-news-bg news-bg-1"></div></a>
-						<div class="news-text-box">
-							<h3><a href="single-news.html">You will vainly look for fruit on it in autumn.</a></h3>
-							<p class="blog-meta">
-								<span class="author"><i class="fas fa-user"></i> Admin</span>
-								<span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-							</p>
-							<p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
-							<a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="single-latest-news">
-						<a href="single-news.html"><div class="latest-news-bg news-bg-2"></div></a>
-						<div class="news-text-box">
-							<h3><a href="single-news.html">A man's worth has its season, like tomato.</a></h3>
-							<p class="blog-meta">
-								<span class="author"><i class="fas fa-user"></i> Admin</span>
-								<span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-							</p>
-							<p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
-							<a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
-					<div class="single-latest-news">
-						<a href="single-news.html"><div class="latest-news-bg news-bg-3"></div></a>
-						<div class="news-text-box">
-							<h3><a href="single-news.html">Good thoughts bear good fresh juicy fruit.</a></h3>
-							<p class="blog-meta">
-								<span class="author"><i class="fas fa-user"></i> Admin</span>
-								<span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-							</p>
-							<p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
-							<a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div  class="row">
-				<div class="col-lg-12 text-center">
-					<a href="/search" class="boxed-btn">More News</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end latest news -->
 }

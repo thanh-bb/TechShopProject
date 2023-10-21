@@ -121,69 +121,69 @@
         this.setFinalDate(finalDate);
         this.start();
     };
-    $.extend(Countdown.prototype, {
-        start: function() {
-            if (this.interval !== null) {
-                clearInterval(this.interval);
-            }
-            var self = this;
-            this.update();
-            this.interval = setInterval(function() {
-                self.update.call(self);
-            }, PRECISION);
-        },
-        stop: function() {
-            clearInterval(this.interval);
-            this.interval = null;
-            this.dispatchEvent("stoped");
-        },
-        pause: function() {
-            this.stop.call(this);
-        },
-        resume: function() {
-            this.start.call(this);
-        },
-        remove: function() {
-            this.stop();
-            instances[this.instanceNumber] = null;
-            delete this.$el.data().countdownInstance;
-        },
-        setFinalDate: function(value) {
-            this.finalDate = parseDateString(value);
-        },
-        update: function() {
-            if (this.$el.closest("html").length === 0) {
-                this.remove();
-                return;
-            }
-            this.totalSecsLeft = this.finalDate.getTime() - new Date().getTime();
-            this.totalSecsLeft = Math.ceil(this.totalSecsLeft / 1e3);
-            this.totalSecsLeft = this.totalSecsLeft < 0 ? 0 : this.totalSecsLeft;
-            this.offset = {
-                seconds: this.totalSecsLeft % 60,
-                minutes: Math.floor(this.totalSecsLeft / 60) % 60,
-                hours: Math.floor(this.totalSecsLeft / 60 / 60) % 24,
-                days: Math.floor(this.totalSecsLeft / 60 / 60 / 24) % 7,
-                totalDays: Math.floor(this.totalSecsLeft / 60 / 60 / 24),
-                weeks: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 7),
-                months: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 30),
-                years: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 365)
-            };
-            if (this.totalSecsLeft === 0) {
-                this.stop();
-                this.dispatchEvent("finish");
-            } else {
-                this.dispatchEvent("update");
-            }
-        },
-        dispatchEvent: function(eventName) {
-            var event = $.Event(eventName + ".countdown");
-            event.finalDate = this.finalDate;
-            event.offset = $.extend({}, this.offset);
-            event.strftime = strftime(this.offset);
-            this.$el.trigger(event);
-        }
-    });
+    //$.extend(Countdown.prototype, {
+    //    start: function() {
+    //        if (this.interval !== null) {
+    //            clearInterval(this.interval);
+    //        }
+    //        var self = this;
+    //        this.update();
+    //        this.interval = setInterval(function() {
+    //            self.update.call(self);
+    //        }, PRECISION);
+    //    },
+    //    stop: function() {
+    //        clearInterval(this.interval);
+    //        this.interval = null;
+    //        this.dispatchEvent("stoped");
+    //    },
+    //    pause: function() {
+    //        this.stop.call(this);
+    //    },
+    //    resume: function() {
+    //        this.start.call(this);
+    //    },
+    //    remove: function() {
+    //        this.stop();
+    //        instances[this.instanceNumber] = null;
+    //        delete this.$el.data().countdownInstance;
+    //    },
+    //    setFinalDate: function(value) {
+    //        this.finalDate = parseDateString(value);
+    //    },
+    //    update: function() {
+    //        if (this.$el.closest("html").length === 0) {
+    //            this.remove();
+    //            return;
+    //        }
+    //        this.totalSecsLeft = this.finalDate.getTime() - new Date().getTime();
+    //        this.totalSecsLeft = Math.ceil(this.totalSecsLeft / 1e3);
+    //        this.totalSecsLeft = this.totalSecsLeft < 0 ? 0 : this.totalSecsLeft;
+    //        this.offset = {
+    //            seconds: this.totalSecsLeft % 60,
+    //            minutes: Math.floor(this.totalSecsLeft / 60) % 60,
+    //            hours: Math.floor(this.totalSecsLeft / 60 / 60) % 24,
+    //            days: Math.floor(this.totalSecsLeft / 60 / 60 / 24) % 7,
+    //            totalDays: Math.floor(this.totalSecsLeft / 60 / 60 / 24),
+    //            weeks: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 7),
+    //            months: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 30),
+    //            years: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 365)
+    //        };
+    //        if (this.totalSecsLeft === 0) {
+    //            this.stop();
+    //            this.dispatchEvent("finish");
+    //        } else {
+    //            this.dispatchEvent("update");
+    //        }
+    //    },
+    //    dispatchEvent: function(eventName) {
+    //        var event = $.Event(eventName + ".countdown");
+    //        event.finalDate = this.finalDate;
+    //        event.offset = $.extend({}, this.offset);
+    //        event.strftime = strftime(this.offset);
+    //        this.$el.trigger(event);
+    //    }
+    //});
     $.fn.countdown = function() {
         var argumentsArray = Array.prototype.slice.call(arguments, 0);
         return this.each(function() {

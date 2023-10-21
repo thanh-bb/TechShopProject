@@ -27,7 +27,7 @@ builder.Services.AddScoped<ILoaiRepository, LoaiRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ITinhTrangRepository,TinhTrangRepository>(); 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();  
 // add token
 
 builder.Services.AddIdentity<KhachHang, Quyen>()

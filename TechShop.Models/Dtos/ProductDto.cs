@@ -20,18 +20,20 @@ namespace TechShop.Models.Dtos
 
         public string? MoTa { get; set; }
 
-       
+        public DateTime NgayDang { get; set; }
         public string? LoaiSP { get; set; }
 
         public string MaLoai { get; set; }
 
         public string? TenLoai { get; set; }
 
-        public Guid NgDang {  get; set; }
+        public Guid Id {  get; set; }
 
         public string Image {  get; set; }
 
         public string MaTinhTrang { get; set; }
+
+        public string TenNguoiDang { get; set; }
 
 
 	}

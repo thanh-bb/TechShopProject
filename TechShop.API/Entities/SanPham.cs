@@ -35,12 +35,17 @@ namespace TechShop.API.Entities
         [ForeignKey("MaBangTin")]
         public BangTin BangTin { get; set; }
 
-        public Guid NgDang { get; set; }
+       // public Guid NgDang { get; set; }
 
         public DateTime NgayDang { get; set; }
 
-        //public List<HinhAnh> HinhAnhs { get; set; }
+        public List<HinhAnh> HinhAnhs { get; set; }
 
         public string? Image {  get; set; }
-	}
+
+        public Guid Id { get; set; }
+
+        [ForeignKey("Id")]
+        public KhachHang KhachHang { get; set; }
+    }
 }

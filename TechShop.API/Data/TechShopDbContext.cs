@@ -42,7 +42,10 @@ namespace TechShop.API.Data
         public DbSet<ChiTietHoaDon> ChiTietHoaDon { get; set; }
 
         public DbSet<TrangThaiBT> TrangThaiBT { get; set; }
-        #endregion
+       
+		public DbSet<ChiTietGioHang> ChiTietGioHang { get; set; }	
+		
+		#endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -85,61 +88,62 @@ namespace TechShop.API.Data
 
             });
 		
-			modelBuilder.Entity<SanPham>().HasData(new SanPham
-			{
-				MaSP= 1,
-                TenSP="Laptop Dell",
-                GiaSP= 10000000,
-                SoLuong=1,
-                MaLoai="01",
-                MoTa= "Hong co gi de mo ta",
+			//modelBuilder.Entity<SanPham>().HasData(new SanPham
+			//{
+			//	MaSP= 1,
+   //             TenSP="Laptop Dell",
+   //             GiaSP= 10000000,
+   //             SoLuong=1,
+   //             MaLoai="01",
+   //             MoTa= "Hong co gi de mo ta",
 				
 
-			});
-			modelBuilder.Entity<SanPham>().HasData(new SanPham
-			{
-				MaSP = 2,
-				TenSP = "Samsung A51",
-				GiaSP = 10000000,
-				SoLuong = 1,
-				MaLoai = "02",
-				MoTa = "Hong co gi de mo ta",
-				
 
-			});
-			modelBuilder.Entity<SanPham>().HasData(new SanPham
-			{
-				MaSP = 3,
-				TenSP = "Bàn phím fuhlen",
-				GiaSP = 10000000,
-				SoLuong = 1,
-				MaLoai = "03",
-				MoTa = "Hong co gi de mo ta",
-				
+   //         });
+			//modelBuilder.Entity<SanPham>().HasData(new SanPham
+			//{
+			//	MaSP = 2,
+			//	TenSP = "Samsung A51",
+			//	GiaSP = 10000000,
+			//	SoLuong = 1,
+			//	MaLoai = "02",
+			//	MoTa = "Hong co gi de mo ta",
+               
 
-			});
-			modelBuilder.Entity<SanPham>().HasData(new SanPham
-			{
-				MaSP = 4,
-				TenSP = "Chuột Logitech",
-				GiaSP = 10000000,
-				SoLuong = 1,
-				MaLoai = "04",
-				MoTa = "Hong co gi de mo ta",
-				
+   //         });
+			//modelBuilder.Entity<SanPham>().HasData(new SanPham
+			//{
+			//	MaSP = 3,
+			//	TenSP = "Bàn phím fuhlen",
+			//	GiaSP = 10000000,
+			//	SoLuong = 1,
+			//	MaLoai = "03",
+			//	MoTa = "Hong co gi de mo ta",
+             
 
-			});
-			modelBuilder.Entity<SanPham>().HasData(new SanPham
-			{
-				MaSP = 5,
-				TenSP = "Tai nghe Sony",
-				GiaSP = 10000000,
-				SoLuong = 1,
-				MaLoai = "05",
-				MoTa = "Hong co gi de mo ta",
-				
+   //         });
+			//modelBuilder.Entity<SanPham>().HasData(new SanPham
+			//{
+			//	MaSP = 4,
+			//	TenSP = "Chuột Logitech",
+			//	GiaSP = 10000000,
+			//	SoLuong = 1,
+			//	MaLoai = "04",
+			//	MoTa = "Hong co gi de mo ta",
+              
 
-			});
+   //         });
+			//modelBuilder.Entity<SanPham>().HasData(new SanPham
+			//{
+			//	MaSP = 5,
+			//	TenSP = "Tai nghe Sony",
+			//	GiaSP = 10000000,
+			//	SoLuong = 1,
+			//	MaLoai = "05",
+			//	MoTa = "Hong co gi de mo ta",
+               
+
+   //         });
 			modelBuilder.Entity<KhachHang>().HasData(new KhachHang
 			{
 				Id = Guid.NewGuid(),
@@ -156,8 +160,23 @@ namespace TechShop.API.Data
 				SecurityStamp = Guid.NewGuid().ToString(),
 				PasswordHash = "123456"
 			});
-
-			modelBuilder.Entity<Quyen>().HasData(new Quyen
+            modelBuilder.Entity<KhachHang>().HasData(new KhachHang
+            {
+                Id = Guid.NewGuid(),
+                TenKH = "Trần Văn Mon",
+                NgaySinh = DateTime.Now,
+                GioiTinh = false,
+                Email = "abc@gmail.com",
+                NormalizedEmail = "ADMIN1@GMAIL.COM",
+                DienThoai = "0985879105",
+                PhoneNumber = "032132131",
+                HashPasswd = "123456",
+                UserName = "monmon",
+                NormalizedUserName = "monmon",
+                SecurityStamp = Guid.NewGuid().ToString(),
+                PasswordHash = "123456"
+            });
+            modelBuilder.Entity<Quyen>().HasData(new Quyen
 			{
 				Id = Guid.NewGuid(),
 				TenQuyen = "admin"

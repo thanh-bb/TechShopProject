@@ -13,13 +13,26 @@ namespace TechShop.API.Repositories
 			_context = context;
 		}
 
+        public async Task<IEnumerable<SanPham>> GetProductByUserId(Guid userId)
+        {
+            var query = _context.SanPham.Where(x => x.Id == userId).AsQueryable();
 
-		public async Task<IEnumerable<KhachHang>> GetUserByUserId(Guid userId)
+            return await query.ToListAsync();
+        }
+
+        public async Task<IEnumerable<KhachHang>> GetUserByUserId(Guid userId)
 		{
 			var query = _context.KhachHang.Where(x => x.Id == userId).AsQueryable();
 
 			return await query.ToListAsync();
 
 		}
-	}
+
+        public async Task<IEnumerable<GioHang>> GetCartByUserId(Guid userId)
+        {
+            var query = _context.GioHang.Where(x => x.Id == userId).AsQueryable();
+
+            return await query.ToListAsync();
+        }
+    }
 }

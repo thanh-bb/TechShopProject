@@ -12,8 +12,8 @@ using TechShop.API.Data;
 namespace TechShop.API.Migrations
 {
     [DbContext(typeof(TechShopDbContext))]
-    [Migration("20231019144152_imageurl_link")]
-    partial class imageurl_link
+    [Migration("20231021145133_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -163,6 +163,35 @@ namespace TechShop.API.Migrations
                     b.ToTable("BangTin");
                 });
 
+            modelBuilder.Entity("TechShop.API.Entities.ChiTietGioHang", b =>
+                {
+                    b.Property<int>("Id_CTCart")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_CTCart"));
+
+                    b.Property<long>("GiaBan")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("ID_Cart")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaSP")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SoLuong")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id_CTCart");
+
+                    b.HasIndex("ID_Cart");
+
+                    b.HasIndex("MaSP");
+
+                    b.ToTable("ChiTietGioHang");
+                });
+
             modelBuilder.Entity("TechShop.API.Entities.ChiTietHoaDon", b =>
                 {
                     b.Property<string>("MaHD")
@@ -183,21 +212,18 @@ namespace TechShop.API.Migrations
 
             modelBuilder.Entity("TechShop.API.Entities.GioHang", b =>
                 {
+                    b.Property<int>("ID_Cart")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID_Cart"));
+
                     b.Property<Guid?>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("MaSP")
-                        .HasColumnType("int");
+                    b.HasKey("ID_Cart");
 
-                    b.Property<long>("GiaBan")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("SoLuong")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id", "MaSP");
-
-                    b.HasIndex("MaSP");
+                    b.HasIndex("Id");
 
                     b.ToTable("GioHang");
                 });
@@ -216,9 +242,6 @@ namespace TechShop.API.Migrations
                     b.Property<int>("FileSize")
                         .HasColumnType("int");
 
-                    b.Property<string>("Id_SanPham")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ImagePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -226,7 +249,7 @@ namespace TechShop.API.Migrations
                     b.Property<bool>("IsDefault")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MaSP")
+                    b.Property<int?>("MaSP")
                         .HasColumnType("int");
 
                     b.Property<int>("SortOrder")
@@ -355,25 +378,47 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("242b4300-eb22-4975-8871-ac031162c2d8"),
+                            Id = new Guid("2688f7ad-0ee5-49cf-b989-2ccaf60ef25a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bedaa6b1-e594-488c-89ca-fe27311a0cb4",
+                            ConcurrencyStamp = "690d8688-636c-4b06-92f3-559210a1866d",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             GioiTinh = false,
                             HashPasswd = "123456",
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 10, 19, 21, 41, 52, 20, DateTimeKind.Local).AddTicks(4219),
+                            NgaySinh = new DateTime(2023, 10, 21, 21, 51, 33, 301, DateTimeKind.Local).AddTicks(3458),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c817e2b7-7283-43d7-80c8-d60cc06efa51",
+                            SecurityStamp = "29104530-99a6-4e67-9d81-9989b90dcfbb",
                             TenKH = "Trần Văn Man",
                             TwoFactorEnabled = false,
                             UserName = "admin"
+                        },
+                        new
+                        {
+                            Id = new Guid("5c714f48-c7a2-4685-91ee-321fa05e7e83"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0052735b-445c-499f-b63e-4f1853c8787b",
+                            DienThoai = "0985879105",
+                            Email = "abc@gmail.com",
+                            EmailConfirmed = false,
+                            GioiTinh = false,
+                            HashPasswd = "123456",
+                            LockoutEnabled = false,
+                            NgaySinh = new DateTime(2023, 10, 21, 21, 51, 33, 301, DateTimeKind.Local).AddTicks(3627),
+                            NormalizedEmail = "ADMIN1@GMAIL.COM",
+                            NormalizedUserName = "monmon",
+                            PasswordHash = "123456",
+                            PhoneNumber = "032132131",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "8cdc9265-e6ec-4a58-a28a-443b9005a88b",
+                            TenKH = "Trần Văn Mon",
+                            TwoFactorEnabled = false,
+                            UserName = "monmon"
                         });
                 });
 
@@ -498,7 +543,7 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2e87de46-d507-4844-ac14-8a1f0a1cbce1"),
+                            Id = new Guid("5f8ee9f5-84a5-4341-8b09-d7c97e54bda4"),
                             TenQuyen = "admin"
                         });
                 });
@@ -513,6 +558,9 @@ namespace TechShop.API.Migrations
 
                     b.Property<long>("GiaSP")
                         .HasColumnType("bigint");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
@@ -529,9 +577,6 @@ namespace TechShop.API.Migrations
                     b.Property<string>("MoTa")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("NgDang")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("NgayDang")
                         .HasColumnType("datetime2");
 
@@ -544,6 +589,8 @@ namespace TechShop.API.Migrations
 
                     b.HasKey("MaSP");
 
+                    b.HasIndex("Id");
+
                     b.HasIndex("MaBangTin")
                         .IsUnique()
                         .HasFilter("[MaBangTin] IS NOT NULL");
@@ -553,63 +600,6 @@ namespace TechShop.API.Migrations
                     b.HasIndex("MaTinhTrang");
 
                     b.ToTable("SanPham");
-
-                    b.HasData(
-                        new
-                        {
-                            MaSP = 1,
-                            GiaSP = 10000000L,
-                            MaLoai = "01",
-                            MoTa = "Hong co gi de mo ta",
-                            NgDang = new Guid("00000000-0000-0000-0000-000000000000"),
-                            NgayDang = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoLuong = 1,
-                            TenSP = "Laptop Dell"
-                        },
-                        new
-                        {
-                            MaSP = 2,
-                            GiaSP = 10000000L,
-                            MaLoai = "02",
-                            MoTa = "Hong co gi de mo ta",
-                            NgDang = new Guid("00000000-0000-0000-0000-000000000000"),
-                            NgayDang = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoLuong = 1,
-                            TenSP = "Samsung A51"
-                        },
-                        new
-                        {
-                            MaSP = 3,
-                            GiaSP = 10000000L,
-                            MaLoai = "03",
-                            MoTa = "Hong co gi de mo ta",
-                            NgDang = new Guid("00000000-0000-0000-0000-000000000000"),
-                            NgayDang = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoLuong = 1,
-                            TenSP = "Bàn phím fuhlen"
-                        },
-                        new
-                        {
-                            MaSP = 4,
-                            GiaSP = 10000000L,
-                            MaLoai = "04",
-                            MoTa = "Hong co gi de mo ta",
-                            NgDang = new Guid("00000000-0000-0000-0000-000000000000"),
-                            NgayDang = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoLuong = 1,
-                            TenSP = "Chuột Logitech"
-                        },
-                        new
-                        {
-                            MaSP = 5,
-                            GiaSP = 10000000L,
-                            MaLoai = "05",
-                            MoTa = "Hong co gi de mo ta",
-                            NgDang = new Guid("00000000-0000-0000-0000-000000000000"),
-                            NgayDang = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoLuong = 1,
-                            TenSP = "Tai nghe Sony"
-                        });
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.TinhTrangHang", b =>
@@ -738,6 +728,25 @@ namespace TechShop.API.Migrations
                     b.Navigation("TrangThaiBT");
                 });
 
+            modelBuilder.Entity("TechShop.API.Entities.ChiTietGioHang", b =>
+                {
+                    b.HasOne("TechShop.API.Entities.GioHang", "GioHang")
+                        .WithMany()
+                        .HasForeignKey("ID_Cart")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechShop.API.Entities.SanPham", "SanPham")
+                        .WithMany()
+                        .HasForeignKey("MaSP")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GioHang");
+
+                    b.Navigation("SanPham");
+                });
+
             modelBuilder.Entity("TechShop.API.Entities.ChiTietHoaDon", b =>
                 {
                     b.HasOne("TechShop.API.Entities.HoaDon", "HoaDon")
@@ -761,28 +770,16 @@ namespace TechShop.API.Migrations
                 {
                     b.HasOne("TechShop.API.Entities.KhachHang", "KhachHang")
                         .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TechShop.API.Entities.SanPham", "SanPham")
-                        .WithMany()
-                        .HasForeignKey("MaSP")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Id");
 
                     b.Navigation("KhachHang");
-
-                    b.Navigation("SanPham");
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.HinhAnh", b =>
                 {
                     b.HasOne("TechShop.API.Entities.SanPham", "SanPham")
-                        .WithMany()
-                        .HasForeignKey("MaSP")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("HinhAnhs")
+                        .HasForeignKey("MaSP");
 
                     b.Navigation("SanPham");
                 });
@@ -815,6 +812,12 @@ namespace TechShop.API.Migrations
 
             modelBuilder.Entity("TechShop.API.Entities.SanPham", b =>
                 {
+                    b.HasOne("TechShop.API.Entities.KhachHang", "KhachHang")
+                        .WithMany("SanPhams")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("TechShop.API.Entities.BangTin", "BangTin")
                         .WithOne("SanPham")
                         .HasForeignKey("TechShop.API.Entities.SanPham", "MaBangTin");
@@ -828,6 +831,8 @@ namespace TechShop.API.Migrations
                         .HasForeignKey("MaTinhTrang");
 
                     b.Navigation("BangTin");
+
+                    b.Navigation("KhachHang");
 
                     b.Navigation("LoaiSP");
 
@@ -845,6 +850,8 @@ namespace TechShop.API.Migrations
                     b.Navigation("BangTins");
 
                     b.Navigation("HoaDons");
+
+                    b.Navigation("SanPhams");
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.LoaiSP", b =>
@@ -860,6 +867,11 @@ namespace TechShop.API.Migrations
             modelBuilder.Entity("TechShop.API.Entities.Quyen", b =>
                 {
                     b.Navigation("NhanViens");
+                });
+
+            modelBuilder.Entity("TechShop.API.Entities.SanPham", b =>
+                {
+                    b.Navigation("HinhAnhs");
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.TinhTrangHang", b =>

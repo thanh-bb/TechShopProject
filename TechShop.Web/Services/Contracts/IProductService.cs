@@ -6,8 +6,8 @@ namespace TechShop.Web.Services.Contracts
     public interface IProductService
     {
 		Task <List<ProductDto>> GetProductList ( ProductListSearch productListSearch );
-       
-		Task<List<ProductDto>> GetAll();
+
+        Task<IEnumerable<ProductDto>> GetAll();
 
         Task<ProductDto> GetProductDetail(int id);
 

@@ -14,10 +14,15 @@ namespace TechShop.Web.Pages
 
 		public List<UserDto> Users;
 
-		protected override async Task OnInitializedAsync()
-		{
+		public List<ProductDto> ProductOfUser;
 
-			Users = await UserService.GetUsers();
+        public List<LoaiDto> Loais;
+
+        protected override async Task OnInitializedAsync()
+		{
+            Loais = await CategoryService.GetAll();
+            Users = await UserService.GetUsers();
+			ProductOfUser = await UserService.GetProductOfUser();
 		}
 
 		private async Task GetUser()

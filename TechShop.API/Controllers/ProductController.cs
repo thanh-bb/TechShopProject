@@ -21,11 +21,32 @@ namespace TechShop.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetItems()
         {
 
-            var post = await _productRepository.GetAll();
-            return Ok(post);
+            try
+            {
+                var products = await _productRepository.GetAll();
+
+
+                if (products == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    var productDtos = products.ConvertToDto();
+
+                    return Ok(productDtos);
+                }
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                "Error retrieving data from the database");
+
+            }
         }
 
 
@@ -96,7 +117,7 @@ namespace TechShop.API.Controllers
                 TenSP = product.TenSP,
                 MaLoai = product.MaLoai,
                 MoTa = product.MoTa,
-                NgDang = product.NgDang,
+                Id = product.Id,
                 GiaSP = product.GiaSP,
                 SoLuong = product.SoLuong,
                 NgayDang = DateTime.Now,

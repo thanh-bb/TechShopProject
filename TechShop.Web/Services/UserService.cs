@@ -12,10 +12,20 @@ namespace TechShop.Web.Services
             _httpClient = httpClient;
 
         }
+
+        public async Task<List<CartDto>> GetCartOfUser()
+        {
+            return await _httpClient.GetFromJsonAsync<List<CartDto>>(requestUri: "/api/User/GetCartOfUser");
+        }
+
+        public async Task<List<ProductDto>> GetProductOfUser()
+        {
+            return await _httpClient.GetFromJsonAsync<List<ProductDto>>(requestUri: "/api/User/GetProductOfUser");
+        }
         public async Task<List<UserDto>> GetUsers()
         {
 
-			return await _httpClient.GetFromJsonAsync<List<UserDto>>(requestUri: "/api/User/me");
+            return await _httpClient.GetFromJsonAsync<List<UserDto>>(requestUri: "/api/User/me");
 
         }
     }

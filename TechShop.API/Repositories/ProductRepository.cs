@@ -4,6 +4,8 @@ using TechShop.API.Data;
 using TechShop.API.Entities;
 using TechShop.API.Repositories.Contracts;
 using TechShop.Models.Dtos;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
 namespace TechShop.API.Repositories
 {
     public class ProductRepository : IProductRepository
@@ -23,8 +25,10 @@ namespace TechShop.API.Repositories
 
         public async Task<IEnumerable<SanPham>> GetAll()
         {
-            var productList = await _context.SanPham.ToListAsync();
-            return productList;
+            var products = await _context.SanPham
+                                    .Include(p => p.LoaiSP).ToListAsync();
+
+            return products.OrderByDescending(x => x.MaSP);
         }
 
 		public async Task<IEnumerable<LoaiSP>> GetCategories()
@@ -33,8 +37,8 @@ namespace TechShop.API.Repositories
 
 			return categories;
 		}
-
-		public async Task<LoaiSP> GetCategory(string id)
+      
+        public async Task<LoaiSP> GetCategory(string id)
 		{
 			var category = await _context.LoaiSP.SingleOrDefaultAsync(c => c.MaLoai == id);
 			return category;
@@ -50,7 +54,9 @@ namespace TechShop.API.Repositories
 			//return product;
 		}
 
-		public async Task<IEnumerable<SanPham>> GetItemsByCategory(string id)
+     
+
+        public async Task<IEnumerable<SanPham>> GetItemsByCategory(string id)
 		{
 			var products = await _context.SanPham
 								  .Include(p => p.LoaiSP)
@@ -79,5 +85,9 @@ namespace TechShop.API.Repositories
 
 			return await query.OrderByDescending(x=>x.MaSP).ToListAsync();
         }
+
+      
+
+		
     }
 }

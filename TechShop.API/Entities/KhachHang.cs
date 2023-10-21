@@ -37,10 +37,12 @@ namespace TechShop.API.Entities
 
         public virtual ICollection<HoaDon> HoaDons { get; set; }
 
-      /* public Guid? MaQuyen { get; set; }
+        /* public Guid? MaQuyen { get; set; }
 
-        [ForeignKey("Id")]
-        public Quyen Quyen { get; set; }*/
+          [ForeignKey("Id")]
+          public Quyen Quyen { get; set; }*/
+
+        public virtual ICollection<SanPham> SanPhams { get; set; }
 
     }
 }

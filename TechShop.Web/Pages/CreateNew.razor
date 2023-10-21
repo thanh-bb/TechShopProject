@@ -90,13 +90,13 @@ else
                                 <div class="name">Người đăng</div>
                                 <div class="value">
                                     <div class="input-group">
-                                        <InputSelect id="user" class="form-control" @bind-Value="productCr.NgDang">
+                                        <InputSelect id="user" class="form-control" @bind-Value="productCr.Id">
                                             @foreach (var item in Users)
                                             {
                                                 <option value="@item.Id">@item.TenKH</option>
                                             }
                                         </InputSelect>
-                                        <ValidationMessage For="()=>productCr.NgDang"></ValidationMessage>
+                                        <ValidationMessage For="()=>productCr.Id"></ValidationMessage>
                                     </div>
                                 </div>
                             </div>

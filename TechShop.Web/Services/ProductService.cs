@@ -23,11 +23,34 @@ namespace TechShop.Web.Services
             return result.IsSuccessStatusCode;
 
         }
-        public async Task<List<ProductDto>> GetAll()
+        public async Task<IEnumerable<ProductDto>> GetAll()
 		{
-			var kq = await _httpClient.GetFromJsonAsync<List<ProductDto>>(requestUri: "/api/Product");
-			return kq;
-		}
+            try
+            {
+                var response = await _httpClient.GetAsync("api/Product");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return Enumerable.Empty<ProductDto>();
+                    }
+
+                    return await response.Content.ReadFromJsonAsync<IEnumerable<ProductDto>>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+                }
+
+            }
+            catch (Exception)
+            {
+                //Log exception
+                throw;
+            }
+        }
 
 		public async Task<IEnumerable<ProductDto>> GetItemsByCategory(string categoryId)
 		{
@@ -88,9 +111,31 @@ namespace TechShop.Web.Services
 
 		public async Task<ProductDto> GetProductDetail(int id)
 		{
-			var result = await _httpClient.GetFromJsonAsync<ProductDto>($"/api/Product/{id}");
-			return result;
-		}
+            try
+            {
+                var response = await _httpClient.GetAsync($"api/Product/{id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return default(ProductDto);
+                    }
+                    return await response.Content.ReadFromJsonAsync<ProductDto>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception(message);
+                }
+            }
+            catch (Exception)
+            {
+
+                //Log exception
+                throw;
+
+            }
+        }
 
         public async Task<List<ProductDto>> GetProductList(ProductListSearch productListSearch)
         {

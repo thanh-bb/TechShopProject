@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TechShop.API.Extensions;
+using TechShop.API.Repositories;
 using TechShop.API.Repositories.Contracts;
+using TechShop.Models.Dtos;
 
 namespace TechShop.API.Controllers
 {
@@ -27,6 +29,26 @@ namespace TechShop.API.Controllers
             var userId = User.GetUserId();
 
             var post = await _userRepository.GetUserByUserId(Guid.Parse(userId));
+            return Ok(post);
+        }
+
+        [HttpGet]
+        [Route(nameof(GetProductOfUser))]
+        public async Task<IActionResult> GetProductOfUser()
+        {
+            var userId = User.GetUserId();
+
+            var post = await _userRepository.GetProductByUserId(Guid.Parse(userId));
+            return Ok(post);
+        }
+
+        [HttpGet]
+        [Route(nameof(GetCartOfUser))]
+        public async Task<IActionResult> GetCartOfUser()
+        {
+            var userId = User.GetUserId();
+
+            var post = await _userRepository.GetCartByUserId(Guid.Parse(userId));
             return Ok(post);
         }
     }

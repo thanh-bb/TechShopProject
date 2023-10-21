@@ -17,7 +17,7 @@ namespace TechShop.API.Entities
 
         public int FileSize { get; set; }
 
-        public string? Id_SanPham { get; set; }
+        public int? MaSP { get; set; }
 
         [ForeignKey("MaSP")]
         public SanPham SanPham { get; set; }

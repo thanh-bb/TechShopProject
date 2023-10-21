@@ -42,7 +42,7 @@ namespace TechShop.Models.Dtos
 
 
         [Required(ErrorMessage = "Trường này bắt buộc")]
-        public Guid NgDang { get; set; }
+        public Guid Id { get; set; }
 
 
         [Required(ErrorMessage = "Trường này bắt buộc")]
@@ -52,7 +52,8 @@ namespace TechShop.Models.Dtos
         [Required(ErrorMessage = "Trường này bắt buộc")]
         public string Image {  get; set; }
 
-      //  public IFormFile ThumbnailImage {  get; set; }
+        //  public IFormFile ThumbnailImage {  get; set; }
 
-	}
+        
+    }
 }

@@ -9,7 +9,7 @@ namespace TechShop.Web.Pages
         [Inject]
         public IProductService ProductService { get; set; }
 
-        public List<ProductDto> Products;
+        public IEnumerable<ProductDto> Products { get; set; }
         protected override async Task OnInitializedAsync()
         {
             Products = await ProductService.GetAll();
