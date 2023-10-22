@@ -11,6 +11,12 @@ namespace TechShop.Web.Services.Contracts
         Task<bool> CreateCart(CartCreate cart);
 
 		Task<CartItemDto> DeleteItem(int id);
+
+        Task<CartItemDto> UpdateQty(CartItemQtyUpdateDto cartItemQtyUpdateDto);
+
+        event Action<int> OnShoppingCartChanged;
+        void RaiseEventOnShoppingCartChanged(int totalQty);
+
     }
 
 }

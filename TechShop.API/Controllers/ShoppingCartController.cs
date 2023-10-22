@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using ShopOnline.Api.Extensions;
 using TechShop.API.Entities;
 using TechShop.API.Extensions;
+using TechShop.API.Repositories;
 using TechShop.API.Repositories.Contracts;
 using TechShop.Models.Dtos;
 
@@ -165,6 +166,32 @@ namespace TechShop.API.Controllers
             }
         }
 
-        
+
+        [HttpPatch("{id:int}")]
+        public async Task<ActionResult<CartItemDto>> UpdateQty(int id, CartItemQtyUpdateDto cartItemQtyUpdateDto)
+        {
+            try
+            {
+                var cartItem = await _shoppingCartRepository.UpdateQty(id, cartItemQtyUpdateDto);
+                if (cartItem == null)
+                {
+                    return NotFound();
+                }
+
+                var product = await _productRepository.GetItem(cartItem.MaSP);
+
+                var cartItemDto = cartItem.ConvertToDto(product);
+
+                return Ok(cartItemDto);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+        }
+
+
     }
 }

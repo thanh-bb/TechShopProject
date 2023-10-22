@@ -90,10 +90,19 @@ namespace TechShop.API.Repositories
 						 }).ToListAsync();
 		}
 
-		public Task<ChiTietGioHang> UpdateQty(int id, CartItemQtyUpdateDto cartItemQtyUpdateDto)
+		public async Task<ChiTietGioHang> UpdateQty(int id, CartItemQtyUpdateDto cartItemQtyUpdateDto)
 		{
-			throw new NotImplementedException();
-		}
+            var item = await _context.ChiTietGioHang.FindAsync(id);
+
+            if (item != null)
+            {
+                item.SoLuong = cartItemQtyUpdateDto.Qty;
+                await _context.SaveChangesAsync();
+                return item;
+            }
+
+            return null;
+        }
 
         public async Task<GioHang> CreateCart(GioHang gioHang)
         {
