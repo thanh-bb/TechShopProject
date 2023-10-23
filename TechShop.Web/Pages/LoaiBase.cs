@@ -8,6 +8,12 @@ namespace TechShop.Web.Pages
     public class LoaiBase : ComponentBase
     {
         [Inject]
+        public IUserService UserService { get; set; }
+
+        [Inject]
+        public IShoppingCartService ShoppingCartService { get; set; }
+
+        [Inject]
         public ICategoryService CategoryService { get; set; }
 
         [Inject]
@@ -19,10 +25,17 @@ namespace TechShop.Web.Pages
        
         public IEnumerable<ProductDto> Products { get; set; }
 
+        public List<UserDto> Users;
         protected override async Task OnInitializedAsync()
         {
             Loais = await CategoryService.GetAll();
             Products = await ProductService.GetAll();
+
+            Users = await UserService.GetUsers();
+            var shoppingCartItems = await ShoppingCartService.GetItems(Users.First().Id);
+            var totalQty = shoppingCartItems.Sum(i => i.Qty);
+
+            ShoppingCartService.RaiseEventOnShoppingCartChanged(totalQty);
         }
         protected IOrderedEnumerable<IGrouping<string, ProductDto>> GetGroupedProductsByCategory()
         {

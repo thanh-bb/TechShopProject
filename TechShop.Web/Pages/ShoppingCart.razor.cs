@@ -36,7 +36,7 @@ namespace TechShop.Web.Pages
             {
                 Users = await UserService.GetUsers();
                 ShoppingCartItems = await ShoppingCartService.GetItems(Users.First().Id);
-                CalculateCartSummaryTotals();
+                CartChanged();
 
             }
             catch (Exception ex)
@@ -52,9 +52,7 @@ namespace TechShop.Web.Pages
 
             RemoveCartItem(id);
 
-            CalculateCartSummaryTotals();
-
-            //CartChanged();
+            CartChanged();
 
         }
 
@@ -90,7 +88,7 @@ namespace TechShop.Web.Pages
 
                     UpdateItemTotalPrice(returnedUpdateItemDto);
 
-                    CalculateCartSummaryTotals();
+                    CartChanged();
 
                     await MakeUpdateQtyButtonVisible(id, false);
 
@@ -159,6 +157,12 @@ namespace TechShop.Web.Pages
         private void SetTotalQuantity()
         {
             TotalQuantity = this.ShoppingCartItems.Sum(p => p.Qty);
+        }
+
+        private void CartChanged()
+        {
+            CalculateCartSummaryTotals();
+            ShoppingCartService.RaiseEventOnShoppingCartChanged(TotalQuantity);
         }
 
     }

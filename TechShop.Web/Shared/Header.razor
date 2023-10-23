@@ -1,28 +1,35 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization;
+@using TechShop.Web.Services.Contracts;
+
 @inherits LayoutComponentBase
+
+@implements IDisposable
+@inject IShoppingCartService shoppingCartService
+
 
 <link rel="shortcut icon" type="image/png" href="./assets/img/favicon.png">
 <!-- google font -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
 <!-- fontawesome -->
-<link rel="stylesheet" href="./assets/css/all.min.css">
+<link rel="stylesheet" href="/assets/css/all.min.css">
 <!-- bootstrap -->
-<link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
 <!-- owl carousel -->
-<link rel="stylesheet" href="./assets/css/owl.carousel.css">
+<link rel="stylesheet" href="/assets/css/owl.carousel.css">
 <!-- magnific popup -->
-<link rel="stylesheet" href="./assets/css/magnific-popup.css">
+<link rel="stylesheet" href="/assets/css/magnific-popup.css">
 <!-- animate css -->
-<link rel="stylesheet" href="./assets/css/animate.css">
+<link rel="stylesheet" href="/assets/css/animate.css">
 <!-- mean menu css -->
-<link rel="stylesheet" href="./assets/css/meanmenu.min.css">
+<link rel="stylesheet" href="/assets/css/meanmenu.min.css">
 <!-- main style -->
-<link rel="stylesheet" href="./assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css">
 <!-- responsive -->
-<link rel="stylesheet" href="./assets/css/responsive.css">
+<link rel="stylesheet" href="/assets/css/responsive.css">
 
-<link rel="stylesheet" href="./assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+
 
 
 <!-- header -->
@@ -57,8 +64,13 @@
 
                             <li>
                                 <div class="header-icons">
-                                    <a class="shopping-cart" href="/ShoppingCart"><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="ShoppingCart" class="shopping-cart">
+                                        <i class="fas fa-shopping-cart"></i>&nbsp;
+                                        <span>@shoppingCartItemCount</span>
+                                    </a>
+
                                     <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+
                                     <AuthorizeView>
                                         <Authorized>
                                             <a href="/profile">Hello, @context.User.Identity.Name</a>
@@ -120,3 +132,25 @@
 <script src="./assets/js/main.js"></script>
 <!-- bootstrap -->
 <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+
+
+@code {
+    private int shoppingCartItemCount = 0;
+
+    protected override void OnInitialized()
+    {
+        shoppingCartService.OnShoppingCartChanged += ShoppingCartChanged;
+    }
+
+    protected void ShoppingCartChanged(int totalQty)
+    {
+        shoppingCartItemCount = totalQty;
+        StateHasChanged();
+    }
+
+    void IDisposable.Dispose()
+    {
+        shoppingCartService.OnShoppingCartChanged -= ShoppingCartChanged;
+    }
+
+}

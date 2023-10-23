@@ -7,30 +7,38 @@ using TechShop.Web.Services.Contracts;
 
 namespace TechShop.Web.Pages
 {
-	public partial class Profile
-	{
-		[Inject]
-		public IUserService UserService { get; set; }
+    public partial class Profile
+    {
+        [Inject]
+        public IShoppingCartService ShoppingCartService { get; set; }
 
-		public List<UserDto> Users;
+        [Inject]
+        public IUserService UserService { get; set; }
 
-		public List<ProductDto> ProductOfUser;
+        public List<UserDto> Users;
+
+        public List<ProductDto> ProductOfUser;
 
         public List<LoaiDto> Loais;
 
         protected override async Task OnInitializedAsync()
-		{
+        {
             Loais = await CategoryService.GetAll();
             Users = await UserService.GetUsers();
-			ProductOfUser = await UserService.GetProductOfUser();
-		}
+            ProductOfUser = await UserService.GetProductOfUser();
 
-		private async Task GetUser()
-		{
+            Users = await UserService.GetUsers();
+            var shoppingCartItems = await ShoppingCartService.GetItems(Users.First().Id);
+            var totalQty = shoppingCartItems.Sum(i => i.Qty);
+            ShoppingCartService.RaiseEventOnShoppingCartChanged(totalQty);
+        }
 
-			var user = await UserService.GetUsers();
+        private async Task GetUser()
+        {
 
-		}
+            var user = await UserService.GetUsers();
 
-	}
+        }
+
+    }
 }

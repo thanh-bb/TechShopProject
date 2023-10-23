@@ -5,63 +5,63 @@ using TechShop.Web.Services.Contracts;
 
 namespace TechShop.Web.Pages
 {
-	public partial class SingleProduct
-	{
-		[Parameter]
-		public int Id { get; set; }
+    public partial class SingleProduct
+    {
+        [Parameter]
+        public int Id { get; set; }
 
         [Inject]
         public IUserService UserService { get; set; }
 
         [Inject]
-		public IProductService ProductService { get; set; }
+        public IProductService ProductService { get; set; }
 
-		[Inject]
-		public IShoppingCartService shoppingCartService { get; set; }
+        [Inject]
+        public IShoppingCartService shoppingCartService { get; set; }
 
-		[Inject]
+        [Inject]
 
-		public NavigationManager NavigationManager { get; set; }
+        public NavigationManager NavigationManager { get; set; }
 
         public List<UserDto> Users;
 
         public List<CartDto> Carts;
         public ProductDto Products { get; set; }
 
-		public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; }
 
-		private List<CartItemDto> ShoppingCartItems { get; set; }
+        private List<CartItemDto> ShoppingCartItems { get; set; }
 
-		protected override async Task OnInitializedAsync()
-		{
+        protected override async Task OnInitializedAsync()
+        {
 
-			try
-			{
+            try
+            {
                 //Users = await UserService.GetUsers();
-				Carts = await UserService.GetCartOfUser();
-				Products = await ProductService.GetProductDetail(Id);
-
-			}
-
-			catch (Exception ex)
-			{
-				ErrorMessage = ex.Message;
-			}
-		}
-
-		protected async Task AddToCart_Click(CartItemToAddDto cartItemToAddDto)
-		{
-			try
-			{
-				var cartItemDto = await shoppingCartService.AddItem(cartItemToAddDto);
-               NavigationManager.NavigateTo("/ShoppingCart");
+                Carts = await UserService.GetCartOfUser();
+                Products = await ProductService.GetProductDetail(Id);
 
             }
-			catch (Exception)
-			{
 
-				//Log Exception
-			}
-		}
-	}
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+        }
+
+        protected async Task AddToCart_Click(CartItemToAddDto cartItemToAddDto)
+        {
+            try
+            {
+                var cartItemDto = await shoppingCartService.AddItem(cartItemToAddDto);
+                NavigationManager.NavigateTo("/ShoppingCart");
+
+            }
+            catch (Exception)
+            {
+
+                //Log Exception
+            }
+        }
+    }
 }

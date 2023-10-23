@@ -184,23 +184,26 @@
     //        this.$el.trigger(event);
     //    }
     //});
-    $.fn.countdown = function() {
-        var argumentsArray = Array.prototype.slice.call(arguments, 0);
-        return this.each(function() {
-            var instanceNumber = $(this).data("countdown-instance");
-            if (instanceNumber !== undefined) {
-                var instance = instances[instanceNumber], method = argumentsArray[0];
-                if (Countdown.prototype.hasOwnProperty(method)) {
-                    instance[method].apply(instance, argumentsArray.slice(1));
-                } else if (String(method).match(/^[$A-Z_][0-9A-Z_$]*$/i) === null) {
-                    instance.setFinalDate.call(instance, method);
-                    instance.start();
-                } else {
-                    $.error("Method %s does not exist on jQuery.countdown".replace(/\%s/gi, method));
-                }
-            } else {
-                new Countdown(this, argumentsArray[0], argumentsArray[1]);
-            }
-        });
-    };
+
+
+
+    //$.fn.countdown = function() {
+    //    var argumentsArray = Array.prototype.slice.call(arguments, 0);
+    //    return this.each(function() {
+    //        var instanceNumber = $(this).data("countdown-instance");
+    //        if (instanceNumber !== undefined) {
+    //            var instance = instances[instanceNumber], method = argumentsArray[0];
+    //            if (Countdown.prototype.hasOwnProperty(method)) {
+    //                instance[method].apply(instance, argumentsArray.slice(1));
+    //            } else if (String(method).match(/^[$A-Z_][0-9A-Z_$]*$/i) === null) {
+    //                instance.setFinalDate.call(instance, method);
+    //                instance.start();
+    //            } else {
+    //                $.error("Method %s does not exist on jQuery.countdown".replace(/\%s/gi, method));
+    //            }
+    //        } else {
+    //            new Countdown(this, argumentsArray[0], argumentsArray[1]);
+    //        }
+    //    });
+    //};
 });

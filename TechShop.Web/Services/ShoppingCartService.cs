@@ -131,7 +131,10 @@ namespace TechShop.Web.Services
 
         public void RaiseEventOnShoppingCartChanged(int totalQty)
         {
-            throw new NotImplementedException();
+            if (OnShoppingCartChanged != null)
+            {
+                OnShoppingCartChanged.Invoke(totalQty);
+            }
         }
 
 
