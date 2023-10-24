@@ -11,8 +11,6 @@ using TechShop.API.Repositories.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -27,7 +25,14 @@ builder.Services.AddScoped<ILoaiRepository, LoaiRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ITinhTrangRepository,TinhTrangRepository>(); 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();  
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+
+//Db Map
+//builder.Services.AddDbContext<MapDbContext>(options =>
+//options.UseSqlServer(builder.Configuration.GetConnectionString("MapConnection")));
+
+
+
 // add token
 
 builder.Services.AddIdentity<KhachHang, Quyen>()

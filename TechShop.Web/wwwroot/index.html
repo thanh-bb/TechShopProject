@@ -58,6 +58,71 @@
                         'www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }
             ).addTo(mapObject);
+
+            var layerObject = L.layerGroup().addTo(mapObject);
+
+            var combobox = L.control({ position: "topleft" });
+            combobox.onAdd = function (map) {
+                var div = L.DomUtil.create("div", "");
+                div.innerHTML = '<select id="combobox"></select>';
+                return div;
+            };
+            combobox.addTo(mapObject);
+
+            var urlJSON = "https://localhost:44368/api/Map/GetData";
+            var sql = "?q=ALL";
+            $.getJSON(urlJSON + sql, function (data) {
+                var menu = $("#combobox");
+                menu.append("<option data-id='ALL'>Tất cả</option>");
+                $.each(data.features, function (key, value) {
+                    menu.append("<option data-id=" + value.id + ">" + value.properties.name + "</option>");
+                });
+
+                var lineStyle = { color: "blue", weight: 4 };
+                var polygonStyle = { color: "red", fillColor: "yellow", weight: 4 };
+                L.geoJSON(data, {
+                    style: function (feature) {
+                        switch (feature.geometry.type) {
+                            case 'LineString': return lineStyle;
+                            case 'Polygon': return polygonStyle;
+                        }
+                    },
+                    onEachFeature: function (feature, layer) {
+                        if (feature.properties && feature.properties.name) {
+                            layer.bindPopup("<i>" + feature.properties.name + "</i>");
+                        }
+                    }
+                }).addTo(layerObject);
+            });
+
+            $("#combobox").on("change", function () {
+                var valueSelected = $("#combobox option:selected").data("id");
+                if (valueSelected == "ALL") {
+                    sql = "?q=ALL";
+                } else {
+                    sql = "?q=" + valueSelected;
+                }
+
+                $.getJSON(urlJSON + sql, function (data) {
+                    layerObject.clearLayers();
+
+                    var lineStyle = { color: "blue", weight: 4 };
+                    var polygonStyle = { color: "red", fillColor: "yellow", weight: 4 };
+                    L.geoJSON(data, {
+                        style: function (feature) {
+                            switch (feature.geometry.type) {
+                                case 'LineString': return lineStyle;
+                                case 'Polygon': return polygonStyle;
+                            }
+                        },
+                        onEachFeature: function (feature, layer) {
+                            if (feature.properties && feature.properties.name) {
+                                layer.bindPopup("<i>" + feature.properties.name + "</i>");
+                            }
+                        }
+                    }).addTo(layerObject);
+                })
+            });
         }
 
     </script>

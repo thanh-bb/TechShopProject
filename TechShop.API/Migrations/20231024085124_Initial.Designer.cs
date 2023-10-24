@@ -12,7 +12,7 @@ using TechShop.API.Data;
 namespace TechShop.API.Migrations
 {
     [DbContext(typeof(TechShopDbContext))]
-    [Migration("20231021145133_Initial")]
+    [Migration("20231024085124_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace TechShop.API.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -378,44 +378,44 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2688f7ad-0ee5-49cf-b989-2ccaf60ef25a"),
+                            Id = new Guid("91fe088b-e7cd-4c00-b37f-fd7db2560e0e"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "690d8688-636c-4b06-92f3-559210a1866d",
+                            ConcurrencyStamp = "33708dd6-3b0e-4fbe-9fae-44acb552d938",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             GioiTinh = false,
                             HashPasswd = "123456",
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 10, 21, 21, 51, 33, 301, DateTimeKind.Local).AddTicks(3458),
+                            NgaySinh = new DateTime(2023, 10, 24, 15, 51, 24, 103, DateTimeKind.Local).AddTicks(7201),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "29104530-99a6-4e67-9d81-9989b90dcfbb",
+                            SecurityStamp = "4535afc7-6fd4-42dd-b68a-462f846c09d4",
                             TenKH = "Trần Văn Man",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
                         new
                         {
-                            Id = new Guid("5c714f48-c7a2-4685-91ee-321fa05e7e83"),
+                            Id = new Guid("c1a79700-dbe2-4a26-b4c4-fb4f3d339792"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0052735b-445c-499f-b63e-4f1853c8787b",
+                            ConcurrencyStamp = "42ee5fa1-4822-494f-a68b-5df38ea42ab4",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             GioiTinh = false,
                             HashPasswd = "123456",
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 10, 21, 21, 51, 33, 301, DateTimeKind.Local).AddTicks(3627),
+                            NgaySinh = new DateTime(2023, 10, 24, 15, 51, 24, 103, DateTimeKind.Local).AddTicks(7244),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "monmon",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8cdc9265-e6ec-4a58-a28a-443b9005a88b",
+                            SecurityStamp = "6bf50ccd-21c8-4b01-abac-9df5e4449408",
                             TenKH = "Trần Văn Mon",
                             TwoFactorEnabled = false,
                             UserName = "monmon"
@@ -543,7 +543,7 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5f8ee9f5-84a5-4341-8b09-d7c97e54bda4"),
+                            Id = new Guid("073287a1-b5bd-4d1e-96ec-86898a913492"),
                             TenQuyen = "admin"
                         });
                 });

@@ -434,15 +434,15 @@ namespace TechShop.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName", "TenQuyen" },
-                values: new object[] { new Guid("5f8ee9f5-84a5-4341-8b09-d7c97e54bda4"), null, null, null, "admin" });
+                values: new object[] { new Guid("073287a1-b5bd-4d1e-96ec-86898a913492"), null, null, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DienThoai", "Email", "EmailConfirmed", "GioiTinh", "HashPasswd", "LockoutEnabled", "LockoutEnd", "NgaySinh", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenKH", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("2688f7ad-0ee5-49cf-b989-2ccaf60ef25a"), 0, "690d8688-636c-4b06-92f3-559210a1866d", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 10, 21, 21, 51, 33, 301, DateTimeKind.Local).AddTicks(3458), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "29104530-99a6-4e67-9d81-9989b90dcfbb", "Trần Văn Man", false, "admin" },
-                    { new Guid("5c714f48-c7a2-4685-91ee-321fa05e7e83"), 0, "0052735b-445c-499f-b63e-4f1853c8787b", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 10, 21, 21, 51, 33, 301, DateTimeKind.Local).AddTicks(3627), "ADMIN1@GMAIL.COM", "monmon", "123456", "032132131", false, "8cdc9265-e6ec-4a58-a28a-443b9005a88b", "Trần Văn Mon", false, "monmon" }
+                    { new Guid("91fe088b-e7cd-4c00-b37f-fd7db2560e0e"), 0, "33708dd6-3b0e-4fbe-9fae-44acb552d938", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 10, 24, 15, 51, 24, 103, DateTimeKind.Local).AddTicks(7201), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "4535afc7-6fd4-42dd-b68a-462f846c09d4", "Trần Văn Man", false, "admin" },
+                    { new Guid("c1a79700-dbe2-4a26-b4c4-fb4f3d339792"), 0, "42ee5fa1-4822-494f-a68b-5df38ea42ab4", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 10, 24, 15, 51, 24, 103, DateTimeKind.Local).AddTicks(7244), "ADMIN1@GMAIL.COM", "monmon", "123456", "032132131", false, "6bf50ccd-21c8-4b01-abac-9df5e4449408", "Trần Văn Mon", false, "monmon" }
                 });
 
             migrationBuilder.InsertData(
