@@ -22,7 +22,7 @@ namespace TechShop.API.Repositories.Contracts
 
         Task<SanPham> Create(SanPham sanpham);
 
-       
+        Task<SanPham> Update(SanPham sanpham);
 
 
 

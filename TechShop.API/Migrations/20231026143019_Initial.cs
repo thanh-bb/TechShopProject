@@ -327,7 +327,8 @@ namespace TechShop.API.Migrations
                     MaBangTin = table.Column<int>(type: "int", nullable: true),
                     NgayDang = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -434,15 +435,15 @@ namespace TechShop.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName", "TenQuyen" },
-                values: new object[] { new Guid("073287a1-b5bd-4d1e-96ec-86898a913492"), null, null, null, "admin" });
+                values: new object[] { new Guid("ea26fd30-b8cc-470f-9b9a-a5ff83b50dc7"), null, null, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DienThoai", "Email", "EmailConfirmed", "GioiTinh", "HashPasswd", "LockoutEnabled", "LockoutEnd", "NgaySinh", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenKH", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("91fe088b-e7cd-4c00-b37f-fd7db2560e0e"), 0, "33708dd6-3b0e-4fbe-9fae-44acb552d938", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 10, 24, 15, 51, 24, 103, DateTimeKind.Local).AddTicks(7201), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "4535afc7-6fd4-42dd-b68a-462f846c09d4", "Trần Văn Man", false, "admin" },
-                    { new Guid("c1a79700-dbe2-4a26-b4c4-fb4f3d339792"), 0, "42ee5fa1-4822-494f-a68b-5df38ea42ab4", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 10, 24, 15, 51, 24, 103, DateTimeKind.Local).AddTicks(7244), "ADMIN1@GMAIL.COM", "monmon", "123456", "032132131", false, "6bf50ccd-21c8-4b01-abac-9df5e4449408", "Trần Văn Mon", false, "monmon" }
+                    { new Guid("7f445d50-c51f-42f6-a3cc-d585dadfbfd7"), 0, "fa971f57-62ac-44ff-be70-2d1751ca897e", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 10, 26, 21, 30, 19, 208, DateTimeKind.Local).AddTicks(3973), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "9d3469bb-94a7-4d9d-b011-d9decaa3fef1", "Trần Văn Man", false, "admin" },
+                    { new Guid("ecb94906-9d9b-43f3-bc29-f4d6488bcd3e"), 0, "2e64dd5b-e31b-4840-813a-c4ddd432097f", "0985879105", "abc@gmail.com", false, false, "123456", false, null, new DateTime(2023, 10, 26, 21, 30, 19, 208, DateTimeKind.Local).AddTicks(4004), "ADMIN1@GMAIL.COM", "monmon", "123456", "032132131", false, "c25b992d-01bc-4906-ba42-67ca4db5e01b", "Trần Văn Mon", false, "monmon" }
                 });
 
             migrationBuilder.InsertData(

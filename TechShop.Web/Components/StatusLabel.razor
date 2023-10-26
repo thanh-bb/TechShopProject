@@ -1,0 +1,20 @@
+﻿﻿@using TechShop.Models.Enums;
+
+@switch (Status)
+{
+    case Status.New:
+        <span class="badge badge-success">@nameof(Status.New)</span>
+        break;
+    case Status.LikeNew:
+        <span class="badge badge-warning">@nameof(Status.LikeNew)</span>
+        break;
+    case Status.Old:
+        <span class="badge badge-secondary">@nameof(Status.Old)</span>
+        break;   
+}
+
+
+@code {
+    [Parameter]
+    public Status Status { set; get; }
+}

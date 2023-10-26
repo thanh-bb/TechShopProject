@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechShop.Models.Enums;
 
 namespace TechShop.Models.Dtos
 {
@@ -45,10 +46,14 @@ namespace TechShop.Models.Dtos
         public Guid Id { get; set; }
 
 
-        [Required(ErrorMessage = "Trường này bắt buộc")]
-        public string? MaTinhTrang { get; set; }
+        //[Required(ErrorMessage = "Trường này bắt buộc")]
+        //public string? MaTinhTrang { get; set; }
 
-       
+
+        [Required(ErrorMessage = "Please select status")]
+        public Status? Status { get; set; }
+
+
         [Required(ErrorMessage = "Trường này bắt buộc")]
         public string Image {  get; set; }
 

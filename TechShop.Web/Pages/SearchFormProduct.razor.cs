@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Blazored.Toast.Services;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using TechShop.Models.Dtos;
 using TechShop.Web.Services;
@@ -8,6 +9,9 @@ namespace TechShop.Web.Pages
 {
     public partial class SearchFormProduct
     {
+        [Inject]
+        public IToastService ToastService { get; set; }
+
         [Inject]
         public IUserService UserService { get; set; }
 
@@ -52,6 +56,7 @@ namespace TechShop.Web.Pages
 
         public async Task SearchForm(EditContext context)
         {
+            ToastService.ShowSuccess("Search completed");
             Products = await ProductService.GetProductList(productListSearch);
             
         }

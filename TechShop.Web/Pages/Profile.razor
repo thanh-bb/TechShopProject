@@ -6,6 +6,8 @@
 @using TechShop.Web.Services.Contracts
 @using Microsoft.AspNetCore.Hosting;
 @using Microsoft.AspNetCore.Http;
+@using TechShop.Web.Components;
+@using TechShop.Models.Enums;
 
 @inject ICategoryService CategoryService
 
@@ -125,15 +127,45 @@ else
         <!-- end featured section -->
     
     }
+   
+    <div class="container">
+         <div class="row mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Tên sản phẩm
+                    </th>
+                    <th>
+                        Loại sản phẩm
+                    </th>
+                    <th>Ngày đăng</th>                   
+                    <th>Tình trạng</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ProductOfUser)
+                {
+                    <tr>
+                        <td>@item.TenSP</td>
+                        <td>@item.MaLoai</td>                                        
+                        <td>@item.NgayDang.ToString()</td>
+                        <td><StatusLabel Status="item.Status"></StatusLabel></td>
+                        <td>
+                                <a href="/ProductDetails/@item.MaSP" class="btn btn-primary">Detail</a>
 
-    @foreach (var item in ProductOfUser)
-    {
-        @item.TenSP
-        @item.SoLuong
 
+                            </td>
+                    </tr>
+                }
 
-
-    }
+            </tbody>
+           
+        </table>
+    </div>
+    </div>
+   
 }
 
 

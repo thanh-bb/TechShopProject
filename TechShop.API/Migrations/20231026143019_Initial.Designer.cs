@@ -12,7 +12,7 @@ using TechShop.API.Data;
 namespace TechShop.API.Migrations
 {
     [DbContext(typeof(TechShopDbContext))]
-    [Migration("20231024085124_Initial")]
+    [Migration("20231026143019_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -378,44 +378,44 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("91fe088b-e7cd-4c00-b37f-fd7db2560e0e"),
+                            Id = new Guid("7f445d50-c51f-42f6-a3cc-d585dadfbfd7"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "33708dd6-3b0e-4fbe-9fae-44acb552d938",
+                            ConcurrencyStamp = "fa971f57-62ac-44ff-be70-2d1751ca897e",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             GioiTinh = false,
                             HashPasswd = "123456",
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 10, 24, 15, 51, 24, 103, DateTimeKind.Local).AddTicks(7201),
+                            NgaySinh = new DateTime(2023, 10, 26, 21, 30, 19, 208, DateTimeKind.Local).AddTicks(3973),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4535afc7-6fd4-42dd-b68a-462f846c09d4",
+                            SecurityStamp = "9d3469bb-94a7-4d9d-b011-d9decaa3fef1",
                             TenKH = "Trần Văn Man",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
                         new
                         {
-                            Id = new Guid("c1a79700-dbe2-4a26-b4c4-fb4f3d339792"),
+                            Id = new Guid("ecb94906-9d9b-43f3-bc29-f4d6488bcd3e"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "42ee5fa1-4822-494f-a68b-5df38ea42ab4",
+                            ConcurrencyStamp = "2e64dd5b-e31b-4840-813a-c4ddd432097f",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             GioiTinh = false,
                             HashPasswd = "123456",
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 10, 24, 15, 51, 24, 103, DateTimeKind.Local).AddTicks(7244),
+                            NgaySinh = new DateTime(2023, 10, 26, 21, 30, 19, 208, DateTimeKind.Local).AddTicks(4004),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "monmon",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6bf50ccd-21c8-4b01-abac-9df5e4449408",
+                            SecurityStamp = "c25b992d-01bc-4906-ba42-67ca4db5e01b",
                             TenKH = "Trần Văn Mon",
                             TwoFactorEnabled = false,
                             UserName = "monmon"
@@ -543,7 +543,7 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("073287a1-b5bd-4d1e-96ec-86898a913492"),
+                            Id = new Guid("ea26fd30-b8cc-470f-9b9a-a5ff83b50dc7"),
                             TenQuyen = "admin"
                         });
                 });
@@ -581,6 +581,9 @@ namespace TechShop.API.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("SoLuong")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("TenSP")

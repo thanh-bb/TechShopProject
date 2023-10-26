@@ -5,11 +5,13 @@
 
 @inject NavigationManager NavigationManager;
 @inject IAuthService AuthService;
+@inject IToastService ToastService;
 
 @code {
     protected async override Task OnInitializedAsync()
     {
         await AuthService.Logout();
+        ToastService.ShowSuccess("Logout success");
         NavigationManager.NavigateTo("/");
     }
 

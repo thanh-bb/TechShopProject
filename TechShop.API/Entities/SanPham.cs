@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Numerics;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Entity;
+using TechShop.Models.Enums;
+
 namespace TechShop.API.Entities
 {
     public class SanPham
@@ -47,5 +49,7 @@ namespace TechShop.API.Entities
 
         [ForeignKey("Id")]
         public KhachHang KhachHang { get; set; }
+
+        public Status Status { get; set; }
     }
 }

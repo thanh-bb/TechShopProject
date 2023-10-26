@@ -3,6 +3,7 @@
 @using ShopOnline.Web.Pages;
 @using TechShop.Web.Services.Contracts;
 @using TechShop.Models.Dtos;
+@using TechShop.Models.Enums;
 
 
 
@@ -40,8 +41,7 @@ else
                         <InputText class="form-control" @bind-Value="productListSearch.TenSP" placeholder="Tên sản phẩm"></InputText>
                     </div>
 
-                    <div class="col">
-                       @*  <label>LoaiSP</label> *@
+                    <div class="col">                     
                         <InputSelect class="form-control" @bind-Value="productListSearch.LoaiSP">
                            <option>Chọn loại sản phẩm</option>
                             @foreach (var item in Loais)
@@ -52,12 +52,11 @@ else
                     </div>
 
                     <div class="col">
-@*                         <label>Tình trạng</label> *@
-                        <InputSelect class="form-control" @bind-Value="productListSearch.MaTinhTrang">
+                        <InputSelect class="form-control" @bind-Value="productListSearch.Status">
                             <option>Chọn tình trạng hàng</option>
-                            @foreach (var item in TinhTrangs)
+                           @foreach (string item in Enum.GetNames(typeof(Status)))
                             {
-                                <option value="@item.MaTinhTrang">@item.TenTinhTrang</option>
+                                <option value="@item">@item</option>
                             }
                         </InputSelect>
                     </div>

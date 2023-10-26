@@ -6,6 +6,8 @@ using TechShop.API.Entities;
 using TechShop.API.Repositories;
 using TechShop.API.Repositories.Contracts;
 using TechShop.Models.Dtos;
+using TechShop.Models.Enums;
+
 
 namespace TechShop.API.Controllers
 {
@@ -111,7 +113,7 @@ namespace TechShop.API.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-          
+
             var task = await _productRepository.Create(new SanPham()
             {
                 TenSP = product.TenSP,
@@ -121,12 +123,46 @@ namespace TechShop.API.Controllers
                 GiaSP = product.GiaSP,
                 SoLuong = product.SoLuong,
                 NgayDang = DateTime.Now,
-               Image = product.Image,
-               MaTinhTrang = product.MaTinhTrang
+                Image = product.Image,           
+                Status = product.Status.HasValue ? product.Status.Value : Status.New
 
             });
-            return CreatedAtAction(nameof(CreateProduct), new {id = task.MaSP }, task);
+            return CreatedAtAction(nameof(CreateProduct), new { id = task.MaSP }, task);
         }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] ProductUpdate request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var taskFromDb = await _productRepository.GetItem(id);
+
+            if (taskFromDb == null)
+            {
+                return NotFound($"{id} is not found");
+            }
+
+            taskFromDb.TenSP = request.TenSP;
+            taskFromDb.Status = request.Status;
+
+            var product = await _productRepository.Update(taskFromDb);
+
+            return Ok(new ProductDto()
+            {
+                TenSP = product.TenSP,
+                MaLoai = product.MaLoai,
+                MoTa = product.MoTa,
+                Id = product.Id,
+                GiaSP = product.GiaSP,
+                SoLuong = product.SoLuong,
+                NgayDang = DateTime.Now,
+                Image = product.Image,
+                Status = product.Status
+            });
+        }
+
 
     }
 }

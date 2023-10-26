@@ -5,12 +5,15 @@
 @using TechShop.Web.Services.Contracts
 @using Microsoft.AspNetCore.Hosting;
 @using Microsoft.AspNetCore.Http;
+@using TechShop.Models.Enums;
+
 
 @inject NavigationManager NavigationManager
 @inject ICategoryService CategoryService
 @inject IProductService ProductService
 @inject IUserService UserService
 @inject ITinhTrangService TinhTrangService
+@inject IToastService ToastService
 
 <link rel="shortcut icon" type="image/png" href="./assets/img/favicon.png">
 <!-- google font -->
@@ -131,7 +134,8 @@ else
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row">
+
+                           @*  <div class="form-row">
                                 <div class="name">Tình trạng hàng</div>
                                 <div class="value">
                                     <div class="input-group">
@@ -145,6 +149,18 @@ else
                                         <ValidationMessage For="()=>productCr.MaTinhTrang"></ValidationMessage>
                                     </div>
                                 </div>
+                            </div> *@
+
+                            <div class="form-group">
+                                <label for="status">Trạng thái</label>
+                                <InputSelect id="status" class="form-control" @bind-Value="productCr.Status">
+                                    <option>Chọn tình trạng hàng</option>
+                                    @foreach (string item in Enum.GetNames(typeof(Status)))
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                </InputSelect>
+                                <ValidationMessage For="()=>productCr.Status"></ValidationMessage>
                             </div>
                             <div class="form-row">
                                 <div class="name">Ảnh</div>
@@ -272,9 +288,13 @@ else
         var result = await ProductService.CreateProduct(productCr);
         if (result)
         {
+            ToastService.ShowSuccess($"{productCr.TenSP} has been created successfully.");
             NavigationManager.NavigateTo("/search");
         }
-
+        else
+        {
+            ToastService.ShowError($"An error occurred in progress. Please contact to administrator.");
+        }
     }
     private async Task OnFileChange(InputFileChangeEventArgs e)
     {

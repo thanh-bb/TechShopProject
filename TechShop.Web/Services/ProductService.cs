@@ -140,7 +140,7 @@ namespace TechShop.Web.Services
         public async Task<List<ProductDto>> GetProductList(ProductListSearch productListSearch)
         {
       
-            string url = $"/api/Product/ProductListSearch?TenSP={productListSearch.TenSP}&LoaiSP={productListSearch.LoaiSP}&MaTinhTrang={productListSearch.MaTinhTrang}";
+            string url = $"/api/Product/ProductListSearch?TenSP={productListSearch.TenSP}&LoaiSP={productListSearch.LoaiSP}&Status={productListSearch.Status}";
             var kq = await _httpClient.GetFromJsonAsync<List<ProductDto>>(url);
             return kq;
         }

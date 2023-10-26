@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechShop.Models.Enums;
 
 namespace TechShop.Models.Dtos
 {
@@ -35,6 +36,7 @@ namespace TechShop.Models.Dtos
 
         public string TenNguoiDang { get; set; }
 
+        public Status Status { get; set; }
 
-	}
+    }
 }

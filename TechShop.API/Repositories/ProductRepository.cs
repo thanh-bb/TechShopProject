@@ -78,16 +78,22 @@ namespace TechShop.API.Repositories
 				query = query.Where(x => x.MaLoai == productListSearch.LoaiSP);
 			}
 
-			if (!string.IsNullOrEmpty(productListSearch.MaTinhTrang))
-			{
-				query = query.Where(x => x.MaTinhTrang == productListSearch.MaTinhTrang);
-			}
+            //if (!string.IsNullOrEmpty(productListSearch.MaTinhTrang))
+            //{
+            //	query = query.Where(x => x.MaTinhTrang == productListSearch.MaTinhTrang);
+            //}
 
-			return await query.OrderByDescending(x=>x.MaSP).ToListAsync();
+            if (productListSearch.Status.HasValue)
+                query = query.Where(x => x.Status == productListSearch.Status.Value);
+
+            return await query.OrderByDescending(x=>x.MaSP).ToListAsync();
         }
 
-      
-
-		
+        public async Task<SanPham> Update(SanPham sanpham)
+        {
+            _context.SanPham.Update(sanpham);
+            await _context.SaveChangesAsync();
+            return sanpham;
+        }
     }
 }
