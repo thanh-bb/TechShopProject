@@ -5,7 +5,7 @@
         updateQtyButton.style.display = "inline-block";
     }
     else {
-        updateQtyButton.style.display = "none";
+        updateQtyButton.style.display = "inline-block";
     }
 
 

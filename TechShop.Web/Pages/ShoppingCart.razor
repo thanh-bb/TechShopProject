@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="./assets/css/main.css">
 
 
+
 @if (ShoppingCartItems == null && ErrorMessage == null)
 {
     <DisplaySpinner></DisplaySpinner>
@@ -28,10 +29,11 @@ else
     <!-- end breadcrumb section -->
     @if (ShoppingCartItems.Count() > 0)
     {
-        <div class="row mb-5">
+        @* <div class="row mb-5">
             <div class="col-md-9">
                 @foreach (var item in ShoppingCartItems)
                 {
+                    
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <img src="@item.ProductImageURL" width="300" class="img-thumbnail">
@@ -42,8 +44,8 @@ else
                             <span>
                                 Price: <b>@item.Price.ToString("C")</b>
 
-                                <input @oninput= "()=>UpdateQty_Input(item.Id)" 
-                                type="number" @bind="@item.Qty" />
+                                <input @oninput="()=>UpdateQty_Input(item.Id)"
+                                       type="number" @bind="@item.Qty" />
 
                                 <button data-itemId="@item.Id" class="btn btn-info btn-sm update-qty"
                                 @onclick="(() => UpdateQtyCartItem_Click(item.Id, item.Qty))">
@@ -72,10 +74,109 @@ else
                 </div>
             </div>
         </div>
+ *@
+
+
+        <!-- cart -->
+        <div class="cart-section mt-150 mb-150">
+            <div class="container">
+                <div class="row">
+                 
+                        <div class="cart-table-wrap">
+                            <table class="cart-table">
+                                <thead class="cart-table-head">
+                                    <tr class="table-head-row">
+                                        <th class="product-image">Product Image</th>
+                                        <th class="product-name">Name</th>
+                                        <th class="product-price">Price</th>
+                                        <th class="product-quantity">Quantity</th>
+                                        <th class="product-total">Total</th>
+                                        <th class="product-remove"></th>
+                                    </tr>
+                                </thead>
+                                @foreach (var item in ShoppingCartItems)
+                                {
+                               
+                                <tbody>
+                                        <tr class="table-body-row">
+
+                                            <td class="product-image"><img src="@item.ProductImageURL" alt=""></td>
+                                            <td class="product-name">@item.ProductName</td>
+                                            <td class="product-price">@item.Price.ToString("C")</td>
+                                            <td class="product-quantity" style="width=100px">
+                                               <span>
+                                                <input  @oninput="()=>UpdateQty_Input(item.Id)"
+                                                       type="number" @bind="@item.Qty" />
+
+                                                <button data-itemId="@item.Id" class="btn btn-info btn-sm" style="padding:5px"
+                                                @onclick="(() => UpdateQtyCartItem_Click(item.Id, item.Qty))">
+                                                    Update
+                                                </button>
+                                               </span>
+                                            </td>
+                                        @{
+                                            var total = item.Price * (long)(item.Qty);
+                                        }
+                                        <td class="product-total">@total.ToString("C") </td>
+                                            <td class="product-remove">
+                                                <div>
+                                                    <button @onclick="(() => DeleteCartItem_Click(item.Id))"
+                                                            class="btn btn-danger sm">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+                                    </tbody>
+                                }
+                            </table>
+                        </div>
+                    </div>
+
+
+                <div class="row" style="margin-top:100px">
+                    <div class="col-lg-6"></div>
+                    <div class="col-lg-6">
+                        <div class="total-section">
+                            <table class="total-table">
+                                <thead class="total-table-head">
+                                    <tr class="table-total-row">
+                                        <th>Total</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="total-data">
+                                        <td><strong>Subtotal (@TotalQuantity items)&nbsp;: </strong></td>
+                                        <td>@TotalPrice</td>
+                                    </tr>
+                                    <tr class="total-data">
+                                        <td><strong>Shipping: </strong></td>
+                                        <td>Free ship (0đ)</td>
+                                    </tr>
+                                    <tr class="total-data">
+                                        <td><strong>Total: </strong></td>
+                                        <td>@TotalPrice</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="cart-buttons">                              
+                                <a href="" class="boxed-btn black">Check Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- end cart -->
     }
+
     else
     {
-        <h4>There are currently no items in your shopping cart</h4>
+        <h4>Giỏ hàng của bạn đang trống!</h4>
     }
 
 }

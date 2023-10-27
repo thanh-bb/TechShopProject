@@ -29,6 +29,8 @@ namespace TechShop.Web.Pages
 
         protected int TotalQuantity { get; set; }
 
+        protected int TotalPriceItem {  get; set; }
+
 
         protected override async Task OnInitializedAsync()
         {
@@ -159,10 +161,11 @@ namespace TechShop.Web.Pages
             TotalQuantity = this.ShoppingCartItems.Sum(p => p.Qty);
         }
 
+      
         private void CartChanged()
         {
             CalculateCartSummaryTotals();
-            ShoppingCartService.RaiseEventOnShoppingCartChanged(TotalQuantity);
+            //ShoppingCartService.RaiseEventOnShoppingCartChanged(TotalQuantity);
         }
 
     }

@@ -47,7 +47,9 @@ else
                         @onclick="() => (AddToCart_Click(new CartItemToAddDto{
                                 CartId =  a,
                                 ProductId = Products.MaSP,
-                                Qty=1,}))">
+                                Qty=1,
+                                Price = Products.GiaSP
+                        }))">
                             <b>Add to Cart</b>
                         </button>
                     }

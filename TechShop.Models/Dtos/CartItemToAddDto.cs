@@ -11,5 +11,7 @@ namespace TechShop.Models.Dtos
 		public int CartId { get; set; }
 		public int ProductId { get; set; }
 		public int Qty { get; set; }
+
+		public long Price { get; set; }
 	}
 }
