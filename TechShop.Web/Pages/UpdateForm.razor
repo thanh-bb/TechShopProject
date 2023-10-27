@@ -1,4 +1,4 @@
-﻿@page "/update"
+﻿@page "/update/{MaSP:int}"
 
 @using Microsoft.AspNetCore.Components.Authorization;
 @using TechShop.Models.Dtos;
@@ -42,16 +42,13 @@
 <link rel="stylesheet" type="text/css" href="./login/css/util.css" />
 <link rel="stylesheet" type="text/css" href="./login/css/style.css" />
 
-@if (Loais == null)
+@if (productUp == null)
 {
     <DisplaySpinner />
 }
 
 else
 {
-
-
-
     <div class="limiter">
         <div class="container-login100" style="background-image: url('');">
 
@@ -121,6 +118,7 @@ else
     {
         Loais = await CategoryService.GetAll();
         var productDto = await ProductService.GetProductDetail(MaSP);
+        productUp = new ProductUpdate();
         productUp.TenSP = productDto.TenSP;
         productUp.Status = productDto.Status;
     }
@@ -129,16 +127,16 @@ else
     private async Task SubmitProduct(EditContext context)
     {
 
-        // var result = await ProductService.CreateProduct(productUp);
-        // if (result)
-        // {
-        //     ToastService.ShowSuccess($"{productUp.TenSP} has been created successfully.");
-        //     NavigationManager.NavigateTo("/search");
-        // }
-        // else
-        // {
-        //     ToastService.ShowError($"An error occurred in progress. Please contact to administrator.");
-        // }
+        var result = await ProductService.UpdateProduct(MaSP, productUp);
+        if (result)
+        {
+            ToastService.ShowSuccess($"{productUp.TenSP} has been updated successfully.");
+            NavigationManager.NavigateTo("/profile");
+        }
+        else
+        {
+            ToastService.ShowError($"An error occurred in progress. Please contact to administrator.");
+        }
     }
    
 

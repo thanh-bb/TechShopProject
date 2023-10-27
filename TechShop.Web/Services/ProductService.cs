@@ -144,6 +144,13 @@ namespace TechShop.Web.Services
             var kq = await _httpClient.GetFromJsonAsync<List<ProductDto>>(url);
             return kq;
         }
+
+        public async Task<bool> UpdateProduct(int id, ProductUpdate product)
+        {
+            var result = await _httpClient.PutAsJsonAsync($"api/Product/UpdateProduct/{id}", product);
+            return result.IsSuccessStatusCode;
+
+        }
     }
 
 }

@@ -1,0 +1,52 @@
+﻿@page "/detailsProduct/{Id:int}"
+@using TechShop.Models.Dtos;
+
+
+<link rel="stylesheet" href="./assets/css/main.css">
+
+
+@if (Products == null)
+{
+    <DisplaySpinner />
+}
+else
+{
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>See more Details</p>
+                        <h1>Single Product</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+    <!-- single product -->
+    <div class="single-product mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="single-product-img">
+                        <img src="@Products.Image">
+                    </div>
+                </div>`
+                <div class="col-md-6">
+                    <div class="single-product-content">
+                        <h2>@Products.TenSP</h2>
+                        <p><strong>Loại sản phẩm: </strong>@Products.TenLoai</p>
+                        <p><strong>Số lượng: </strong>@Products.SoLuong</p>
+                        <p><strong>Giá tiền: </strong> @Products.GiaSP.ToString("C")&nbsp;</p>
+                        <p><strong>Mô tả: </strong> @Products.MoTa</p>
+                        <p><strong>Ngày đăng: </strong>@Products.NgayDang.ToString()</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<!-- end single product -->

@@ -97,8 +97,8 @@ else
                                             <i class="fas fa-briefcase"></i>
                                         </div>
                                         <div class="content">
-                                            <h3>Custom Box</h3>
-                                            <p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+                                            <h3>Điện thoại</h3>
+                                            <p>@item.DienThoai</p>
                                         </div>
                                     </div>
                                 </div>
@@ -108,8 +108,8 @@ else
                                             <i class="fas fa-sync-alt"></i>
                                         </div>
                                         <div class="content">
-                                            <h3>Quick Refund</h3>
-                                            <p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+                                            <h3>Giới tính</h3>
+                                            <p>@item.GioiTinh</p>
                                         </div>
                                     </div>
                                 </div>
@@ -129,16 +129,15 @@ else
     }
    
     <div class="container">
+        <h3 class="btn btn-info" style="font-size:large"> Quản lý bảng tin</h3>
          <div class="row mt-4">
         <table class="table">
             <thead>
                 <tr>
+                    <th>Ảnh</th>
                     <th>
                         Tên sản phẩm
-                    </th>
-                    <th>
-                        Loại sản phẩm
-                    </th>
+                    </th>                    
                     <th>Ngày đăng</th>                   
                     <th>Tình trạng</th>
                     <th></th>
@@ -148,15 +147,17 @@ else
                 @foreach (var item in ProductOfUser)
                 {
                     <tr>
-                        <td>@item.TenSP</td>
-                        <td>@item.MaLoai</td>                                        
+                        <td>
+                           <img src="@item.Image" style="max-width:50px; max-height:50px">
+                        </td>
+                        <td>@item.TenSP</td>                                                  
                         <td>@item.NgayDang.ToString()</td>
                         <td><StatusLabel Status="item.Status"></StatusLabel></td>
                         <td>
-                                <a href="/ProductDetails/@item.MaSP" class="btn btn-primary">Detail</a>
-
-
+                                <a href="/detailsProduct/@item.MaSP" class="btn btn-primary">Detail</a>
+                                <a href="/update/@item.MaSP" class="btn btn-danger">Edit</a>
                             </td>
+                  
                     </tr>
                 }
 

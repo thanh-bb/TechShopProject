@@ -17,6 +17,8 @@ namespace TechShop.Web.Services.Contracts
 		Task<IEnumerable<ProductDto>> GetItemsByCategory(string categoryId);
 	
 		Task<bool> CreateProduct (ProductCreate product);
+
+		Task<bool> UpdateProduct (int id, ProductUpdate product);
 	
 	}
 }

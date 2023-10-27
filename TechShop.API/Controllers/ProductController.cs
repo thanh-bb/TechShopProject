@@ -63,13 +63,35 @@ namespace TechShop.API.Controllers
         }
 
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ProductDto>> GetItems(int id)
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<ProductDto>> GetItem(int id)
         {
-            var product = await _productRepository.GetItem(id);
-            return Ok(product);
+            try
+            {
+                var product = await _productRepository.GetItem(id);
 
+                if (product == null)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+
+                    var productDto = product.ConvertToDto();
+
+                    return Ok(productDto);
+                }
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                "Error retrieving data from the database");
+
+            }
         }
+
+
         [HttpGet]
         [Route("/GetCategory/{id}")]
         public async Task<ActionResult<LoaiDto>> GetCategory(string id)
@@ -131,8 +153,8 @@ namespace TechShop.API.Controllers
         }
 
         [HttpPut]
-        [Route("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] ProductUpdate request)
+        [Route("UpdateProduct/{id}")]
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] ProductUpdate request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
