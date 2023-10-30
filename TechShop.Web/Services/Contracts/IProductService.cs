@@ -20,5 +20,6 @@ namespace TechShop.Web.Services.Contracts
 
 		Task<bool> UpdateProduct (int id, ProductUpdate product);
 	
+		Task<bool> DeleteProduct (int id);
 	}
 }

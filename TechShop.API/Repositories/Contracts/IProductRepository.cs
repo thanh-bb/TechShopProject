@@ -24,7 +24,7 @@ namespace TechShop.API.Repositories.Contracts
 
         Task<SanPham> Update(SanPham sanpham);
 
-
+        Task<SanPham> Delete(SanPham sanpham);
 
     }
 }

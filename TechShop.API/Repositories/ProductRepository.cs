@@ -23,6 +23,7 @@ namespace TechShop.API.Repositories
             return sanpham;
         }
 
+
         public async Task<IEnumerable<SanPham>> GetAll()
         {
             var products = await _context.SanPham
@@ -92,6 +93,14 @@ namespace TechShop.API.Repositories
         public async Task<SanPham> Update(SanPham sanpham)
         {
             _context.SanPham.Update(sanpham);
+            await _context.SaveChangesAsync();
+            return sanpham;
+        }
+
+
+        public async Task<SanPham> Delete(SanPham sanpham)
+        {
+            _context.SanPham.Remove(sanpham);
             await _context.SaveChangesAsync();
             return sanpham;
         }

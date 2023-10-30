@@ -155,10 +155,13 @@ else
                         <td><StatusLabel Status="item.Status"></StatusLabel></td>
                         <td>
                                 <a href="/detailsProduct/@item.MaSP" class="btn btn-primary">Detail</a>
-                                <a href="/update/@item.MaSP" class="btn btn-danger">Edit</a>
-                            </td>
+                                <a href="/update/@item.MaSP" class="btn btn-warning">Edit</a>
+                               <button class="btn btn-danger" @onclick="()=>OnDeleteProduct(item.MaSP)">Delete</button>                           
+
+                           </td>
                   
                     </tr>
+                      
                 }
 
             </tbody>
@@ -166,7 +169,11 @@ else
         </table>
     </div>
     </div>
-   
+    <Confirmation ConfirmationMessage="Bạn có chắc chắn muốn xóa?"
+                  ConfirmationTitle="Xóa bảng tin"
+    @ref="DeleteConfirmation"
+                  ConfirmationChanged="OnConfirmDeleteProduct">
+    </Confirmation>
 }
 
 

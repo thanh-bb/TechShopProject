@@ -23,6 +23,8 @@ namespace TechShop.Web.Services
             return result.IsSuccessStatusCode;
 
         }
+
+
         public async Task<IEnumerable<ProductDto>> GetAll()
 		{
             try
@@ -148,6 +150,13 @@ namespace TechShop.Web.Services
         public async Task<bool> UpdateProduct(int id, ProductUpdate product)
         {
             var result = await _httpClient.PutAsJsonAsync($"api/Product/UpdateProduct/{id}", product);
+            return result.IsSuccessStatusCode;
+
+        }
+
+        public async Task<bool> DeleteProduct(int id)
+        {
+            var result = await _httpClient.DeleteAsync($"api/Product/DeleteProduct/{id}");
             return result.IsSuccessStatusCode;
 
         }

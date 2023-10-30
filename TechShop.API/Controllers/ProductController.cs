@@ -186,5 +186,27 @@ namespace TechShop.API.Controllers
         }
 
 
+        [HttpDelete]
+        [Route("DeleteProduct/{id}")]
+        public async Task<IActionResult> DeleteProduct([FromRoute] int id)
+        {
+            var product = await _productRepository.GetItem(id);
+            if (product == null) return NotFound($"{id} is not found");
+
+            await _productRepository.Delete(product);
+            return Ok(new ProductDto()
+            {
+                TenSP = product.TenSP,
+                MaLoai = product.MaLoai,
+                MoTa = product.MoTa,
+                Id = product.Id,
+                GiaSP = product.GiaSP,
+                SoLuong = product.SoLuong,
+                NgayDang = DateTime.Now,
+                Image = product.Image,
+                Status = product.Status
+            });
+        }
+
     }
 }
