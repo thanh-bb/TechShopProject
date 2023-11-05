@@ -10,5 +10,7 @@ namespace TechShop.API.Repositories.Contracts
         Task<IEnumerable<SanPham>> GetProductByUserId(Guid userId);
 
         Task<IEnumerable<GioHang>> GetCartByUserId(Guid userId);
+
+        Task<KhachHang> Create(KhachHang khachhang);
     }
 }

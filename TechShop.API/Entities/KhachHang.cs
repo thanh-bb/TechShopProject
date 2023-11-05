@@ -29,9 +29,9 @@ namespace TechShop.API.Entities
         [MaxLength(100)]
         public string DienThoai { get; set; }
 
-        [Required]
-        [MaxLength(100)]
-        public string HashPasswd { get; set; }
+        //[Required]
+        //[MaxLength(100)]
+        //public string HashPasswd { get; set; }
 
         public virtual ICollection<BangTin> BangTins { get; set; }
 

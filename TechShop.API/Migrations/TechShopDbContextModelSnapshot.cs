@@ -314,11 +314,6 @@ namespace TechShop.API.Migrations
                     b.Property<bool>("GioiTinh")
                         .HasColumnType("bit");
 
-                    b.Property<string>("HashPasswd")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -375,44 +370,42 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7f445d50-c51f-42f6-a3cc-d585dadfbfd7"),
+                            Id = new Guid("d9ac316a-a0f5-4a2d-9cd1-af992d6c8396"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fa971f57-62ac-44ff-be70-2d1751ca897e",
+                            ConcurrencyStamp = "75c8a4dd-4bab-45ea-afe6-8d92c9a6f4c8",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             GioiTinh = false,
-                            HashPasswd = "123456",
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 10, 26, 21, 30, 19, 208, DateTimeKind.Local).AddTicks(3973),
+                            NgaySinh = new DateTime(2023, 11, 5, 22, 9, 29, 668, DateTimeKind.Local).AddTicks(4039),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9d3469bb-94a7-4d9d-b011-d9decaa3fef1",
+                            SecurityStamp = "75e9b3c3-7d1a-41c3-981c-1f8a0a94acdb",
                             TenKH = "Trần Văn Man",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
                         new
                         {
-                            Id = new Guid("ecb94906-9d9b-43f3-bc29-f4d6488bcd3e"),
+                            Id = new Guid("6fe988a9-510f-495b-8841-b1902068db5c"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2e64dd5b-e31b-4840-813a-c4ddd432097f",
+                            ConcurrencyStamp = "0d32d21e-1c63-4562-aa5f-71f10f0bd993",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             GioiTinh = false,
-                            HashPasswd = "123456",
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 10, 26, 21, 30, 19, 208, DateTimeKind.Local).AddTicks(4004),
+                            NgaySinh = new DateTime(2023, 11, 5, 22, 9, 29, 668, DateTimeKind.Local).AddTicks(4097),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "monmon",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c25b992d-01bc-4906-ba42-67ca4db5e01b",
+                            SecurityStamp = "b5a7c118-a656-4462-a441-ce3d19fa42bd",
                             TenKH = "Trần Văn Mon",
                             TwoFactorEnabled = false,
                             UserName = "monmon"
@@ -540,7 +533,7 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ea26fd30-b8cc-470f-9b9a-a5ff83b50dc7"),
+                            Id = new Guid("3655848c-0e56-45f0-9611-af1e9ce4d385"),
                             TenQuyen = "admin"
                         });
                 });

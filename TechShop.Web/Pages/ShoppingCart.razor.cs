@@ -40,6 +40,11 @@ namespace TechShop.Web.Pages
                 ShoppingCartItems = await ShoppingCartService.GetItems(Users.First().Id);
                 CartChanged();
 
+             
+                var shoppingCartItems = await ShoppingCartService.GetItems(Users.First().Id);
+                var totalQty = shoppingCartItems.Sum(i => i.Qty);
+                ShoppingCartService.RaiseEventOnShoppingCartChanged(totalQty);
+
             }
             catch (Exception ex)
             {

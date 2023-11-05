@@ -13,10 +13,19 @@
             </div>
         </div>
     </div>
-  <div class="map_container">
-        <div id="map"></div>	<!--thêm thẻ div để chứa bản đồ-->
-       
-  </div>
+  <div class="map_container p-xl-4">
+      <div class="row">
+            <div id="map" class="col-3"></div>	<!--thêm thẻ div để chứa bản đồ-->
+            <div id="text" class="col-3">
+                <b>FeatureCollection</b><br>
+                <textarea id="geojsontext1"></textarea>
+                <input type="button" id="submit1" value="Submit">
+                <br><b>A new feature</b>
+                <textarea id="geojsontext2"></textarea>
+                <input type="button" id="submit2" value="Submit">
+            </div>
+      </div>
+    </div>
 </body>
 
 @code {

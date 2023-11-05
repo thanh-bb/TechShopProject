@@ -5,13 +5,13 @@ using TechShop.API.Repositories.Contracts;
 using TechShop.Models.Dtos;
 namespace TechShop.API.Repositories
 {
-	public class UserRepository : IUserRepository
-	{
-		private readonly TechShopDbContext _context;
-		public UserRepository(TechShopDbContext context)
-		{
-			_context = context;
-		}
+    public class UserRepository : IUserRepository
+    {
+        private readonly TechShopDbContext _context;
+        public UserRepository(TechShopDbContext context)
+        {
+            _context = context;
+        }
 
         public async Task<IEnumerable<SanPham>> GetProductByUserId(Guid userId)
         {
@@ -21,18 +21,26 @@ namespace TechShop.API.Repositories
         }
 
         public async Task<IEnumerable<KhachHang>> GetUserByUserId(Guid userId)
-		{
-			var query = _context.KhachHang.Where(x => x.Id == userId).AsQueryable();
+        {
+            var query = _context.KhachHang.Where(x => x.Id == userId).AsQueryable();
 
-			return await query.ToListAsync();
+            return await query.ToListAsync();
 
-		}
+        }
 
         public async Task<IEnumerable<GioHang>> GetCartByUserId(Guid userId)
         {
             var query = _context.GioHang.Where(x => x.Id == userId).AsQueryable();
 
             return await query.ToListAsync();
+        }
+
+        public async Task<KhachHang> Create(KhachHang khachhang)
+        {
+            await _context.KhachHang.AddAsync(khachhang);
+            await _context.SaveChangesAsync();
+            return khachhang;
+
         }
     }
 }
