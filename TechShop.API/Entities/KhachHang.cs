@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TechShop.Models.Enums;
 
 namespace TechShop.API.Entities
 {
@@ -21,17 +22,13 @@ namespace TechShop.API.Entities
         [Required]
         public DateTime NgaySinh { get; set; }
 
-        public Boolean GioiTinh { get; set; }
+        public Gender Gender { get; set; }
 
         public string Email { get; set; }
 
         [Required]
         [MaxLength(100)]
         public string DienThoai { get; set; }
-
-        //[Required]
-        //[MaxLength(100)]
-        //public string HashPasswd { get; set; }
 
         public virtual ICollection<BangTin> BangTins { get; set; }
 

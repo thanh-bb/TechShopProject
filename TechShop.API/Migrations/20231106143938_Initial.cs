@@ -35,7 +35,7 @@ namespace TechShop.API.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TenKH = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GioiTinh = table.Column<bool>(type: "bit", nullable: false),
+                    Gender = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     DienThoai = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -68,18 +68,6 @@ namespace TechShop.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LoaiSP", x => x.MaLoai);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TinhTrangHang",
-                columns: table => new
-                {
-                    MaTinhTrang = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    TenTinhTrang = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TinhTrangHang", x => x.MaTinhTrang);
                 });
 
             migrationBuilder.CreateTable(
@@ -322,7 +310,6 @@ namespace TechShop.API.Migrations
                     SoLuong = table.Column<int>(type: "int", nullable: false),
                     MoTa = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MaLoai = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    MaTinhTrang = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     MaBangTin = table.Column<int>(type: "int", nullable: true),
                     NgayDang = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -348,11 +335,6 @@ namespace TechShop.API.Migrations
                         column: x => x.MaLoai,
                         principalTable: "LoaiSP",
                         principalColumn: "MaLoai");
-                    table.ForeignKey(
-                        name: "FK_SanPham_TinhTrangHang_MaTinhTrang",
-                        column: x => x.MaTinhTrang,
-                        principalTable: "TinhTrangHang",
-                        principalColumn: "MaTinhTrang");
                 });
 
             migrationBuilder.CreateTable(
@@ -434,15 +416,15 @@ namespace TechShop.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName", "TenQuyen" },
-                values: new object[] { new Guid("3655848c-0e56-45f0-9611-af1e9ce4d385"), null, null, null, "admin" });
+                values: new object[] { new Guid("a268baf5-cf55-4a44-9be4-ffdd3e3361d5"), null, null, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DienThoai", "Email", "EmailConfirmed", "GioiTinh", "LockoutEnabled", "LockoutEnd", "NgaySinh", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenKH", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DienThoai", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "NgaySinh", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenKH", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("6fe988a9-510f-495b-8841-b1902068db5c"), 0, "0d32d21e-1c63-4562-aa5f-71f10f0bd993", "0985879105", "abc@gmail.com", false, false, false, null, new DateTime(2023, 11, 5, 22, 9, 29, 668, DateTimeKind.Local).AddTicks(4097), "ADMIN1@GMAIL.COM", "monmon", "123456", "032132131", false, "b5a7c118-a656-4462-a441-ce3d19fa42bd", "Trần Văn Mon", false, "monmon" },
-                    { new Guid("d9ac316a-a0f5-4a2d-9cd1-af992d6c8396"), 0, "75c8a4dd-4bab-45ea-afe6-8d92c9a6f4c8", "0985879105", "abc@gmail.com", false, false, false, null, new DateTime(2023, 11, 5, 22, 9, 29, 668, DateTimeKind.Local).AddTicks(4039), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "75e9b3c3-7d1a-41c3-981c-1f8a0a94acdb", "Trần Văn Man", false, "admin" }
+                    { new Guid("0babb905-6658-4fdc-b97c-fd43df76e789"), 0, "eb7d017c-fb8c-46da-adef-67f5dc5e7b24", "0985879105", "abc@gmail.com", false, 0, false, null, new DateTime(2023, 11, 6, 21, 39, 37, 919, DateTimeKind.Local).AddTicks(9015), "ADMIN1@GMAIL.COM", "monmon", "123456", "032132131", false, "2376924d-b9ef-4a95-9f32-2e00a4efc9ef", "Trần Văn Mon", false, "monmon" },
+                    { new Guid("347e9c9d-851c-41d6-9fb5-9ff71aa01f72"), 0, "a230b54f-d656-42e3-8607-41f6063b8542", "0985879105", "abc@gmail.com", false, 0, false, null, new DateTime(2023, 11, 6, 21, 39, 37, 919, DateTimeKind.Local).AddTicks(8944), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "7b459c27-b737-4b47-969a-c5bc371a67d0", "Trần Văn Man", false, "admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -455,15 +437,6 @@ namespace TechShop.API.Migrations
                     { "03", "./assets/img/categories/Keyboard.png", "Bàn phím" },
                     { "04", "./assets/img/categories/Chuot.png", "Chuột" },
                     { "05", "./assets/img/categories/HeadPhone.png", "Tai nghe" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "TinhTrangHang",
-                columns: new[] { "MaTinhTrang", "TenTinhTrang" },
-                values: new object[,]
-                {
-                    { "TT01", "New 100%" },
-                    { "TT02", "LikeNew 99%" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -576,11 +549,6 @@ namespace TechShop.API.Migrations
                 name: "IX_SanPham_MaLoai",
                 table: "SanPham",
                 column: "MaLoai");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SanPham_MaTinhTrang",
-                table: "SanPham",
-                column: "MaTinhTrang");
         }
 
         /// <inheritdoc />
@@ -627,9 +595,6 @@ namespace TechShop.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "LoaiSP");
-
-            migrationBuilder.DropTable(
-                name: "TinhTrangHang");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

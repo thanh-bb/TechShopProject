@@ -68,8 +68,8 @@ namespace TechShop.API.Controllers
             {
                 Id = Guid.NewGuid(),
                 TenKH = kh.TenKH,
-                NgaySinh = DateTime.Now,
-                GioiTinh = false,
+                NgaySinh = kh.NgaySinh,
+                Gender = kh.Gender.HasValue ? kh.Gender.Value : Gender.Male,                
                 Email = kh.Email,
                 NormalizedEmail = kh.Email,
                 DienThoai = kh.DienThoai,

@@ -138,6 +138,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\login-register\" />
   </ItemGroup>
 
 </Project>

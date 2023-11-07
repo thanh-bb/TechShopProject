@@ -12,7 +12,7 @@
 @inject ICategoryService CategoryService
 @inject IProductService ProductService
 @inject IUserService UserService
-@inject ITinhTrangService TinhTrangService
+
 @inject IToastService ToastService
 
 <link rel="shortcut icon" type="image/png" href="./assets/img/favicon.png">
@@ -271,14 +271,13 @@ else
 
 @code {
 
-    public List<TinhTrangDto> TinhTrang;
     public List<UserDto> Users;
     private List<LoaiDto> Loais;
     protected override async Task OnInitializedAsync()
     {
         Users = await UserService.GetUsers();
         Loais = await CategoryService.GetAll();
-        TinhTrang = await TinhTrangService.GetTinhTrangs();
+
     }
     private ProductCreate productCr = new ProductCreate();
 

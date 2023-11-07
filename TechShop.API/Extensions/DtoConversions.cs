@@ -30,7 +30,7 @@ namespace ShopOnline.Api.Extensions
                         TenLoai = product.LoaiSP.TenLoai,
                         Id = product.Id,
                         Image = product.Image,
-                        MaTinhTrang = product.MaTinhTrang,
+                        Status = product.Status,
                         NgayDang = product.NgayDang,
                         //MaLoai = product.MaLoai,
                         //TenLoai = productCategory.TenLoai
@@ -54,7 +54,7 @@ namespace ShopOnline.Api.Extensions
                 TenLoai = product.LoaiSP.TenLoai,
                 Id = product.Id,
                 Image = product.Image,
-                MaTinhTrang = product.MaTinhTrang,
+                Status = product.Status,
                 NgayDang = product.NgayDang
                 //MaLoai = product.MaLoai,
                 //TenLoai = productCategory.TenLoai
@@ -80,7 +80,7 @@ namespace ShopOnline.Api.Extensions
                         TenLoai = product.LoaiSP.TenLoai,
                         Id = product.Id,
                         Image = product.Image,
-                        MaTinhTrang = product.MaTinhTrang,
+                        Status = product.Status,
                         NgayDang = product.NgayDang,
                         //MaLoai = product.MaLoai,
                         //TenLoai = productCategory.TenLoai

@@ -1,0 +1,184 @@
+﻿@page "/register"
+
+@using Microsoft.AspNetCore.Components.Authorization;
+@using TechShop.Models.Dtos;
+@using TechShop.Web.Services.Contracts
+@using Microsoft.AspNetCore.Hosting;
+@using Microsoft.AspNetCore.Http;
+@using TechShop.Models.Enums;
+
+
+@inject NavigationManager NavigationManager
+@inject ICategoryService CategoryService
+@inject IProductService ProductService
+@inject IUserService UserService
+@inject IToastService ToastService
+
+<link rel="shortcut icon" type="image/png" href="./assets/img/favicon.png">
+<!-- google font -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<!-- fontawesome -->
+<link rel="stylesheet" href="./assets/css/all.min.css">
+<!-- bootstrap -->
+<link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+<!-- owl carousel -->
+<link rel="stylesheet" href="./assets/css/owl.carousel.css">
+<!-- magnific popup -->
+<link rel="stylesheet" href="./assets/css/magnific-popup.css">
+<!-- animate css -->
+<link rel="stylesheet" href="./assets/css/animate.css">
+<!-- mean menu css -->
+<link rel="stylesheet" href="./assets/css/meanmenu.min.css">
+<!-- main style -->
+<link rel="stylesheet" href="./assets/css/main.css">
+<!-- responsive -->
+<link rel="stylesheet" href="./assets/css/responsive.css">
+
+<link rel="stylesheet" href="./assets/css/style.css">
+
+<link rel="stylesheet" type="text/css" href="./login/css/main.css" />
+<link rel="stylesheet" type="text/css" href="./login/css/util.css" />
+<link rel="stylesheet" type="text/css" href="./login/css/style.css" />
+
+@if (Loais == null)
+{
+    <DisplaySpinner />
+}
+
+else
+{
+
+
+
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('');">
+            <div class="card card-5 m-t-100">
+                <div class="card-heading">
+                    <h2 class="title">Register</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <EditForm Model="@user" OnValidSubmit="RegisterUser">
+                            <DataAnnotationsValidator></DataAnnotationsValidator>
+
+                            <div class="form-row">
+                                <div class="name">Họ tên</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <InputText id="name" class="form-control" @bind-Value="user.TenKH"></InputText>
+                                        <ValidationMessage For="()=>user.TenKH"></ValidationMessage>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="name">Username</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <InputText id="name" class="form-control" @bind-Value="user.UserName"></InputText>
+                                        <ValidationMessage For="()=>user.UserName"></ValidationMessage>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="name">Email</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <InputText id="name" class="form-control" @bind-Value="user.Email"></InputText>
+                                        <ValidationMessage For="()=>user.Email"></ValidationMessage>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="name">SĐT</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <InputText id="name" class="form-control" @bind-Value="user.DienThoai"></InputText>
+                                        <ValidationMessage For="()=>user.DienThoai"></ValidationMessage>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="name">Mật khẩu</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <InputText id="name" class="form-control" @bind-Value="user.PasswordHash"></InputText>
+                                        <ValidationMessage For="()=>user.PasswordHash"></ValidationMessage>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="birth">Ngày sinh </div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <InputDate id="birth" class="form-control" @bind-Value="user.NgaySinh"></InputDate>
+                                        <ValidationMessage For="()=>user.NgaySinh"></ValidationMessage>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row" >
+                                <label for="status">Giới tính</label>
+                                <InputSelect id="status" class="form-control" @bind-Value="user.Gender">
+                                    <option>Chọn giới tính của bạn</option>
+                                    @foreach (string item in Enum.GetNames(typeof(Gender)))
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                </InputSelect>
+                                <ValidationMessage For="()=>user.Gender"></ValidationMessage>
+                            </div>
+
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn--radius-2 btn--red">Submit</button>
+
+                            </div>
+
+                        </EditForm>
+                        <span>
+                            Bạn đã có tài khoản
+                            <a href="/login">Đăng nhập</a>
+                        </span>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+}
+
+@code {
+
+    private List<LoaiDto> Loais;
+    protected override async Task OnInitializedAsync()
+    {
+
+        Loais = await CategoryService.GetAll();
+
+    }
+    private UserCreate user = new UserCreate();
+
+    private async Task RegisterUser(EditContext context)
+    {
+
+        var result = await UserService.CreateProduct(user);
+        if (result)
+        {
+            ToastService.ShowSuccess($"{user.UserName} has been created successfully.");
+            NavigationManager.NavigateTo("/login");
+        }
+        else
+        {
+            ToastService.ShowError($"An error occurred in progress. Please contact to administrator.");
+        }
+    }
+
+
+
+}
+
+

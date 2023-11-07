@@ -25,11 +25,6 @@ namespace TechShop.API.Entities
         [ForeignKey("MaLoai")]
         public LoaiSP LoaiSP { get; set; }
 
-        public string? MaTinhTrang { get; set; }
-
-        [ForeignKey("MaTinhTrang")]
-        public TinhTrangHang TinhTrangHang{ get; set; }
-
         //public virtual ICollection<HinhAnh> HinhAnhs { get; set; }       
 
         public int? MaBangTin { get; set; }

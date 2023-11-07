@@ -1,14 +1,24 @@
 ﻿@page "/login"
+@using Microsoft.AspNetCore.Components.Authorization;
 @using TechShop.Models.Dtos;
-@using TechShop.Web.Services.Contracts;
+@using TechShop.Web.Services.Contracts
+@using Microsoft.AspNetCore.Hosting;
+@using Microsoft.AspNetCore.Http;
+@using TechShop.Models.Enums;
 
-@inject NavigationManager NavigationManager;
-@inject IAuthService AuthService;
-@inject IToastService ToastService ;
+@inject NavigationManager NavigationManager
+@inject IAuthService AuthService
+@inject IToastService ToastService
+@inject ICategoryService CategoryService
+@inject IProductService ProductService
+@inject IUserService UserService
 
 <link rel="stylesheet" type="text/css" href="./login/css/main.css" />
 <link rel="stylesheet" type="text/css" href="./login/css/util.css" />
 <link rel="stylesheet" type="text/css" href="./login/css/style.css" />
+<link rel="stylesheet" type="text/css" href="./login/css/stylelogin.css" />
+
+
 
 
 @if (ShowErrors)
@@ -18,55 +28,165 @@
     </div>
 }
 
-<div class="limiter">
-    <div class="container-login100" style="background-image: url('');">
-        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+<div class="limiter" style="background-color: #F1EAFF;">
+    <div class="container" id="main">
 
-            <form class="login100-form validate-form">
-                <span class="login100-form-title p-b-49">
-                    Đăng Nhập 
-                </span>
-                @if (ShowErrors)
-                {
-                    <div class="alert alert-danger">
-                        <p>@Error</p>
+        <div class="container-login100">
+
+            <div class="sign-up m-t-20">
+                <div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-54">
+                    <form class="login100-form validate-form">
+                        <span class="login100-form-title p-b-30">
+                            Đăng Ký
+                        </span>
+                        @if (ShowErrors)
+                        {
+                            <div class="alert alert-danger">
+                                <p>@Error</p>
+                            </div>
+                        }
+                        <form method="POST">
+                            <EditForm Model="@user" OnValidSubmit="RegisterUser">
+                                <DataAnnotationsValidator></DataAnnotationsValidator>
+
+                                <div class="formm-group wrap-input100 validate-input m-b-23">
+                                    <label for="name" class="label-input100">Họ tên</label>
+                                    <InputText id="name" class="form-control" @bind-Value="user.TenKH"></InputText>
+                                    <ValidationMessage For="()=>user.TenKH"></ValidationMessage>
+                                </div>
+
+                                <div class="formm-group wrap-input100 validate-input m-b-23">
+                                    <label for="gender" class="label-input100">Giới tính</label>
+                                    <InputSelect id="gender" class="form-control" @bind-Value="user.Gender">
+                                        <option>Chọn giới tính của bạn</option>
+                                        @foreach (string item in Enum.GetNames(typeof(Gender)))
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="()=>user.Gender"></ValidationMessage>
+                                </div>
+
+                                <div class="formm-group wrap-input100 validate-input m-b-23">
+                                    <label for="birth" class="label-input100">Ngày sinh</label>
+                                    <InputDate id="birth" class="form-control" @bind-Value="user.NgaySinh"></InputDate>
+                                    <ValidationMessage For="()=>user.NgaySinh"></ValidationMessage>
+                                </div>
+
+                                <div class="formm-group wrap-input100 validate-input m-b-23">
+                                    <label for="username" class="label-input100">User</label>
+                                    <InputText id="username" class="form-control" @bind-Value="user.UserName"></InputText>
+                                    <ValidationMessage For="()=>user.UserName"></ValidationMessage>
+                                </div>
+
+                                <div class="formm-group wrap-input100 validate-input m-b-23">
+                                    <label for="email" class="label-input100">Email</label>
+                                    <InputText id="email" class="form-control" @bind-Value="user.Email"></InputText>
+                                    <ValidationMessage For="()=>user.Email"></ValidationMessage>
+                                </div>
+
+                                <div class="formm-group wrap-input100 validate-input m-b-23">
+                                    <label for="phone" class="label-input100">Số điện thoại</label>
+                                    <InputText id="phone" class="form-control" @bind-Value="user.DienThoai"></InputText>
+                                    <ValidationMessage For="()=>user.DienThoai"></ValidationMessage>
+                                </div>
+
+                                <div class="formm-group wrap-input100 validate-input m-b-23">
+                                    <label for="passwd" class="label-input100">Mật khẩu</label>
+                                    <InputText id="passwd" class="form-control" @bind-Value="user.PasswordHash"></InputText>
+                                    <ValidationMessage For="()=>user.PasswordHash"></ValidationMessage>
+                                </div>
+
+                                <div class="container-login100-form-btn">
+                                    <div class="wrap-login100-form-btn">
+                                        <div class="login100-form-bgbtn"></div>
+                                        <button class="login100-form-btn">
+                                            Register
+                                        </button>
+                                    </div>
+                                </div>
+                            </EditForm>
+
+                        </form>
+                    </form>
+
+                </div>
+            </div>
+            <div class="sign-in">
+                <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+                    <form class="login100-form validate-form">
+                        <span class="login100-form-title p-b-49">
+                            Đăng Nhập
+                        </span>
+                        @if (ShowErrors)
+                        {
+                            <div class="alert alert-danger">
+                                <p>@Error</p>
+                            </div>
+                        }
+                        <EditForm Model="LoginModel" OnValidSubmit="HandleLogin">
+                            <DataAnnotationsValidator></DataAnnotationsValidator>
+                            @*   <ValidationSummary></ValidationSummary> *@
+
+                            <div class="formm-group wrap-input100 validate-input m-b-23">
+                                <label for="username" class="label-input100">Username</label>
+                                <InputText id="username" class="form-control" @bind-Value="LoginModel.UserName"></InputText>
+                                <ValidationMessage For="()=>LoginModel.UserName"></ValidationMessage>
+
+                            </div>
+
+                            <div class="formm-group wrap-input100 validate-input m-b-23">
+                                <label for="password">Password</label>
+                                <InputText id="password" class="form-control" @bind-Value="LoginModel.PasswordHash"></InputText>
+                                <ValidationMessage For="()=>LoginModel.PasswordHash"></ValidationMessage>
+
+                            </div>
+
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn">
+                                        Login
+                                    </button>
+                                </div>
+                            </div>
+                        </EditForm>
+                    </form>
+                </div>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-left">
+                        <h1>Wellcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button id="signIn" class="button_sign">Sign In</button>
                     </div>
-                }
-                <EditForm Model="LoginModel" OnValidSubmit="HandleLogin">
-                    <DataAnnotationsValidator></DataAnnotationsValidator>
-                  @*   <ValidationSummary></ValidationSummary> *@
-
-                    <div class="formm-group wrap-input100 validate-input m-b-23">
-                        <label for="username" class="label-input100">Username</label>
-                        <InputText id="username" class="form-control" @bind-Value="LoginModel.UserName"></InputText>
-                        <ValidationMessage For="()=>LoginModel.UserName"></ValidationMessage>
-
+                    <div class="overlay-right">
+                        <h1>Hello, Friend</h1>
+                        <p>Enter your personal details and start journey with us</p>
+                        <button id="signUp" class="button_sign">Sign Up</button>
                     </div>
-
-                    <div class="formm-group wrap-input100 validate-input m-b-23">
-                        <label for="password">Password</label>
-                        <InputText id="password" class="form-control" @bind-Value="LoginModel.PasswordHash"></InputText>
-                        <ValidationMessage For="()=>LoginModel.PasswordHash"></ValidationMessage>
-
-                    </div>
-
-                    <div class="container-login100-form-btn">
-                        <div class="wrap-login100-form-btn">
-                            <div class="login100-form-bgbtn"></div>
-                            <button class="login100-form-btn">
-                                Login
-                            </button>
-                        </div>
-                    </div>
-                </EditForm>
-            </form>
+                </div>
+            </div>
         </div>
     </div>
-
 </div>
 
 
 <script src="./login/js/main.js"></script>
+
+<script type="text/javascript">
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const main = document.getElementById('main');
+
+    signUpButton.addEventListener('click', () => {
+        main.classList.add("right-panel-active");
+    });
+    signInButton.addEventListener('click', () => {
+        main.classList.remove("right-panel-active");
+    });
+</script>
 
 @code {
     private bool ShowErrors;
@@ -89,4 +209,21 @@
             Error = result.Error;
         }
     }
+    private UserCreate user = new UserCreate();
+
+    private async Task RegisterUser(EditContext context)
+    {
+
+        var result = await UserService.CreateProduct(user);
+        if (result)
+        {
+            ToastService.ShowSuccess($"{user.UserName} has been created successfully.");
+            NavigationManager.NavigateTo("/login");
+        }
+        else
+        {
+            ToastService.ShowError($"Username này đã tồn tại. Bạn hãy đặt 1 username khác nhé");
+        }
+    }
+
 }

@@ -15,7 +15,7 @@
          <NavMenu />
      </div>
       -->
-    <Header />
+    
 
 
     <main>
@@ -40,10 +40,12 @@
 
         <AuthorizeView>
             <Authorized>
+                <Header />
                 @Body
+                <Footer />
             </Authorized>
             <NotAuthorized>
-                <TechShop.Web.Pages.Login></TechShop.Web.Pages.Login>
+                <TechShop.Web.Pages.Login></TechShop.Web.Pages.Login>             
             </NotAuthorized>
         </AuthorizeView>
 
@@ -52,4 +54,3 @@
    
 
 </div>
-<Footer />

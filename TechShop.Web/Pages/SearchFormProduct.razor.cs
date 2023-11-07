@@ -21,9 +21,7 @@ namespace TechShop.Web.Pages
         [Inject]
         public IProductService ProductService { get; set; }
 
-        [Inject]
-        public ITinhTrangService TinhTrangService { get; set; }
-
+       
         [Inject]
         private ICategoryService CategoryService { get; set; }
 
@@ -33,17 +31,14 @@ namespace TechShop.Web.Pages
         private List<ProductDto> ProductList;
 
         private List<LoaiDto> Loais;
-
-        private List<TinhTrangDto> TinhTrangs;
-
+      
         public List<UserDto> Users;
 
         private ProductListSearch productListSearch = new ProductListSearch();
 
         protected override async Task OnInitializedAsync()
         {
-            Products = await ProductService.GetProductList(productListSearch);
-            TinhTrangs = await TinhTrangService.GetTinhTrangs();
+            Products = await ProductService.GetProductList(productListSearch);         
             Loais = await CategoryService.GetAll();
 
             Users = await UserService.GetUsers();

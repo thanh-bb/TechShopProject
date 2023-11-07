@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using TechShop.Models.Dtos;
+using TechShop.Web.Pages;
 using TechShop.Web.Services.Contracts;
 
 namespace TechShop.Web.Services
@@ -11,6 +12,12 @@ namespace TechShop.Web.Services
         {
             _httpClient = httpClient;
 
+        }
+
+        public async Task<bool> CreateProduct(UserCreate user)
+        {
+            var result = await _httpClient.PostAsJsonAsync("/api/User/CreateUser", user);
+            return result.IsSuccessStatusCode;
         }
 
         public async Task<List<CartDto>> GetCartOfUser()

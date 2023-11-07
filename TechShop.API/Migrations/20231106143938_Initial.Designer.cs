@@ -12,7 +12,7 @@ using TechShop.API.Data;
 namespace TechShop.API.Migrations
 {
     [DbContext(typeof(TechShopDbContext))]
-    [Migration("20231105150929_Initial")]
+    [Migration("20231106143938_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -314,8 +314,8 @@ namespace TechShop.API.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("GioiTinh")
-                        .HasColumnType("bit");
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -373,42 +373,42 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d9ac316a-a0f5-4a2d-9cd1-af992d6c8396"),
+                            Id = new Guid("347e9c9d-851c-41d6-9fb5-9ff71aa01f72"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "75c8a4dd-4bab-45ea-afe6-8d92c9a6f4c8",
+                            ConcurrencyStamp = "a230b54f-d656-42e3-8607-41f6063b8542",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
-                            GioiTinh = false,
+                            Gender = 0,
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 11, 5, 22, 9, 29, 668, DateTimeKind.Local).AddTicks(4039),
+                            NgaySinh = new DateTime(2023, 11, 6, 21, 39, 37, 919, DateTimeKind.Local).AddTicks(8944),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "75e9b3c3-7d1a-41c3-981c-1f8a0a94acdb",
+                            SecurityStamp = "7b459c27-b737-4b47-969a-c5bc371a67d0",
                             TenKH = "Trần Văn Man",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
                         new
                         {
-                            Id = new Guid("6fe988a9-510f-495b-8841-b1902068db5c"),
+                            Id = new Guid("0babb905-6658-4fdc-b97c-fd43df76e789"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0d32d21e-1c63-4562-aa5f-71f10f0bd993",
+                            ConcurrencyStamp = "eb7d017c-fb8c-46da-adef-67f5dc5e7b24",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
-                            GioiTinh = false,
+                            Gender = 0,
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 11, 5, 22, 9, 29, 668, DateTimeKind.Local).AddTicks(4097),
+                            NgaySinh = new DateTime(2023, 11, 6, 21, 39, 37, 919, DateTimeKind.Local).AddTicks(9015),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "monmon",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b5a7c118-a656-4462-a441-ce3d19fa42bd",
+                            SecurityStamp = "2376924d-b9ef-4a95-9f32-2e00a4efc9ef",
                             TenKH = "Trần Văn Mon",
                             TwoFactorEnabled = false,
                             UserName = "monmon"
@@ -536,7 +536,7 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3655848c-0e56-45f0-9611-af1e9ce4d385"),
+                            Id = new Guid("a268baf5-cf55-4a44-9be4-ffdd3e3361d5"),
                             TenQuyen = "admin"
                         });
                 });
@@ -562,9 +562,6 @@ namespace TechShop.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("MaLoai")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("MaTinhTrang")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("MoTa")
@@ -593,35 +590,7 @@ namespace TechShop.API.Migrations
 
                     b.HasIndex("MaLoai");
 
-                    b.HasIndex("MaTinhTrang");
-
                     b.ToTable("SanPham");
-                });
-
-            modelBuilder.Entity("TechShop.API.Entities.TinhTrangHang", b =>
-                {
-                    b.Property<string>("MaTinhTrang")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("TenTinhTrang")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MaTinhTrang");
-
-                    b.ToTable("TinhTrangHang");
-
-                    b.HasData(
-                        new
-                        {
-                            MaTinhTrang = "TT01",
-                            TenTinhTrang = "New 100%"
-                        },
-                        new
-                        {
-                            MaTinhTrang = "TT02",
-                            TenTinhTrang = "LikeNew 99%"
-                        });
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.TrangThaiBT", b =>
@@ -822,17 +791,11 @@ namespace TechShop.API.Migrations
                         .WithMany("SanPhams")
                         .HasForeignKey("MaLoai");
 
-                    b.HasOne("TechShop.API.Entities.TinhTrangHang", "TinhTrangHang")
-                        .WithMany("SanPhams")
-                        .HasForeignKey("MaTinhTrang");
-
                     b.Navigation("BangTin");
 
                     b.Navigation("KhachHang");
 
                     b.Navigation("LoaiSP");
-
-                    b.Navigation("TinhTrangHang");
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.BangTin", b =>
@@ -868,11 +831,6 @@ namespace TechShop.API.Migrations
             modelBuilder.Entity("TechShop.API.Entities.SanPham", b =>
                 {
                     b.Navigation("HinhAnhs");
-                });
-
-            modelBuilder.Entity("TechShop.API.Entities.TinhTrangHang", b =>
-                {
-                    b.Navigation("SanPhams");
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.TrangThaiBT", b =>

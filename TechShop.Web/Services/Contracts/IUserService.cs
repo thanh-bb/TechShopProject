@@ -9,5 +9,7 @@ namespace TechShop.Web.Services.Contracts
         Task<List<ProductDto>> GetProductOfUser();
 
         Task<List<CartDto>> GetCartOfUser();
+
+        Task<bool> CreateProduct(UserCreate user);
     }
 }
