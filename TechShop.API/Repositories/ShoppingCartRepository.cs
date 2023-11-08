@@ -42,6 +42,7 @@ namespace TechShop.API.Repositories
 					return result.Entity;
 				}
 			}
+			
 
 			return null;
 		}
@@ -111,6 +112,20 @@ namespace TechShop.API.Repositories
             return gioHang;
         }
 
-       
+        public async Task<HoaDon> CreateBill(HoaDon hoadon)
+        {
+            await _context.HoaDon.AddAsync(hoadon);
+            await _context.SaveChangesAsync();
+            return hoadon;
+        }
+
+     
+
+        public async Task<ChiTietHoaDon> CreateDetailsBill(ChiTietHoaDon cthoadon)
+        {
+            await _context.ChiTietHoaDon.AddAsync(cthoadon);
+            await _context.SaveChangesAsync();
+            return cthoadon;
+        }
     }
 }

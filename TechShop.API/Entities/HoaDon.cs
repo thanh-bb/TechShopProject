@@ -6,7 +6,7 @@ namespace TechShop.API.Entities
     public class HoaDon
     {
         [Key]
-        public string MaHD { get; set; }
+        public int MaHD { get; set; }
 
         public Guid? Id { get; set; }
 

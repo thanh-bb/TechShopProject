@@ -191,8 +191,8 @@ namespace TechShop.API.Migrations
 
             modelBuilder.Entity("TechShop.API.Entities.ChiTietHoaDon", b =>
                 {
-                    b.Property<string>("MaHD")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("MaHD")
+                        .HasColumnType("int");
 
                     b.Property<int?>("MaSP")
                         .HasColumnType("int");
@@ -261,8 +261,11 @@ namespace TechShop.API.Migrations
 
             modelBuilder.Entity("TechShop.API.Entities.HoaDon", b =>
                 {
-                    b.Property<string>("MaHD")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("MaHD")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaHD"));
 
                     b.Property<Guid?>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -370,42 +373,42 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("347e9c9d-851c-41d6-9fb5-9ff71aa01f72"),
+                            Id = new Guid("4610e3a0-52e7-43b8-9602-59645c1b8e52"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a230b54f-d656-42e3-8607-41f6063b8542",
+                            ConcurrencyStamp = "a45684e5-be7e-4bda-be1e-5a90dd844918",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             Gender = 0,
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 11, 6, 21, 39, 37, 919, DateTimeKind.Local).AddTicks(8944),
+                            NgaySinh = new DateTime(2023, 11, 8, 21, 35, 11, 385, DateTimeKind.Local).AddTicks(8778),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7b459c27-b737-4b47-969a-c5bc371a67d0",
+                            SecurityStamp = "64340d6a-b006-4ebf-ac4d-0156aa228177",
                             TenKH = "Trần Văn Man",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
                         new
                         {
-                            Id = new Guid("0babb905-6658-4fdc-b97c-fd43df76e789"),
+                            Id = new Guid("2b22be46-750c-46d7-a785-ec31f2eb7269"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "eb7d017c-fb8c-46da-adef-67f5dc5e7b24",
+                            ConcurrencyStamp = "45d859e0-7057-458a-a893-00979548da78",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             Gender = 0,
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 11, 6, 21, 39, 37, 919, DateTimeKind.Local).AddTicks(9015),
+                            NgaySinh = new DateTime(2023, 11, 8, 21, 35, 11, 385, DateTimeKind.Local).AddTicks(8831),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "monmon",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2376924d-b9ef-4a95-9f32-2e00a4efc9ef",
+                            SecurityStamp = "fbfcf3f3-d595-43c1-848b-dc43ff2a9345",
                             TenKH = "Trần Văn Mon",
                             TwoFactorEnabled = false,
                             UserName = "monmon"
@@ -533,7 +536,7 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a268baf5-cf55-4a44-9be4-ffdd3e3361d5"),
+                            Id = new Guid("3f2f4742-f066-4ab1-b12f-eacd7b829a0c"),
                             TenQuyen = "admin"
                         });
                 });

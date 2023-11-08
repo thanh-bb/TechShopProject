@@ -47,7 +47,7 @@
     <script src="./DiaLy/js/jquery-3.7.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js" integrity="sha512-ozq8xQKq6urvuU6jNgkfqAmT7jKN2XumbrX1JiB3TnF7tI48DPI4Gy1GXKD/V3EExgAs1V+pRO7vwtS1LHg0Gw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw-src.css" integrity="sha512-vJfMKRRm4c4UupyPwGUZI8U651mSzbmmPgR3sdE3LcwBPsdGeARvUM5EcSTg34DK8YIRiIo+oJwNfZPMKEQyug==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
     <script>
         function initialize() {
             //Khai báo đối tượng chính chứa bản đồ gắn vào thẻ div tên "map"
@@ -219,6 +219,59 @@
 
         }
 
+    </script>
+
+    <!--PayPal-->
+    <script src="https://www.paypal.com/sdk/js?client-id=AXnvMM27WyfzrenqsKgafFmUYdhLOz7O7Ljb6uaViKawBKMvxjGv_lHW9h3mmKf80_JiGx8dhXS_1n5s&currency=USD" data-sdk-integration-source="button-factory"></script>
+    <script>
+        function initPayPalButton() {
+            var description = document.querySelector('#smart-button-container #description');
+            var amount = document.querySelector('#smart-button-container #amount');
+
+            var purchase_units = [];
+            purchase_units[0] = {};
+            purchase_units[0].amount = {};
+
+            paypal.Buttons({
+                style: {
+                    color: 'gold',
+                    shape: 'rect',
+                    label: 'paypal',
+                    layout: 'vertical',
+
+                },
+
+                createOrder: function (data, actions) {
+
+                    purchase_units[0].description = description.value;
+                    purchase_units[0].amount.value = amount.value;
+
+                    return actions.order.create({
+                        purchase_units: purchase_units,
+                    });
+                },
+
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (orderData) {
+
+                        // Full available details
+                        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+                        // Show a success message within this page, e.g.
+                        const element = document.getElementById('paypal-button-container');
+                        element.innerHTML = '';
+                        element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+                        // Or go to another URL:  actions.redirect('thank_you.html');
+
+                    });
+                },
+
+                onError: function (err) {
+                    console.log(err);
+                }
+            }).render('#paypal-button-container');
+        }
     </script>
 
 

@@ -246,7 +246,8 @@ namespace TechShop.API.Migrations
                 name: "HoaDon",
                 columns: table => new
                 {
-                    MaHD = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MaHD = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     NgayDat = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MaTT = table.Column<string>(type: "nvarchar(450)", nullable: true),
@@ -369,7 +370,7 @@ namespace TechShop.API.Migrations
                 name: "ChiTietHoaDon",
                 columns: table => new
                 {
-                    MaHD = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MaHD = table.Column<int>(type: "int", nullable: false),
                     MaSP = table.Column<int>(type: "int", nullable: false),
                     GiaBan = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -416,15 +417,15 @@ namespace TechShop.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName", "TenQuyen" },
-                values: new object[] { new Guid("a268baf5-cf55-4a44-9be4-ffdd3e3361d5"), null, null, null, "admin" });
+                values: new object[] { new Guid("3f2f4742-f066-4ab1-b12f-eacd7b829a0c"), null, null, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DienThoai", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "NgaySinh", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenKH", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("0babb905-6658-4fdc-b97c-fd43df76e789"), 0, "eb7d017c-fb8c-46da-adef-67f5dc5e7b24", "0985879105", "abc@gmail.com", false, 0, false, null, new DateTime(2023, 11, 6, 21, 39, 37, 919, DateTimeKind.Local).AddTicks(9015), "ADMIN1@GMAIL.COM", "monmon", "123456", "032132131", false, "2376924d-b9ef-4a95-9f32-2e00a4efc9ef", "Trần Văn Mon", false, "monmon" },
-                    { new Guid("347e9c9d-851c-41d6-9fb5-9ff71aa01f72"), 0, "a230b54f-d656-42e3-8607-41f6063b8542", "0985879105", "abc@gmail.com", false, 0, false, null, new DateTime(2023, 11, 6, 21, 39, 37, 919, DateTimeKind.Local).AddTicks(8944), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "7b459c27-b737-4b47-969a-c5bc371a67d0", "Trần Văn Man", false, "admin" }
+                    { new Guid("2b22be46-750c-46d7-a785-ec31f2eb7269"), 0, "45d859e0-7057-458a-a893-00979548da78", "0985879105", "abc@gmail.com", false, 0, false, null, new DateTime(2023, 11, 8, 21, 35, 11, 385, DateTimeKind.Local).AddTicks(8831), "ADMIN1@GMAIL.COM", "monmon", "123456", "032132131", false, "fbfcf3f3-d595-43c1-848b-dc43ff2a9345", "Trần Văn Mon", false, "monmon" },
+                    { new Guid("4610e3a0-52e7-43b8-9602-59645c1b8e52"), 0, "a45684e5-be7e-4bda-be1e-5a90dd844918", "0985879105", "abc@gmail.com", false, 0, false, null, new DateTime(2023, 11, 8, 21, 35, 11, 385, DateTimeKind.Local).AddTicks(8778), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "64340d6a-b006-4ebf-ac4d-0156aa228177", "Trần Văn Man", false, "admin" }
                 });
 
             migrationBuilder.InsertData(

@@ -1,4 +1,5 @@
-﻿using TechShop.API.Entities;
+﻿using System.Threading.Tasks;
+using TechShop.API.Entities;
 using TechShop.Models.Dtos;
 
 namespace TechShop.API.Repositories.Contracts
@@ -13,6 +14,8 @@ namespace TechShop.API.Repositories.Contracts
 
         Task<GioHang> CreateCart(GioHang gioHang);
 
-       
+        Task<HoaDon> CreateBill(HoaDon hoadon);
+        Task<ChiTietHoaDon> CreateDetailsBill(ChiTietHoaDon cthoadon);
+
     }
 }

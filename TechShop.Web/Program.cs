@@ -20,6 +20,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IManageProductsLocalStorageService, ManageProductsLocalStorageService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();	
+builder.Services.AddScoped<IManageCartItemsLocalStorageService, ManageCartItemsLocalStorageService>();  
 
 //builder.Services.AddScoped<IFileUpLoadService, FileUpLoadService>();    
 

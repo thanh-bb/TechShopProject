@@ -8,7 +8,8 @@ namespace TechShop.Models.Dtos
 {
 	public class CartItemToAddDto
 	{
-		public int CartId { get; set; }
+        public int Id_CTCart { get; set; }
+        public int CartId { get; set; }
 		public int ProductId { get; set; }
 		public int Qty { get; set; }
 

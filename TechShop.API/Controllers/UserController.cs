@@ -19,10 +19,13 @@ namespace TechShop.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+        private readonly IShoppingCartRepository _shoppingCartRepository;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserRepository userRepository,
+                             IShoppingCartRepository shoppingCartRepository)
         {
             _userRepository = userRepository;
+            _shoppingCartRepository = shoppingCartRepository;
         }
 
         [HttpGet("me")]
@@ -55,12 +58,13 @@ namespace TechShop.API.Controllers
         }
 
 
-
+        
         [HttpPost]
         [AllowAnonymous]
         [Route(nameof(CreateUser))]
         public async Task<IActionResult> CreateUser([FromBody] UserCreate kh)
         {
+            
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -80,6 +84,11 @@ namespace TechShop.API.Controllers
                 PasswordHash = kh.PasswordHash
 
             });
+            var cart = await _shoppingCartRepository.CreateCart(new GioHang()
+            {
+                Id= task.Id
+            });
+
             return CreatedAtAction(nameof(CreateUser), new { id = task.Id }, task);
         }
 

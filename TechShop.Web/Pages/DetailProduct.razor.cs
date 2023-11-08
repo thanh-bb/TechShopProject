@@ -23,6 +23,14 @@ namespace TechShop.Web.Pages
 
         public NavigationManager NavigationManager { get; set; }
 
+        [Inject]
+        public IManageCartItemsLocalStorageService ManageCartItemsLocalStorageService { get; set; }
+
+        [Inject]
+
+        public IManageProductsLocalStorageService ManageProductsLocalStorageService { get; set; }
+
+
         public List<UserDto> Users;
 
         public List<CartDto> Carts;
@@ -40,7 +48,8 @@ namespace TechShop.Web.Pages
                 //Users = await UserService.GetUsers();
                 Carts = await UserService.GetCartOfUser();
                 Products = await ProductService.GetProductDetail(Id);
-
+                ShoppingCartItems = await ManageCartItemsLocalStorageService.GetCollection();
+                //Products = await GetProductById(Id);
             }
 
             catch (Exception ex)
@@ -54,6 +63,13 @@ namespace TechShop.Web.Pages
             try
             {
                 var cartItemDto = await shoppingCartService.AddItem(cartItemToAddDto);
+                
+                if (cartItemDto != null)
+                {
+                    ShoppingCartItems.Add(cartItemDto);
+                    await ManageCartItemsLocalStorageService.SaveCollection(ShoppingCartItems);
+                }
+
                 NavigationManager.NavigateTo("/ShoppingCart");
 
             }
@@ -62,6 +78,17 @@ namespace TechShop.Web.Pages
 
                 //Log Exception
             }
+        }
+
+        private async Task<ProductDto> GetProductById(int Id)
+        {
+            var productDto = await ManageProductsLocalStorageService.GetCollection();
+
+            if (productDto != null)
+            {
+                return productDto.SingleOrDefault(p => p.MaSP == Id);
+            }
+            return null;
         }
     }
 }

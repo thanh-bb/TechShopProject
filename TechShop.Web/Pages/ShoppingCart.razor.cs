@@ -17,6 +17,8 @@ namespace TechShop.Web.Pages
         [Inject]
         public IShoppingCartService ShoppingCartService { get; set; }
 
+        [Inject]
+        public IManageCartItemsLocalStorageService ManageCartItemsLocalStorageService { get; set; } 
 
         public List<CartItemDto> ShoppingCartItems { get; set; }
 
@@ -38,6 +40,8 @@ namespace TechShop.Web.Pages
             {
                 Users = await UserService.GetUsers();
                 ShoppingCartItems = await ShoppingCartService.GetItems(Users.First().Id);
+                //ShoppingCartItems = await ManageCartItemsLocalStorageService.GetCollection();
+
                 CartChanged();
 
              
@@ -75,7 +79,7 @@ namespace TechShop.Web.Pages
 
             ShoppingCartItems.Remove(cartItemDto);
 
-            //await ManageCartItemsLocalStorageService.SaveCollection(ShoppingCartItems);
+            await ManageCartItemsLocalStorageService.SaveCollection(ShoppingCartItems);
 
         }
 
@@ -93,18 +97,13 @@ namespace TechShop.Web.Pages
 
                     var returnedUpdateItemDto = await this.ShoppingCartService.UpdateQty(updateItemDto);
 
-                    UpdateItemTotalPrice(returnedUpdateItemDto);
+                    await UpdateItemTotalPrice(returnedUpdateItemDto);
 
                     CartChanged();
 
                     await MakeUpdateQtyButtonVisible(id, false);
 
-                    //await UpdateItemTotalPrice(returnedUpdateItemDto);
-
-                    //CartChanged();
-
-                    //await MakeUpdateQtyButtonVisible(id, false);
-
+                    
 
                 }
                 else
@@ -138,7 +137,7 @@ namespace TechShop.Web.Pages
             await Js.InvokeVoidAsync("MakeUpdateQtyButtonVisible", id, visible);
         }
 
-        private void UpdateItemTotalPrice(CartItemDto cartItemDto)
+        private async Task UpdateItemTotalPrice(CartItemDto cartItemDto)
         {
             var item = GetCartItem(cartItemDto.Id);
 
@@ -147,7 +146,7 @@ namespace TechShop.Web.Pages
                 item.TotalPrice = cartItemDto.Price * cartItemDto.Qty;
             }
 
-           // await ManageCartItemsLocalStorageService.SaveCollection(ShoppingCartItems);
+            await ManageCartItemsLocalStorageService.SaveCollection(ShoppingCartItems);
 
         }
 
@@ -170,7 +169,7 @@ namespace TechShop.Web.Pages
         private void CartChanged()
         {
             CalculateCartSummaryTotals();
-            //ShoppingCartService.RaiseEventOnShoppingCartChanged(TotalQuantity);
+          ShoppingCartService.RaiseEventOnShoppingCartChanged(TotalQuantity);
         }
 
     }

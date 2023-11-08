@@ -1,23 +1,58 @@
-﻿using TechShop.Models.Dtos;
+﻿using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components;
+using TechShop.Models.Dtos;
 using TechShop.Web.Services.Contracts;
 
 namespace TechShop.Web.Services
 {
     public class ManageCartItemsLocalStorageService : IManageCartItemsLocalStorageService
     {
-        public Task<List<CartItemDto>> GetCollection()
+        [Inject]
+        public IUserService UserService { get; set; }
+
+        public List<UserDto> Users;
+
+        private readonly ILocalStorageService localStorageService;
+        private readonly IShoppingCartService shoppingCartService;
+
+        const string key = "CartItemCollection";
+
+        public ManageCartItemsLocalStorageService(ILocalStorageService localStorageService,
+                                                  IShoppingCartService shoppingCartService)
         {
-            throw new NotImplementedException();
+            this.localStorageService = localStorageService;
+            this.shoppingCartService = shoppingCartService;
         }
 
-        public Task RemoveCollection()
+        public async Task<List<CartItemDto>> GetCollection()
         {
-            throw new NotImplementedException();
+            return await this.localStorageService.GetItemAsync<List<CartItemDto>>(key)
+                    ?? await AddCollection();
         }
 
-        public Task SaveCollection(List<CartItemDto> cartItemDtos)
+        public async Task RemoveCollection()
         {
-            throw new NotImplementedException();
+            await this.localStorageService.RemoveItemAsync(key);
         }
+
+        public async Task SaveCollection(List<CartItemDto> cartItemDtos)
+        {
+            await this.localStorageService.SetItemAsync(key, cartItemDtos);
+        }
+
+        private async Task<List<CartItemDto>> AddCollection()
+        {
+            Users = await UserService.GetUsers();
+            var shoppingCartCollection = await this.shoppingCartService.GetItems(Users.First().Id);
+
+            if (shoppingCartCollection != null)
+            {
+                await this.localStorageService.SetItemAsync(key, shoppingCartCollection);
+            }
+
+            return shoppingCartCollection;
+
+        }
+
     }
 }

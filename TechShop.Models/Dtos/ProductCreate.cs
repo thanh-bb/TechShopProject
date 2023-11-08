@@ -16,7 +16,7 @@ namespace TechShop.Models.Dtos
 
 
         [Required(ErrorMessage = "Trường này bắt buộc")]
-        [MaxLength(50, ErrorMessage = "Nhập tên sản phẩm dưới 50 kí tự")]
+        [MaxLength(100, ErrorMessage = "Nhập tên sản phẩm dưới 100 kí tự")]
         public string TenSP { get; set; }
 
 
@@ -31,7 +31,7 @@ namespace TechShop.Models.Dtos
 
 
         [Required]
-        [MaxLength(100, ErrorMessage = "Nhập mô tả sản phẩm dưới 100 kí tự")]
+        [MaxLength(1000, ErrorMessage = "Nhập mô tả sản phẩm dưới 1000 kí tự")]
         public string MoTa { get; set; }
 
 

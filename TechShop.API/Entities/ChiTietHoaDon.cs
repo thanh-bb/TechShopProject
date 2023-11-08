@@ -7,7 +7,7 @@ namespace TechShop.API.Entities
     [PrimaryKey (nameof(MaHD), nameof(MaSP))]
     public class ChiTietHoaDon
     {
-        public string? MaHD { get; set; }
+        public int? MaHD { get; set; }
 
         [ForeignKey("MaHD")]
         public HoaDon HoaDon { get; set; }
