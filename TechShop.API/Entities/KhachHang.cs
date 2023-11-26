@@ -17,8 +17,6 @@ namespace TechShop.API.Entities
         [MaxLength(100)]
         public string TenKH { get; set; }
 
-
-
         [Required]
         public DateTime NgaySinh { get; set; }
 
@@ -30,9 +28,9 @@ namespace TechShop.API.Entities
         [MaxLength(100)]
         public string DienThoai { get; set; }
 
-        public virtual ICollection<BangTin> BangTins { get; set; }
+        //public virtual ICollection<BangTin> BangTins { get; set; }
 
-        public virtual ICollection<HoaDon> HoaDons { get; set; }
+        public virtual ICollection<DonHang> DonHangs { get; set; }
 
         /* public Guid? MaQuyen { get; set; }
 

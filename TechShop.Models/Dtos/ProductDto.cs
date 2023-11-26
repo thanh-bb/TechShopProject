@@ -30,7 +30,7 @@ namespace TechShop.Models.Dtos
 
         public Guid Id {  get; set; }
 
-        public string Image {  get; set; }
+        public string ImageURL {  get; set; }
 
         public string MaTinhTrang { get; set; }
 

@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TechShop.API.Entities
 {
-    [PrimaryKey (nameof(MaHD), nameof(MaSP))]
-    public class ChiTietHoaDon
+    [PrimaryKey (nameof(MaDH), nameof(MaSP))]
+    public class ChiTietDonHang
     {
-        public int? MaHD { get; set; }
+        public int? MaDH { get; set; }
 
-        [ForeignKey("MaHD")]
-        public HoaDon HoaDon { get; set; }
+        [ForeignKey("MaDH")]
+        public DonHang DonHang { get; set; }
 
         public int? MaSP { get; set; }
 
@@ -18,8 +18,6 @@ namespace TechShop.API.Entities
         public SanPham SanPham { get; set; }
 
         public long GiaBan {  get; set; }
-
-
 
     }
 }

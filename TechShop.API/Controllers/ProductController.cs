@@ -145,7 +145,7 @@ namespace TechShop.API.Controllers
                 GiaSP = product.GiaSP,
                 SoLuong = product.SoLuong,
                 NgayDang = DateTime.Now,
-                Image = product.Image,           
+                ImageURL = product.ImageURL,           
                 Status = product.Status.HasValue ? product.Status.Value : Status.New
 
             });
@@ -180,7 +180,7 @@ namespace TechShop.API.Controllers
                 GiaSP = product.GiaSP,
                 SoLuong = product.SoLuong,
                 NgayDang = DateTime.Now,
-                Image = product.Image,
+                ImageURL = product.ImageURL,
                 Status = product.Status
             });
         }
@@ -203,7 +203,7 @@ namespace TechShop.API.Controllers
                 GiaSP = product.GiaSP,
                 SoLuong = product.SoLuong,
                 NgayDang = DateTime.Now,
-                Image = product.Image,
+                ImageURL = product.ImageURL,
                 Status = product.Status
             });
         }

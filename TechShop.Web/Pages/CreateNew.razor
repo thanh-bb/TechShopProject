@@ -50,10 +50,8 @@
 else
 {
 
-
-
     <div class="limiter">
-        <div class="container-login100" style="background-image: url('');">
+        <div class="container-login" style="background-image: url('');">
 
             <div class="card card-5 m-t-100">
                 <div class="card-heading">
@@ -113,43 +111,42 @@ else
                                     </div>
                                 </div>
                             </div>
-                            <div class="row justify-content-between">
-                                <div class="form-row col-4">
-                                    <div class="name">Số lượng</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <InputNumber id="quanlity" class="form-control" @bind-Value="productCr.SoLuong"></InputNumber>
-                                            <ValidationMessage For="()=>productCr.SoLuong"></ValidationMessage>
-                                        </div>
+
+                            <div class="form-row ">
+                                <div class="name">Số lượng</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <InputNumber id="quanlity" class="form-control" @bind-Value="productCr.SoLuong"></InputNumber>
+                                        <ValidationMessage For="()=>productCr.SoLuong"></ValidationMessage>
                                     </div>
                                 </div>
-                                <div class="form-row col-8">
-
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <div class="name ">Giá tiền</div>
-                                            <InputNumber id="price" class="form-control " @bind-Value="productCr.GiaSP"></InputNumber>
-                                            <ValidationMessage For="()=>productCr.GiaSP"></ValidationMessage>
-                                        </div>
+                            </div>
+                            <div class="form-row ">
+                                <div class="name ">Giá tiền</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <InputNumber id="price" class="form-control " @bind-Value="productCr.GiaSP"></InputNumber>
+                                        <ValidationMessage For="()=>productCr.GiaSP"></ValidationMessage>
                                     </div>
                                 </div>
                             </div>
 
-                           @*  <div class="form-row">
-                                <div class="name">Tình trạng hàng</div>
-                                <div class="value">
-                                    <div class="input-group">
-                                        <InputSelect id="status" class="form-control" @bind-Value="productCr.MaTinhTrang">
-                                            <option> Chọn tình trạng hàng</option>
-                                            @foreach (var item in TinhTrang)
-                                            {
-                                                <option value="@item.MaTinhTrang">@item.TenTinhTrang</option>
-                                            }
-                                        </InputSelect>
-                                        <ValidationMessage For="()=>productCr.MaTinhTrang"></ValidationMessage>
-                                    </div>
-                                </div>
-                            </div> *@
+
+                            @*  <div class="form-row">
+                        <div class="name">Tình trạng hàng</div>
+                        <div class="value">
+                        <div class="input-group">
+                        <InputSelect id="status" class="form-control" @bind-Value="productCr.MaTinhTrang">
+                        <option> Chọn tình trạng hàng</option>
+                        @foreach (var item in TinhTrang)
+                        {
+                        <option value="@item.MaTinhTrang">@item.TenTinhTrang</option>
+                        }
+                        </InputSelect>
+                        <ValidationMessage For="()=>productCr.MaTinhTrang"></ValidationMessage>
+                        </div>
+                        </div>
+                        </div> *@
 
                             <div class="form-group">
                                 <label for="status">Trạng thái</label>
@@ -168,8 +165,8 @@ else
                                     <div class="input-group">
                                         <div class="form-control-file">
 
-                                            <InputFile id="image" OnChange="OnFileChange" @bind-Value="productCr.Image" class="form-control"></InputFile>
-                                            <ValidationMessage For="()=>productCr.Image"></ValidationMessage>
+                                            <InputFile id="image" OnChange="OnFileChange" @bind-Value="productCr.ImageURL" class="form-control"></InputFile>
+                                            <ValidationMessage For="()=>productCr.ImageURL"></ValidationMessage>
                                         </div>
                                     </div>
                                 </div>
@@ -302,7 +299,7 @@ else
         var buffer = new byte[resizedImage.Size];
         await resizedImage.OpenReadStream().ReadAsync(buffer);
         var imageData = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-        productCr.Image = imageData;
+        productCr.ImageURL = imageData;
 
 
     }

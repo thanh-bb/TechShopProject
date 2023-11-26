@@ -5,11 +5,12 @@ namespace TechShop.API.Entities
     public class TrangThaiDH
     {
         [Key]
-        public string MaTT { get; set; }
+        public int MaTT { get; set; }
 
+        [MaxLength(100)]
         public string TenTT { get; set; }
 
-        public virtual ICollection<HoaDon> HoaDons { get; set; }
+        public virtual ICollection<DonHang> HoaDons { get; set; }
 
     }
 }

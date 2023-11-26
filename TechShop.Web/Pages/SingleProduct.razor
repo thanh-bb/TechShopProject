@@ -11,7 +11,7 @@
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
                     <p>See more Details</p>
-                    <h1>Single Product</h1>
+                    <h1>Chi tiết sản phẩm</h1>
                 </div>
             </div>
         </div>
@@ -24,19 +24,19 @@
 }
 else
 {
-    <div class="container">
-        <h3 class="mb-5">Product Details</h3>
-        <div class="row">
+    <div class="container mt-5">
+     
+        <div class="row ">
             <div class="col-md-6 mb-4">
-                <img class="img-fluid" src="@Products.Image">
+                <img class="img-fluid" src="@Products.ImageURL">
             </div>
-            <div class="col-md-6">
-                <h3>@Products.TenSP</h3>
-                <h4>@Products.TenLoai</h4>
-                <p class="mb-4">@Products.MoTa</p>
+            <div class="col p-t-100" >
+                <h4>Tên sản phẩm: @Products.TenSP</h4>
+                <p>Loại sản phẩm: @Products.TenLoai</p>
+                <p class="mb-4">Mô tả: @Products.MoTa</p>
                 <p class="mb-4">
                     <b>
-                        @Products.GiaSP.ToString("C")&nbsp;(@Products.SoLuong items in stock)
+                       Giá tiền: @Products.GiaSP.ToString("C")&nbsp;(@Products.SoLuong items in stock)
                     </b>
                 </p>
                 <div>

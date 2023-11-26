@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TechShop.API.Entities
 {
-    public class HoaDon
+    public class DonHang
     {
         [Key]
-        public int MaHD { get; set; }
+        public int MaDH { get; set; }
 
         public Guid? Id { get; set; }
 
@@ -15,13 +15,12 @@ namespace TechShop.API.Entities
 
         public DateTime NgayDat { get; set; }
 
-        public string? MaTT { get; set; }
+        public int? MaTT { get; set; }
 
         [ForeignKey("MaTT")]
         public TrangThaiDH TrangThaiDH { get; set; }
 
         public long TongTien { get; set; }
-
        
 
     }

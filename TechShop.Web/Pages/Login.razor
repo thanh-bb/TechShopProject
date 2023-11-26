@@ -12,6 +12,7 @@
 @inject ICategoryService CategoryService
 @inject IProductService ProductService
 @inject IUserService UserService
+@inject IJSRuntime JSRuntime
 
 <link rel="stylesheet" type="text/css" href="./login/css/main.css" />
 <link rel="stylesheet" type="text/css" href="./login/css/util.css" />
@@ -208,6 +209,15 @@
             ShowErrors = true;
             Error = result.Error;
         }
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("singup", null);
+            StateHasChanged();
+        }
+
     }
     private UserCreate user = new UserCreate();
 

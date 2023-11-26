@@ -14,8 +14,8 @@ namespace TechShop.API.Repositories.Contracts
 
         Task<GioHang> CreateCart(GioHang gioHang);
 
-        Task<HoaDon> CreateBill(HoaDon hoadon);
-        Task<ChiTietHoaDon> CreateDetailsBill(ChiTietHoaDon cthoadon);
+        Task<DonHang> CreateBill(DonHang donhang);
+        Task<ChiTietDonHang> CreateDetailsBill(ChiTietDonHang cthoadon);
 
     }
 }

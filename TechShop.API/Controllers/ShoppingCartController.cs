@@ -203,7 +203,7 @@ namespace TechShop.API.Controllers
 
             var cartItems = await _shoppingCartRepository.GetItems(bill.Id);
 
-            var task = await _shoppingCartRepository.CreateBill(new HoaDon()
+            var task = await _shoppingCartRepository.CreateBill(new DonHang()
             {
 
                 Id = bill.Id,

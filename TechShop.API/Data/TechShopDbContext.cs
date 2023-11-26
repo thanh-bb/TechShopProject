@@ -17,15 +17,12 @@ namespace TechShop.API.Data
         }
 
         #region
-        public DbSet<BangTin> BangTin { get; set; }
-
-        public DbSet<HinhAnh> HinhAnh { get; set; }
-
+       
         public DbSet<KhachHang> KhachHang { get; set; }
 
         public DbSet<LoaiSP> LoaiSP { get; set; }
 
-        public DbSet<NhanVien> NhanVien { get; set; }
+        public DbSet<QuanTriVien> NhanVien { get; set; }
 
         public DbSet<Quyen> Quyen { get; set; }
 
@@ -35,11 +32,11 @@ namespace TechShop.API.Data
 
         public DbSet<TrangThaiDH> TrangThaiDH { get; set; }
 
-        public DbSet<HoaDon> HoaDon { get; set; }
+        public DbSet<DonHang> DonHang { get; set; }
 
-        public DbSet<ChiTietHoaDon> ChiTietHoaDon { get; set; }
+        public DbSet<ChiTietDonHang> ChiTietDonHang { get; set; }
 
-        public DbSet<TrangThaiBT> TrangThaiBT { get; set; }
+        public DbSet<TrangThaiDuyet> TrangThaiDuyet { get; set; }
 
         public DbSet<ChiTietGioHang> ChiTietGioHang { get; set; }
 
@@ -86,62 +83,7 @@ namespace TechShop.API.Data
 
             });
 
-            //modelBuilder.Entity<SanPham>().HasData(new SanPham
-            //{
-            //	MaSP= 1,
-            //             TenSP="Laptop Dell",
-            //             GiaSP= 10000000,
-            //             SoLuong=1,
-            //             MaLoai="01",
-            //             MoTa= "Hong co gi de mo ta",
-
-
-
-            //         });
-            //modelBuilder.Entity<SanPham>().HasData(new SanPham
-            //{
-            //	MaSP = 2,
-            //	TenSP = "Samsung A51",
-            //	GiaSP = 10000000,
-            //	SoLuong = 1,
-            //	MaLoai = "02",
-            //	MoTa = "Hong co gi de mo ta",
-
-
-            //         });
-            //modelBuilder.Entity<SanPham>().HasData(new SanPham
-            //{
-            //	MaSP = 3,
-            //	TenSP = "Bàn phím fuhlen",
-            //	GiaSP = 10000000,
-            //	SoLuong = 1,
-            //	MaLoai = "03",
-            //	MoTa = "Hong co gi de mo ta",
-
-
-            //         });
-            //modelBuilder.Entity<SanPham>().HasData(new SanPham
-            //{
-            //	MaSP = 4,
-            //	TenSP = "Chuột Logitech",
-            //	GiaSP = 10000000,
-            //	SoLuong = 1,
-            //	MaLoai = "04",
-            //	MoTa = "Hong co gi de mo ta",
-
-
-            //         });
-            //modelBuilder.Entity<SanPham>().HasData(new SanPham
-            //{
-            //	MaSP = 5,
-            //	TenSP = "Tai nghe Sony",
-            //	GiaSP = 10000000,
-            //	SoLuong = 1,
-            //	MaLoai = "05",
-            //	MoTa = "Hong co gi de mo ta",
-
-
-            //         });
+           
             modelBuilder.Entity<KhachHang>().HasData(new KhachHang
             {
                 Id = Guid.NewGuid(),
@@ -175,7 +117,7 @@ namespace TechShop.API.Data
             modelBuilder.Entity<Quyen>().HasData(new Quyen
             {
                 Id = Guid.NewGuid(),
-                TenQuyen = "admin"
+                Name = "admin"
 
             });
 

@@ -10,11 +10,8 @@ namespace TechShop.API.Entities
         [Key]
         public Guid Id { get; set; }
 
-        public string TenQuyen { get; set; }
+        public virtual ICollection<QuanTriVien> NhanViens { get; set; }
 
-        public virtual ICollection<NhanVien> NhanViens { get; set; }
-
-       // public virtual ICollection<KhachHang> KhachHang { get; set; }
 
     }
 }

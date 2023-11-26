@@ -92,14 +92,15 @@ else
                         <div class="col-lg-4 col-md-6 text-center strawberry">
                         <div class="single-product-item">
                             <div class="product-image">
-                               <a href="/ProductDetails/@item.MaSP"><img src="@item.Image" alt=""></a>
+                               <a href="/ProductDetails/@item.MaSP"><img src="@item.ImageURL" alt=""></a>
                             </div>
-                            <span>@item.TenSP</span>
-                            <p class="product-price"><span>Số lượng: @item.SoLuong</span>Giá:@item.GiaSP VND</p>
-                            <p>Người bán: @item.Id</p>
-                            <p>@item.TenLoai</p>
-                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                       
+                            
+                        <h5>@item.TenSP</h5>
+                        <p class="blog-meta">                        
+                            <span class="date"><i class="fas fa-calendar"></i>Ngày đăng: @item.NgayDang</span>
+                        </p>                
+                        <p class="excerpt">Giá tiền: @item.GiaSP.ToString("C")&nbsp;</p>
+                        <a href="/ProductDetails/@item.MaSP" class="cart-btn">Xem chi tiết</a>                       
                         </div>
                     </div>
                     }

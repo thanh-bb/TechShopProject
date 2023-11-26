@@ -112,18 +112,18 @@ namespace TechShop.API.Repositories
             return gioHang;
         }
 
-        public async Task<HoaDon> CreateBill(HoaDon hoadon)
+        public async Task<DonHang> CreateBill(DonHang donhang)
         {
-            await _context.HoaDon.AddAsync(hoadon);
+            await _context.DonHang.AddAsync(donhang);
             await _context.SaveChangesAsync();
-            return hoadon;
+            return donhang;
         }
 
      
 
-        public async Task<ChiTietHoaDon> CreateDetailsBill(ChiTietHoaDon cthoadon)
+        public async Task<ChiTietDonHang> CreateDetailsBill(ChiTietDonHang cthoadon)
         {
-            await _context.ChiTietHoaDon.AddAsync(cthoadon);
+            await _context.ChiTietDonHang.AddAsync(cthoadon);
             await _context.SaveChangesAsync();
             return cthoadon;
         }

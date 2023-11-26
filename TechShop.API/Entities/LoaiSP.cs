@@ -7,6 +7,8 @@ namespace TechShop.API.Entities
         [Key]
         public string MaLoai {  get; set; }
 
+
+        [MaxLength(100)]
         public string TenLoai { get; set; }
 
         public virtual ICollection<SanPham> SanPhams { get; set; }

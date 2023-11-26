@@ -9,25 +9,25 @@ namespace TechShop.API.Entities
 		[Key]
 		public int MaBangTin { get; set; }
 
-		public string NoiDung { get; set; }
+		//public string NoiDung { get; set; }
 
-		public DateTime NgayDang { get; set; }
+		//public DateTime NgayDang { get; set; }
 
-		public Guid? Id { get; set; }
+		//public Guid? Id { get; set; }
 
-		[ForeignKey("Id")]
-		public KhachHang KhachHang { get; set; }
+		//[ForeignKey("Id")]
+		//public KhachHang KhachHang { get; set; }
 
-        public virtual SanPham SanPham { get; set; }
+		//      public virtual SanPham SanPham { get; set; }
 
-        public string? MaNV { get; set; }
+		//      public string? MaNV { get; set; }
 
-		[ForeignKey("MaNV")]
-		public NhanVien NhanVien { get; set; }
+		//[ForeignKey("MaNV")]
+		//public NhanVien NhanVien { get; set; }
 
-		public string? MaTT_BT { get; set; }
+		//public string? MaTT_BT { get; set; }
 
-		[ForeignKey("MaTT_BT")]
-		public TrangThaiBT TrangThaiBT { get; set; }
+		//[ForeignKey("MaTT_BT")]
+		//public TrangThaiDuyet TrangThaiBT { get; set; }
 	}
 }

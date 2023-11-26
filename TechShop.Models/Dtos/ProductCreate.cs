@@ -55,7 +55,7 @@ namespace TechShop.Models.Dtos
 
 
         [Required(ErrorMessage = "Trường này bắt buộc")]
-        public string Image {  get; set; }
+        public string ImageURL {  get; set; }
 
         //  public IFormFile ThumbnailImage {  get; set; }
 
