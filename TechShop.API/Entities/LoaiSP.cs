@@ -5,6 +5,7 @@ namespace TechShop.API.Entities
     public class LoaiSP
     {
         [Key]
+        [MaxLength(100)]
         public string MaLoai {  get; set; }
 
 

@@ -12,29 +12,24 @@ namespace TechShop.API.Entities
         [Key]
         public int MaSP { get; set; }
 
+        [MaxLength(150)]
         public string TenSP { get; set; }
 
         public long GiaSP { get; set; }
 
         public int SoLuong { get; set; }
 
-        public string? MoTa {  get; set; }
+        [MaxLength(700)]
+        public string? MoTa { get; set; }
 
         public string? MaLoai { get; set; }
 
         [ForeignKey("MaLoai")]
-        public LoaiSP LoaiSP { get; set; } 
-
-        //public int? MaBangTin { get; set; }
-
-        //[ForeignKey("MaBangTin")]
-        //public BangTin BangTin { get; set; }
+        public LoaiSP LoaiSP { get; set; }
 
         public DateTime NgayDang { get; set; }
 
-        //public List<HinhAnh> HinhAnhs { get; set; }
-
-        public string? ImageURL {  get; set; }
+        public string? ImageURL { get; set; }
 
         public Guid Id { get; set; }
 
