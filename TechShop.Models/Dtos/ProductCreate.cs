@@ -21,16 +21,16 @@ namespace TechShop.Models.Dtos
 
 
         [Required(ErrorMessage = "Trường này bắt buộc")]
-        [Range(minimum: 10000, maximum: 50000000, ErrorMessage = "Please enter a valid no between 10.000 & 50.000.000")]
+        [Range(minimum: 10000, maximum: 50000000, ErrorMessage = "Nhập giá tiền từ 10.000đ đến 50.000.000đ")]
         public long GiaSP { get; set; }
 
 
         [Required(ErrorMessage = "Trường này bắt buộc")]
-        [Range(1,10)]
+        [Range(1,10, ErrorMessage = "Nhập số lượng từ 1 đến 10")]
         public int SoLuong { get; set; }
 
 
-        [Required]
+        [Required(ErrorMessage = "Trường này bắt buộc")]
         [MaxLength(1000, ErrorMessage = "Nhập mô tả sản phẩm dưới 1000 kí tự")]
         public string MoTa { get; set; }
 
@@ -46,18 +46,15 @@ namespace TechShop.Models.Dtos
         public Guid Id { get; set; }
 
 
-        //[Required(ErrorMessage = "Trường này bắt buộc")]
-        //public string? MaTinhTrang { get; set; }
 
-
-        [Required(ErrorMessage = "Please select status")]
+        [Required(ErrorMessage = "Hãy chọn tình trạng hàng")]
         public Status? Status { get; set; }
 
 
-        [Required(ErrorMessage = "Trường này bắt buộc")]
+        [Required(ErrorMessage = "Vui lòng chọn 1 hình ảnh")]
         public string ImageURL {  get; set; }
 
-        //  public IFormFile ThumbnailImage {  get; set; }
+       
 
         
     }

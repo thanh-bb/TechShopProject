@@ -32,13 +32,11 @@ else
             </div>
             <div class="col p-t-100" >
                 <h4>Tên sản phẩm: @Products.TenSP</h4>
-                <p>Loại sản phẩm: @Products.TenLoai</p>
-                <p class="mb-4">Mô tả: @Products.MoTa</p>
-                <p class="mb-4">
-                    <b>
-                       Giá tiền: @Products.GiaSP.ToString("C")&nbsp;(@Products.SoLuong items in stock)
-                    </b>
-                </p>
+                <p><strong>Loại sản phẩm: </strong>@Products.TenLoai</p>
+                <p><strong>Số lượng: </strong>@Products.SoLuong</p>
+                <p><strong>Giá tiền: </strong> @Products.GiaSP.ToString("C")&nbsp;</p>
+                <p><strong>Mô tả: </strong> @Products.MoTa</p>
+                <p><strong>Ngày đăng: </strong>@Products.NgayDang.ToString()</p>
                 <div>
                     @foreach(var item in Carts)
                     {

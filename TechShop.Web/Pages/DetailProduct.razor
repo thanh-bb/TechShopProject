@@ -26,26 +26,21 @@ else
     </div>
     <!-- end breadcrumb section -->
     <!-- single product -->
-    <div class="single-product mt-150 mb-150">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="single-product-img">
-                        <img src="@Products.ImageURL">
-                    </div>
-                </div>`
-                <div class="col-md-6">
-                    <div class="single-product-content">
-                        <h2>@Products.TenSP</h2>
-                        <p><strong>Loại sản phẩm: </strong>@Products.TenLoai</p>
-                        <p><strong>Số lượng: </strong>@Products.SoLuong</p>
-                        <p><strong>Giá tiền: </strong> @Products.GiaSP.ToString("C")&nbsp;</p>
-                        <p><strong>Mô tả: </strong> @Products.MoTa</p>
-                        <p><strong>Ngày đăng: </strong>@Products.NgayDang.ToString()</p>
+    <div class="container mt-5">
 
-                    </div>
-                </div>
+        <div class="row ">
+            <div class="col-md-6 mb-4">
+                <img class="img-fluid" src="@Products.ImageURL">
             </div>
+            <div class="col p-t-100">
+                <h4>Tên sản phẩm: @Products.TenSP</h4>
+                <p><strong>Loại sản phẩm: </strong>@Products.TenLoai</p>
+                <p><strong>Số lượng: </strong>@Products.SoLuong</p>
+                <p><strong>Giá tiền: </strong> @Products.GiaSP.ToString("C")&nbsp;</p>
+                <p><strong>Mô tả: </strong> @Products.MoTa</p>
+                <p><strong>Ngày đăng: </strong>@Products.NgayDang.ToString()</p>
+            </div>
+
         </div>
     </div>
 }

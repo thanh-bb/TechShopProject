@@ -304,42 +304,42 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7cb68b71-fcb2-40a8-9fb7-ce1ea4cf0873"),
+                            Id = new Guid("f512958f-2c11-419d-90ee-37a9439811e8"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1ed6a3d1-831e-4c65-8527-0f4df8820a3f",
+                            ConcurrencyStamp = "20c82fc6-cb54-471d-bd59-8d716fb40ee0",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             Gender = 0,
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 11, 26, 23, 4, 3, 877, DateTimeKind.Local).AddTicks(7348),
+                            NgaySinh = new DateTime(2023, 12, 1, 15, 19, 16, 91, DateTimeKind.Local).AddTicks(7881),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9849e406-0cc6-4f99-8b05-628e15c7c3ed",
+                            SecurityStamp = "cf6a6bb5-f33c-44d8-ac19-4edf23503d9a",
                             TenKH = "Trần Văn Man",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
                         new
                         {
-                            Id = new Guid("45508e2e-a0e0-45b8-bd0b-e791fb38b39e"),
+                            Id = new Guid("4093a41e-3274-4fb8-b2f5-64f311e0669b"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9d20e6ea-95d2-48d2-8dbf-eb79d919e845",
+                            ConcurrencyStamp = "6b13a72a-1a5e-40ff-b5df-3f724f7c3a76",
                             DienThoai = "0985879105",
                             Email = "abc@gmail.com",
                             EmailConfirmed = false,
                             Gender = 0,
                             LockoutEnabled = false,
-                            NgaySinh = new DateTime(2023, 11, 26, 23, 4, 3, 877, DateTimeKind.Local).AddTicks(7416),
+                            NgaySinh = new DateTime(2023, 12, 1, 15, 19, 16, 91, DateTimeKind.Local).AddTicks(7912),
                             NormalizedEmail = "ADMIN1@GMAIL.COM",
                             NormalizedUserName = "monmon",
                             PasswordHash = "123456",
                             PhoneNumber = "032132131",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4b792b47-a59c-42f4-962b-68259b30c18b",
+                            SecurityStamp = "bdaad362-4fcd-4cbf-8b9d-77aee336963f",
                             TenKH = "Trần Văn Mon",
                             TwoFactorEnabled = false,
                             UserName = "monmon"
@@ -349,7 +349,8 @@ namespace TechShop.API.Migrations
             modelBuilder.Entity("TechShop.API.Entities.LoaiSP", b =>
                 {
                     b.Property<string>("MaLoai")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ImageURL")
                         .HasColumnType("nvarchar(max)");
@@ -396,49 +397,6 @@ namespace TechShop.API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TechShop.API.Entities.QuanTriVien", b =>
-                {
-                    b.Property<int>("MaQTV")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaQTV"));
-
-                    b.Property<string>("DiaChiQTV")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("DienThoaiQTV")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("EmailQTV")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("HashPasswdQTV")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("TenQTV")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("MaQTV");
-
-                    b.HasIndex("Id");
-
-                    b.ToTable("NhanVien");
-                });
-
             modelBuilder.Entity("TechShop.API.Entities.Quyen", b =>
                 {
                     b.Property<Guid>("Id")
@@ -469,7 +427,7 @@ namespace TechShop.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2e6643b9-5537-428e-b8ae-1cd6d93cf855"),
+                            Id = new Guid("a6862ba8-91e8-4145-a93e-ed23b0da1d0b"),
                             Name = "admin"
                         });
                 });
@@ -492,13 +450,14 @@ namespace TechShop.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MaLoai")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("MaTT_Duyet")
                         .HasColumnType("int");
 
                     b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(700)
+                        .HasColumnType("nvarchar(700)");
 
                     b.Property<DateTime>("NgayDang")
                         .HasColumnType("datetime2");
@@ -511,7 +470,8 @@ namespace TechShop.API.Migrations
 
                     b.Property<string>("TenSP")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.HasKey("MaSP");
 
@@ -673,17 +633,6 @@ namespace TechShop.API.Migrations
                     b.Navigation("KhachHang");
                 });
 
-            modelBuilder.Entity("TechShop.API.Entities.QuanTriVien", b =>
-                {
-                    b.HasOne("TechShop.API.Entities.Quyen", "Quyen")
-                        .WithMany("NhanViens")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Quyen");
-                });
-
             modelBuilder.Entity("TechShop.API.Entities.SanPham", b =>
                 {
                     b.HasOne("TechShop.API.Entities.KhachHang", "KhachHang")
@@ -717,11 +666,6 @@ namespace TechShop.API.Migrations
             modelBuilder.Entity("TechShop.API.Entities.LoaiSP", b =>
                 {
                     b.Navigation("SanPhams");
-                });
-
-            modelBuilder.Entity("TechShop.API.Entities.Quyen", b =>
-                {
-                    b.Navigation("NhanViens");
                 });
 
             modelBuilder.Entity("TechShop.API.Entities.TrangThaiDH", b =>

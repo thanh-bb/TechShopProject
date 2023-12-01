@@ -60,7 +60,7 @@ namespace TechShop.API.Migrations
                 name: "LoaiSP",
                 columns: table => new
                 {
-                    MaLoai = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MaLoai = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     TenLoai = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -111,30 +111,6 @@ namespace TechShop.API.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "NhanVien",
-                columns: table => new
-                {
-                    MaQTV = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenQTV = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    EmailQTV = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    DiaChiQTV = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    DienThoaiQTV = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    HashPasswdQTV = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_NhanVien", x => x.MaQTV);
-                    table.ForeignKey(
-                        name: "FK_NhanVien_AspNetRoles_Id",
-                        column: x => x.Id,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -275,11 +251,11 @@ namespace TechShop.API.Migrations
                 {
                     MaSP = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenSP = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TenSP = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     GiaSP = table.Column<long>(type: "bigint", nullable: false),
                     SoLuong = table.Column<int>(type: "int", nullable: false),
-                    MoTa = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MaLoai = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    MoTa = table.Column<string>(type: "nvarchar(700)", maxLength: 700, nullable: true),
+                    MaLoai = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     NgayDang = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -363,15 +339,15 @@ namespace TechShop.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("2e6643b9-5537-428e-b8ae-1cd6d93cf855"), null, "admin", null });
+                values: new object[] { new Guid("a6862ba8-91e8-4145-a93e-ed23b0da1d0b"), null, "admin", null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DienThoai", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "NgaySinh", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenKH", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("45508e2e-a0e0-45b8-bd0b-e791fb38b39e"), 0, "9d20e6ea-95d2-48d2-8dbf-eb79d919e845", "0985879105", "abc@gmail.com", false, 0, false, null, new DateTime(2023, 11, 26, 23, 4, 3, 877, DateTimeKind.Local).AddTicks(7416), "ADMIN1@GMAIL.COM", "monmon", "123456", "032132131", false, "4b792b47-a59c-42f4-962b-68259b30c18b", "Trần Văn Mon", false, "monmon" },
-                    { new Guid("7cb68b71-fcb2-40a8-9fb7-ce1ea4cf0873"), 0, "1ed6a3d1-831e-4c65-8527-0f4df8820a3f", "0985879105", "abc@gmail.com", false, 0, false, null, new DateTime(2023, 11, 26, 23, 4, 3, 877, DateTimeKind.Local).AddTicks(7348), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "9849e406-0cc6-4f99-8b05-628e15c7c3ed", "Trần Văn Man", false, "admin" }
+                    { new Guid("4093a41e-3274-4fb8-b2f5-64f311e0669b"), 0, "6b13a72a-1a5e-40ff-b5df-3f724f7c3a76", "0985879105", "abc@gmail.com", false, 0, false, null, new DateTime(2023, 12, 1, 15, 19, 16, 91, DateTimeKind.Local).AddTicks(7912), "ADMIN1@GMAIL.COM", "monmon", "123456", "032132131", false, "bdaad362-4fcd-4cbf-8b9d-77aee336963f", "Trần Văn Mon", false, "monmon" },
+                    { new Guid("f512958f-2c11-419d-90ee-37a9439811e8"), 0, "20c82fc6-cb54-471d-bd59-8d716fb40ee0", "0985879105", "abc@gmail.com", false, 0, false, null, new DateTime(2023, 12, 1, 15, 19, 16, 91, DateTimeKind.Local).AddTicks(7881), "ADMIN1@GMAIL.COM", "ADMIN", "123456", "032132131", false, "cf6a6bb5-f33c-44d8-ac19-4edf23503d9a", "Trần Văn Man", false, "admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -456,11 +432,6 @@ namespace TechShop.API.Migrations
                 column: "Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_NhanVien_Id",
-                table: "NhanVien",
-                column: "Id");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_SanPham_Id",
                 table: "SanPham",
                 column: "Id");
@@ -501,7 +472,7 @@ namespace TechShop.API.Migrations
                 name: "ChiTietGioHang");
 
             migrationBuilder.DropTable(
-                name: "NhanVien");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "DonHang");
@@ -511,9 +482,6 @@ namespace TechShop.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "SanPham");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "TrangThaiDH");

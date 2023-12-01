@@ -94,13 +94,15 @@ else
                             <div class="product-image">
                                <a href="/ProductDetails/@item.MaSP"><img src="@item.ImageURL" alt=""></a>
                             </div>
-                            
-                        <h5>@item.TenSP</h5>
-                        <p class="blog-meta">                        
+                            <div class="card-body"> 
+                       
+                            <h6>@item.TenSP</h6>
+                            <p class="blog-meta">                        
                             <span class="date"><i class="fas fa-calendar"></i>Ngày đăng: @item.NgayDang</span>
-                        </p>                
-                        <p class="excerpt">Giá tiền: @item.GiaSP.ToString("C")&nbsp;</p>
-                        <a href="/ProductDetails/@item.MaSP" class="cart-btn">Xem chi tiết</a>                       
+                             </p>                
+                            <p class="excerpt" style="font-weight:bold">Giá tiền: @item.GiaSP.ToString("C")&nbsp;</p>
+                            <a href="/ProductDetails/@item.MaSP" class="cart-btn">Xem chi tiết</a>            
+                        </div>
                         </div>
                     </div>
                     }

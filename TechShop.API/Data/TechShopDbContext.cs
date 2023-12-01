@@ -20,9 +20,7 @@ namespace TechShop.API.Data
        
         public DbSet<KhachHang> KhachHang { get; set; }
 
-        public DbSet<LoaiSP> LoaiSP { get; set; }
-
-        public DbSet<QuanTriVien> NhanVien { get; set; }
+        public DbSet<LoaiSP> LoaiSP { get; set; }       
 
         public DbSet<Quyen> Quyen { get; set; }
 
